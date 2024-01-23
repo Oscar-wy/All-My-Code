@@ -9,4 +9,10 @@
 
 .Navbar{
     background-color: var(--SecondaryBackgroundColour);
+    width: 100px;
+    height: 20px;
+}
+
+.NavContainer{
+    background-color: none;
 }
