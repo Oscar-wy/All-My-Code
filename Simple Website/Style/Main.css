@@ -1,0 +1,14 @@
+:root{
+    --Text-Colour: #ebebeb;
+    --Main-BG-Colour: #1a1a1a;
+    --Secondary-BG-Colour: #313131;
+    --Primary-Colour: #2c2041;
+    --Secondary-Colour: #402d63;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--Main-BG-Colour);
+    color: var(--Text-Colour);
+}
