@@ -1,0 +1,8 @@
+:root{
+    --Background-Colour: #2b2a2a;
+    --Text-Colour: #fff;
+    --Secondary-BG-Colour: #131313;
+    --Primary-Colour: #320f69;
+    --Secondary-Colour: #4c2788;
+    --Primary-Gradient: linear-gradient(90deg, var(--Secondary-Colour), var(--Primary-Colour));
+}
