@@ -3,6 +3,7 @@ body{
     margin: 0;
     background-color: var(--Background-Colour);
     color: var(--Text-Colour);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .Page{
@@ -33,6 +34,9 @@ body{
     border-radius: 15px;
     background-color: var(--Background-Colour);
     border: none;
+    font-weight: 700;
+    font-size: large;
+    color: var(--Text-Colour);
 }
 
 .Button{
