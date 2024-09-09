@@ -1,5 +1,6 @@
 import time
 import os
+import pygame
 Game = True
 ctr = 0
 Board = ["X"]
@@ -17,6 +18,4 @@ while Game != False:
     if ctr >= 1:
         Board.insert(0, " ")
     printBoard(Board)
-    input()
 
-    

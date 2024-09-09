@@ -69,10 +69,23 @@ class Player(Entity):
             print("Cant Move There")
             self.Move()
 
+class Game:
+    def __init__(self, player, aoe):
+        self.Player = player
+        self.amountEnemies = aoe
+        self.Enemies = []
+    def makeEnemies(self):
+        for i in range(self.amountEnemies):
+            pass
+    def Move():
+        pass
+
+
+User = Player("Player", 100)
+Aoe = input("How Many Enemies Do You Want To Face: ")
+Server = Game(User, Aoe)
+Server.Player
 
 Board = setUpBoard()
 printBoard(Board)
 
-User = Player("Player", 100)
-print(User.Coordinates)
-User.Move()
