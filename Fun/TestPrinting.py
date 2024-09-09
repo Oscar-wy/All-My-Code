@@ -1,22 +1,29 @@
 import time
 import os
-Game = True
-ctr = 0
-Board = ["X"]
 
-def printBoard(Board):
-    os.system("clear")
-    string = ""
-    for i in range(len(Board)):
-        string += Board[i] 
-    print(string)
+def CreateBoard ():
+    board = []
+    for i in range(5):
+        row = CreateRow()
+        board.append(row)
+    return(board)
 
-while Game != False:
-    time.sleep(.2)
-    ctr += 1
-    if ctr >= 1:
-        Board.insert(0, " ")
-    printBoard(Board)
-    input()
-
+def CreateRow():
+    row = []
+    for i in range(5):
+        row.append(0)
     
+    return(row)
+
+def PrintBoard(Board):
+    for i in range(len(Board)):
+        print(Board[i])
+
+
+def SartGame():
+    Board = CreateBoard()
+    print(PrintBoard(Board))
+
+
+
+SartGame()
