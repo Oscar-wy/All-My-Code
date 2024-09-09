@@ -3,27 +3,28 @@ import os
 
 def CreateBoard ():
     board = []
-    for i in range(5):
+    for i in range(10):
         row = CreateRow()
         board.append(row)
     return(board)
 
 def CreateRow():
     row = []
-    for i in range(5):
-        row.append(0)
+    for i in range(20):
+        row.append(" ")
     
     return(row)
 
 def PrintBoard(Board):
     for i in range(len(Board)):
         print(Board[i])
+    return('')
 
 
-def SartGame():
+def StartGame():
     Board = CreateBoard()
     print(PrintBoard(Board))
 
 
 
-SartGame()
+StartGame()
