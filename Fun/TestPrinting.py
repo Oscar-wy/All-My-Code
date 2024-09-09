@@ -1,6 +1,9 @@
 import time
 import os
 
+def CreatePlayer(board):
+    player = X
+
 def CreateBoard ():
     board = []
     for i in range(10):

@@ -1,0 +1,9 @@
+number = 0
+while number < 1 or number > 10:
+    print('Enter a positive whole number')
+    num = int(input('>'))
+    if num > 10:
+        print('Number is too large')
+    else:
+        if number < 1:
+            print('Not positive number')
