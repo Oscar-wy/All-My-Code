@@ -2,7 +2,8 @@ import time
 import os
 
 def CreatePlayer(board):
-    player = X
+    player = 'X'
+    
 
 def CreateBoard ():
     board = []
@@ -22,7 +23,6 @@ def PrintBoard(Board):
     for i in range(len(Board)):
         print(Board[i])
     return('')
-
 
 def StartGame():
     Board = CreateBoard()
