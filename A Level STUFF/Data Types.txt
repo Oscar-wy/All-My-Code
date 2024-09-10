@@ -1,0 +1,3 @@
+Elementary Data Type - Integer, Boolean, Char, Real
+Composite Data Type - String, Array, (List May Be On This Depending On The Programming Language)
+Abstract Data Type - Stack, Queue, List
