@@ -1,4 +1,5 @@
 placeholder = " "
+
 def find(board,choice):
     for i in range(0, len(board)):
         for j in range(0, len(board[0])):
@@ -7,6 +8,24 @@ def find(board,choice):
 
 grid = [["a",placeholder,"c","d"],["e","f","g","h"],["i","j","k","l"],["m","n","o","p"]]
 
+def CreateGrid():
+    print("Max Size 6 x 4")
+    collumns = int(input("Enter Collumns: "))
+    rows = int(input("Enter Rows: "))
+    if collumns > 6 or rows > 6:
+        print("Too Big!")
+        CreateGrid()
+    else:
+        grid = []
+
+def Save():
+    with open("Game.txt", "w") as file:
+        file.write(str(grid))
+
+def Load():
+    with open("Game.txt", "r") as file:
+        grid = list(file.readline())
+
 def show(board):
     for i in range(len(board)):
         print(grid[i])
@@ -14,6 +33,10 @@ def show(board):
 while True:
     show(grid)
     choice = input("Enter a letter: ").lower()
+    if choice == "save":
+        Save()
+    elif choice == "load":
+        Load()
     direction = input("Enter a direction (u,d,l,r): ")
 
     row, column = find(grid, choice)
