@@ -2,7 +2,6 @@ import turtle
 
 def tree(branchLen):
     if branchLen > 5:
-        t.width(2)
         t.shapesize(2)
         t.forward(branchLen)
         t.right(30)
@@ -27,6 +26,3 @@ t.down()
 tree(90)
 
 myWindow.exitonclick()
-
-
-
