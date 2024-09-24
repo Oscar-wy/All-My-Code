@@ -11,6 +11,8 @@ def GetRowColumn():
   print()
   Column = int(input("Please enter column: "))
   Row = int(input("Please enter row: "))
+  if Column > 9 or Column < 0 or Row > 9 or Row < 0:
+    Row, Column = GetRowColumn()
   print()
   return Row, Column
             
