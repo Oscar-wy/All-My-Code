@@ -40,7 +40,10 @@ def SetUpBoard():
   return Board
 
 def RealBoard(Board, Ships):
-  pass
+  for Row in Board:
+    for Column in Row:
+      for Ship in Ships:
+        print("Idk What To Do :(")
 
 def SaveGame(fileName, Board):
   BoardFile = open(fileName, "w")
