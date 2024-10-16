@@ -1,4 +1,26 @@
 import random
+import os
+
+class pieceClass():
+    def __init__(self):
+        pieceSelect = random.randint(1, 7)
+        piece = []
+        if pieceSelect == 1:
+            piece = [["X","X"],["X","X"]]
+        elif pieceSelect == 2:
+            piece = [["X"],["X"],["X"],["X"]]
+        elif pieceSelect == 3:
+            piece = [[" ","X","X"], ["X","X"," "]]
+        elif pieceSelect == 4:
+            piece = [["X","X"," "], [" ","X","X"]]
+        elif pieceSelect == 5:
+            piece = [["X"," "], ["X"," "], ["X","X"]]
+        elif pieceSelect == 6:
+            piece = [[" ","X"], [" ", "X"], [" ", "X"]]
+        elif pieceSelect == 7:
+            piece = [["X","X","X"], [" ", "X", " "]]
+
+
 
 class gameClass():
     def __init__(self, player):
@@ -12,8 +34,22 @@ class gameClass():
                 rowList.append("-")
             self.Board.append(rowList)
     def printBoard(self):
-        for column in range(len(self.Board)):
-            print(self.Board[column])
+        for row in self.Board:
+            rowList = "|"
+            for column in row:
+                if column == "-":
+                    rowList += "   |"
+                else:
+                    rowList += column+"   |"
+            print(rowList)
+    def Clear(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
+    def Play(self):
+        done = False
+        while not done:
+            self.Clear()
+            self.printBoard()
+
 
 class playerClass():
     def __init__(self):
@@ -83,11 +119,11 @@ class playerClass():
                 userFile.close()
         except:
             print("Error Occured")
-            file = open(f"./{self.Username}+Data", "x")
+            file = open(f"./{self.Username}Data", "x")
             file.close()
-        with open(f"./{self.Username}+Data", "a") as userFile:
-                userFile.write(f"{self.bestScore}:{self.Wins}")
-                userFile.close()
+        with open(f"./{self.Username}Data", "a") as userFile:
+            userFile.write(f"{self.bestScore}:{self.Wins}")
+            userFile.close()
 
 Player = playerClass()
 Game = gameClass(Player)
@@ -95,4 +131,4 @@ Game = gameClass(Player)
 if __name__ == "__main__":
     Player.getPlayer()
     Game.createBoard()
-    Game.printBoard()
+    Game.Play()
