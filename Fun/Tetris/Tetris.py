@@ -4,29 +4,28 @@ import os
 class pieceClass():
     def __init__(self):
         pieceSelect = random.randint(1, 7)
-        piece = []
+        self.piece = []
         if pieceSelect == 1:
-            piece = [["X","X"],["X","X"]]
+            self.piece = [["X","X"],["X","X"]]
         elif pieceSelect == 2:
-            piece = [["X"],["X"],["X"],["X"]]
+            self.piece = [["X"],["X"],["X"],["X"]]
         elif pieceSelect == 3:
-            piece = [[" ","X","X"], ["X","X"," "]]
+            self.piece = [[" ","X","X"], ["X","X"," "]]
         elif pieceSelect == 4:
-            piece = [["X","X"," "], [" ","X","X"]]
+            self.piece = [["X","X"," "], [" ","X","X"]]
         elif pieceSelect == 5:
-            piece = [["X"," "], ["X"," "], ["X","X"]]
+            self.piece = [["X"," "], ["X"," "], ["X","X"]]
         elif pieceSelect == 6:
-            piece = [[" ","X"], [" ", "X"], [" ", "X"]]
+            self.piece = [[" ","X"], [" ", "X"], [" ", "X"]]
         elif pieceSelect == 7:
-            piece = [["X","X","X"], [" ", "X", " "]]
-
-
+            self.piece = [["X","X","X"], [" ", "X", " "]]
 
 class gameClass():
     def __init__(self, player):
         self.Board = []
         self.Points = 0
         self.Player = player
+        self.Shapes = []
     def createBoard(self):
         for column in range(24):
             rowList = []
@@ -42,13 +41,35 @@ class gameClass():
                 else:
                     rowList += column+"   |"
             print(rowList)
+    def getShape(self):
+        shape = pieceClass()
+        self.Shapes.append(shape)
+        #add piece to board
+    def input(self):
+        #get keyboard input
+        return self.changeShapeBoard()
+    def changeShapeBoard(self):
+        #change position on board
+        #check if position is at the bottom
+        #if it is return True else False
+        #check if piece hits another piece if it does stop and return True
+        #if it hits another and its at the top return "End"
+        #else continue
+        return False
     def Clear(self):
         os.system('cls' if os.name == 'nt' else 'clear')
     def Play(self):
         done = False
+        ctr = 0
+        pieceComplete = True
         while not done:
-            self.Clear()
-            self.printBoard()
+            #self.Clear()
+            if pieceComplete:
+                self.getShape()
+            #self.printBoard()
+            pieceComplete = self.input()
+            #CheckBoard to see if any lines complete
+            #Add points if completed
 
 
 class playerClass():
