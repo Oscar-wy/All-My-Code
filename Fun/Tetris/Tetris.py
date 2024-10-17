@@ -42,8 +42,19 @@ class gameClass():
                     rowList += column+"   |"
             print(rowList)
     def getShape(self):
+        print("Doing Shape")
         shape = pieceClass()
         self.Shapes.append(shape)
+        pos = random.randint(0, len(self.Board)-1)
+        size = len(shape.piece[0])
+        for rows in shape.piece:
+            print("Rowing Shape")
+            for row in self.Board:
+                for column in range(len(row)):
+                    for i in range(size):
+                        if column == pos-(i-1):
+                            print("Successing")
+                            row[column] == rows[i]
         #add piece to board
     def input(self):
         #get keyboard input
@@ -63,11 +74,12 @@ class gameClass():
         ctr = 0
         pieceComplete = True
         while not done:
-            #self.Clear()
+            self.Clear()
             if pieceComplete:
                 self.getShape()
-            #self.printBoard()
+            self.printBoard()
             pieceComplete = self.input()
+            done = True
             #CheckBoard to see if any lines complete
             #Add points if completed
 
