@@ -5,20 +5,28 @@ class pieceClass():
     def __init__(self):
         pieceSelect = random.randint(1, 7)
         self.piece = []
+        self.Type = ""
         if pieceSelect == 1:
             self.piece = [["X","X"],["X","X"]]
+            self.Type = "Square"
         elif pieceSelect == 2:
             self.piece = [["X"],["X"],["X"],["X"]]
+            self.Type = "Line"
         elif pieceSelect == 3:
             self.piece = [[" ","X","X"], ["X","X"," "]]
+            self.Type = "LStair"
         elif pieceSelect == 4:
             self.piece = [["X","X"," "], [" ","X","X"]]
+            self.Type = "RStair"
         elif pieceSelect == 5:
             self.piece = [["X"," "], ["X"," "], ["X","X"]]
+            self.Type = "LPiece"
         elif pieceSelect == 6:
-            self.piece = [[" ","X"], [" ", "X"], [" ", "X"]]
+            self.piece = [[" ","X"], [" ", "X"], ["X", "X"]]
+            self.Type = "RPiece"
         elif pieceSelect == 7:
             self.piece = [["X","X","X"], [" ", "X", " "]]
+            self.Type = "Middle"
 
 class gameClass():
     def __init__(self, player):
@@ -27,6 +35,7 @@ class gameClass():
         self.Player = player
         self.Shapes = []
     def createBoard(self):
+        self.Board = []
         for column in range(24):
             rowList = []
             for row in range(10):
@@ -39,22 +48,21 @@ class gameClass():
                 if column == "-":
                     rowList += "   |"
                 else:
-                    rowList += column+"   |"
+                    rowList += f" {column} |"
             print(rowList)
     def getShape(self):
-        print("Doing Shape")
         shape = pieceClass()
         self.Shapes.append(shape)
-        pos = random.randint(0, len(self.Board)-1)
+        colCoord = random.randint(1, len(self.Board[0])-2)
+        print(shape.Type)
+        print(shape.piece)
         size = len(shape.piece[0])
-        for rows in shape.piece:
-            print("Rowing Shape")
-            for row in self.Board:
-                for column in range(len(row)):
-                    for i in range(size):
-                        if column == pos-(i-1):
-                            print("Successing")
-                            row[column] == rows[i]
+        for column in range(len(self.Board[0])):
+            if column == colCoord:
+                for shapeRow in range(len(shape.piece)):
+                    for shapeCol in range(size):
+                        self.Board[shapeRow][column+(shapeCol-1)] = shape.piece[shapeRow][shapeCol]
+                    
         #add piece to board
     def input(self):
         #get keyboard input
@@ -78,8 +86,13 @@ class gameClass():
             if pieceComplete:
                 self.getShape()
             self.printBoard()
-            pieceComplete = self.input()
-            done = True
+            self.createBoard()
+            #pieceComplete = self.input()
+            input()
+            pieceComplete = True
+            ctr += 1
+            if ctr == 9:
+                done = True
             #CheckBoard to see if any lines complete
             #Add points if completed
 
