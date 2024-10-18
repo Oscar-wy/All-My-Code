@@ -16,7 +16,7 @@ class pieceClass():
             self.Orientation = "L"
         else:
             self.Orientation = "R"
-        self.Orientation = "U"
+        self.Orientation = "L"
         if pieceSelect == 1:
             self.piece = [["X","X"],["X","X"]]
             self.Type = "Square"
@@ -83,6 +83,18 @@ class gameClass():
                                 self.Board[shapeRow][column+(shapeCol-1)] = " "
                             else:
                                 self.Board[shapeRow][column+(shapeCol-1)] = shape
+                        elif shape.Orientation == "U":
+                            if shape.piece[shapeRow][shapeCol] == " ":
+                                self.Board[shapeRow][column+(shapeCol-1)] = " "
+                            else:
+                                self.Board[shapeRow][column+(shapeCol-1)] = shape
+                        elif shape.Orientation == "L":
+                            if shape.piece[shapeRow][shapeCol] == " ":
+                                self.Board[shapeCol][column+(shapeRow-1)] = " "
+                            else:
+                                self.Board[shapeCol][column+(shapeRow-1)] = shape
+                        else:
+                           pass
                     
         #add piece to board
     def input(self):
@@ -106,11 +118,13 @@ class gameClass():
             self.Clear()
             if pieceComplete:
                 self.getShape()
+            print(self.Shapes)
             self.printBoard()
             self.createBoard()
             #pieceComplete = self.input()
             input()
             pieceComplete = True
+            self.Shapes = []
             ctr += 1
             if ctr == 9:
                 done = True
