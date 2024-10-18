@@ -16,7 +16,7 @@ class pieceClass():
             self.Orientation = "L"
         else:
             self.Orientation = "R"
-        self.Orientation = "L"
+        self.Orientation = "R"
         if pieceSelect == 1:
             self.piece = [["X","X"],["X","X"]]
             self.Type = "Square"
@@ -45,6 +45,7 @@ class gameClass():
         self.Points = 0
         self.Player = player
         self.Shapes = []
+        self.currentShape = None
     def createBoard(self):
         self.Board = []
         for column in range(24):
@@ -67,6 +68,7 @@ class gameClass():
             print(rowList)
     def getShape(self):
         shape = pieceClass()
+        self.currentShape = shape
         self.Shapes.append(shape)
         colCoord = random.randint(1, len(self.Board[0])-2)
         print(shape.Type)
@@ -78,7 +80,6 @@ class gameClass():
                 for shapeRow in range(len(shape.piece)):
                     for shapeCol in range(size):
                         if shape.Orientation == "D":
-                            print(shapeRow)
                             if shape.piece[(len(shape.piece)-1)-shapeRow][shapeCol] == " ":
                                 self.Board[shapeRow][column+(shapeCol-1)] = " "
                             else:
@@ -94,13 +95,23 @@ class gameClass():
                             else:
                                 self.Board[shapeCol][column+(shapeRow-1)] = shape
                         else:
-                           pass
-                    
-        #add piece to board
+                            if shape.piece[shapeRow][shapeCol] == " ":
+                                self.Board[shapeRow][column-(shapeCol-1)] = " "
+                            else:
+                                self.Board[shapeRow][column-(shapeCol-1)] = shape
+                               
     def input(self):
         #get keyboard input
         return self.changeShapeBoard()
+    def getShapePos(self):
+        pos = []
+        for row in self.Board:
+            for column in row:
+                if column == self.currentShape:
+                    pos.append([row, column])
+        return pos
     def changeShapeBoard(self):
+        pos = self.getShapePos()
         #change position on board
         #check if position is at the bottom
         #if it is return True else False
