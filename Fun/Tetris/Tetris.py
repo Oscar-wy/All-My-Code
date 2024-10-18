@@ -105,13 +105,14 @@ class gameClass():
         return self.changeShapeBoard()
     def getShapePos(self):
         pos = []
-        for row in self.Board:
-            for column in row:
-                if column == self.currentShape:
+        for row in range(len(self.Board)):
+            for column in range(len(self.Board[row])):
+                if self.Board[row][column] == self.currentShape:
                     pos.append([row, column])
         return pos
     def changeShapeBoard(self):
         pos = self.getShapePos()
+        print(pos)
         #change position on board
         #check if position is at the bottom
         #if it is return True else False
@@ -131,6 +132,7 @@ class gameClass():
                 self.getShape()
             print(self.Shapes)
             self.printBoard()
+            self.changeShapeBoard()
             self.createBoard()
             #pieceComplete = self.input()
             input()
