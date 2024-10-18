@@ -6,6 +6,17 @@ class pieceClass():
         pieceSelect = random.randint(1, 7)
         self.piece = []
         self.Type = ""
+        self.Orientation = ""
+        orientationSelect = random.randint(1, 4)
+        if orientationSelect == 1:
+            self.Orientation = "U"
+        elif orientationSelect == 2:
+            self.Orientation = "D"
+        elif orientationSelect == 3:
+            self.Orientation = "L"
+        else:
+            self.Orientation = "R"
+        self.Orientation = "U"
         if pieceSelect == 1:
             self.piece = [["X","X"],["X","X"]]
             self.Type = "Square"
@@ -25,7 +36,7 @@ class pieceClass():
             self.piece = [[" ","X"], [" ", "X"], ["X", "X"]]
             self.Type = "RPiece"
         elif pieceSelect == 7:
-            self.piece = [["X","X","X"], [" ", "X", " "]]
+            self.piece = [[" ","X"," "], ["X", "X", "X"]]
             self.Type = "Middle"
 
 class gameClass():
@@ -48,7 +59,11 @@ class gameClass():
                 if column == "-":
                     rowList += "   |"
                 else:
-                    rowList += f" {column} |"
+                    for shape in self.Shapes:
+                        if shape == column:
+                            rowList += f" X |"
+                        else:
+                            rowList += f" {column} |"
             print(rowList)
     def getShape(self):
         shape = pieceClass()
@@ -56,12 +71,18 @@ class gameClass():
         colCoord = random.randint(1, len(self.Board[0])-2)
         print(shape.Type)
         print(shape.piece)
+        print(shape.Orientation)
         size = len(shape.piece[0])
         for column in range(len(self.Board[0])):
             if column == colCoord:
                 for shapeRow in range(len(shape.piece)):
                     for shapeCol in range(size):
-                        self.Board[shapeRow][column+(shapeCol-1)] = shape.piece[shapeRow][shapeCol]
+                        if shape.Orientation == "D":
+                            print(shapeRow)
+                            if shape.piece[(len(shape.piece)-1)-shapeRow][shapeCol] == " ":
+                                self.Board[shapeRow][column+(shapeCol-1)] = " "
+                            else:
+                                self.Board[shapeRow][column+(shapeCol-1)] = shape
                     
         #add piece to board
     def input(self):
