@@ -7,6 +7,7 @@ class pieceClass():
         self.piece = []
         self.Type = ""
         self.Orientation = ""
+        self.Coordinates = []
         orientationSelect = random.randint(1, 4)
         if orientationSelect == 1:
             self.Orientation = "U"
@@ -16,7 +17,6 @@ class pieceClass():
             self.Orientation = "L"
         else:
             self.Orientation = "R"
-        self.Orientation = "R"
         if pieceSelect == 1:
             self.piece = [["X","X"],["X","X"]]
             self.Type = "Square"
@@ -38,6 +38,33 @@ class pieceClass():
         elif pieceSelect == 7:
             self.piece = [[" ","X"," "], ["X", "X", "X"]]
             self.Type = "Middle"
+    def createCoords(self, Board):
+        colCoord = random.randint(1, len(Board[0])-1)
+        size = len(self.piece[0])      
+        for column in range(len(Board[0])):
+            if column == colCoord:
+                for shapeRow in range(len(self.piece)):
+                    for shapeCol in range(size):
+                        if self.Orientation == "D":
+                            if self.piece[(len(self.piece)-1)-shapeRow][shapeCol] == " ":
+                                print(shapeRow, column+(shapeCol-1), "Not It")
+                            else:
+                                self.Coordinates.append([shapeRow, column+(shapeCol-1)])
+                        elif self.Orientation == "U":
+                            if self.piece[shapeRow][shapeCol] == " ":
+                                print(shapeRow, column+(shapeCol-1), "Not It")
+                            else:
+                                self.Coordinates.append([shapeRow, column+(shapeCol-1)])
+                        elif self.Orientation == "L":
+                            if self.piece[shapeRow][shapeCol] == " ":
+                                print(shapeCol, column+(shapeRow-1), "Not It")
+                            else:
+                                self.Coordinates.append([shapeCol, column+(shapeRow-1)])
+                        else:
+                            if self.piece[shapeRow][shapeCol] == " ":
+                                print(shapeRow, column-(shapeRow-1), "Not It")
+                            else:
+                                self.Coordinates.append([shapeRow, column+(shapeCol-1)])
 
 class gameClass():
     def __init__(self, player):
@@ -54,93 +81,94 @@ class gameClass():
                 rowList.append("-")
             self.Board.append(rowList)
     def printBoard(self):
-        for row in self.Board:
+        for row in range(len(self.Board)):
             rowList = "|"
-            for column in row:
-                if column == "-":
+            for column in range(len(self.Board[row])):
+                done = False
+                for shape in self.Shapes:
+                    for coords in shape.Coordinates:
+                        if coords[0] == row and coords[1] == column:
+                            rowList += " X |"
+                            done = True
+                if not done:
                     rowList += "   |"
-                else:
-                    for shape in self.Shapes:
-                        if shape == column:
-                            rowList += f" X |"
-                        else:
-                            rowList += f" {column} |"
             print(rowList)
     def getShape(self):
         shape = pieceClass()
         self.currentShape = shape
         self.Shapes.append(shape)
-        colCoord = random.randint(1, len(self.Board[0])-2)
+        shape.createCoords(self.Board)
+        print(shape.Coordinates)
         print(shape.Type)
         print(shape.piece)
-        print(shape.Orientation)
-        size = len(shape.piece[0])
-        for column in range(len(self.Board[0])):
-            if column == colCoord:
-                for shapeRow in range(len(shape.piece)):
-                    for shapeCol in range(size):
-                        if shape.Orientation == "D":
-                            if shape.piece[(len(shape.piece)-1)-shapeRow][shapeCol] == " ":
-                                self.Board[shapeRow][column+(shapeCol-1)] = " "
-                            else:
-                                self.Board[shapeRow][column+(shapeCol-1)] = shape
-                        elif shape.Orientation == "U":
-                            if shape.piece[shapeRow][shapeCol] == " ":
-                                self.Board[shapeRow][column+(shapeCol-1)] = " "
-                            else:
-                                self.Board[shapeRow][column+(shapeCol-1)] = shape
-                        elif shape.Orientation == "L":
-                            if shape.piece[shapeRow][shapeCol] == " ":
-                                self.Board[shapeCol][column+(shapeRow-1)] = " "
-                            else:
-                                self.Board[shapeCol][column+(shapeRow-1)] = shape
-                        else:
-                            if shape.piece[shapeRow][shapeCol] == " ":
-                                self.Board[shapeRow][column-(shapeCol-1)] = " "
-                            else:
-                                self.Board[shapeRow][column-(shapeCol-1)] = shape
-                               
-    def input(self):
-        #get keyboard input
-        return self.changeShapeBoard()
-    def getShapePos(self):
-        pos = []
-        for row in range(len(self.Board)):
-            for column in range(len(self.Board[row])):
-                if self.Board[row][column] == self.currentShape:
-                    pos.append([row, column])
-        return pos
+        print(shape.Orientation)         
     def changeShapeBoard(self):
-        pos = self.getShapePos()
+        hitFloor = False
+        hitBlock = False
+        pos = self.currentShape.Coordinates
         print(pos)
-        #change position on board
-        #check if position is at the bottom
-        #if it is return True else False
-        #check if piece hits another piece if it does stop and return True
-        #if it hits another and its at the top return "End"
-        #else continue
+        user = input(">").lower()
+        for i in pos:
+            if i[0] == 23:
+                hitFloor = True
+            if user == "a":
+                if i[1] != 0:
+                    i[1] -= 1
+            elif user == "d":
+                if i[1] != 9:
+                    i[1] += 1
+            elif user == "w":
+                if i[0] != 0:
+                    i[0] -= 1
+            elif user == "s":
+                if i[0] != 23:
+                    i[0] += 1
+            else:
+                print("Error")
+        self.currentShape.Coordinates = pos
+        print(pos)
+        for shape in self.Shapes:
+            for coords in self.currentShape.Coordinates:
+                for shCoords in shape.Coordinates:
+                    if shCoords == coords and shape != self.currentShape:
+                        hitBlock = True
+        if hitBlock:
+            print("Hit")
+            for coords in self.currentShape.Coordinates:
+                if coords[0] == 0:
+                    return "End"
+                else:
+                    return True
+        if hitFloor:
+            print("Floor")
+            return True
         return False
     def Clear(self):
         os.system('cls' if os.name == 'nt' else 'clear')
+    def checkBoard(self):
+        pass
     def Play(self):
         done = False
         ctr = 0
         pieceComplete = True
         while not done:
-            self.Clear()
+            #self.Clear()
             if pieceComplete:
+                pieceComplete = False
                 self.getShape()
             print(self.Shapes)
             self.printBoard()
-            self.changeShapeBoard()
-            self.createBoard()
+            check = self.changeShapeBoard()
+            if check == "End":
+                break
+            elif check == True:
+                pieceComplete = True
+            self.printBoard()
             #pieceComplete = self.input()
-            input()
-            pieceComplete = True
-            self.Shapes = []
             ctr += 1
             if ctr == 9:
                 done = True
+            self.checkBoard()
             #CheckBoard to see if any lines complete
             #Add points if completed
 
