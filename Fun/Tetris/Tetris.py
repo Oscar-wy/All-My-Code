@@ -109,8 +109,6 @@ class gameClass():
         print(pos)
         user = input(">").lower()
         for i in pos:
-            if i[0] == 23:
-                hitFloor = True
             if user == "a":
                 if i[1] != 0:
                     i[1] -= 1
@@ -121,17 +119,19 @@ class gameClass():
                 if i[0] != 0:
                     i[0] -= 1
             elif user == "s":
-                if i[0] != 23:
+                if i[0] != 23 and not hitFloor:
                     i[0] += 1
             else:
                 print("Error")
-        self.currentShape.Coordinates = pos
-        print(pos)
+        for i in pos:
+            if i[0] == 23:
+                hitFloor = True
         for shape in self.Shapes:
-            for coords in self.currentShape.Coordinates:
-                for shCoords in shape.Coordinates:
-                    if shCoords == coords and shape != self.currentShape:
-                        hitBlock = True
+            for shCoords in shape.Coordinates:
+                for coords in pos:
+                    for col in range(-1, 1):
+                        if (shCoords[1] == (coords[1]+col) and shCoords[0] == coords[0]+col) and shape != self.currentShape:
+                            hitBlock = True
         if hitBlock:
             print("Hit")
             for coords in self.currentShape.Coordinates:
@@ -142,6 +142,11 @@ class gameClass():
         if hitFloor:
             print("Floor")
             return True
+        elif hitBlock:
+            print("Block")
+            return True
+        else:
+            self.currentShape.Coordinates = pos
         return False
     def Clear(self):
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -149,7 +154,6 @@ class gameClass():
         pass
     def Play(self):
         done = False
-        ctr = 0
         pieceComplete = True
         while not done:
             #self.Clear()
@@ -165,9 +169,6 @@ class gameClass():
                 pieceComplete = True
             self.printBoard()
             #pieceComplete = self.input()
-            ctr += 1
-            if ctr == 9:
-                done = True
             self.checkBoard()
             #CheckBoard to see if any lines complete
             #Add points if completed
