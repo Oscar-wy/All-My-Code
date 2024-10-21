@@ -1,5 +1,6 @@
 import random
 import os
+import pygame
 
 class pieceClass():
     def __init__(self):
