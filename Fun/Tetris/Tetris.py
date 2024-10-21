@@ -1,6 +1,5 @@
 import random
 import os
-import pygame
 
 class pieceClass():
     def __init__(self):
@@ -94,6 +93,10 @@ class gameClass():
                 if not done:
                     rowList += "   |"
             print(rowList)
+    def addShapeBoard(self):
+        for shape in self.Shapes:
+            for coords in shape.Coordinates:
+                self.Board[coords[0]][coords[1]] = "X"
     def getShape(self):
         shape = pieceClass()
         self.currentShape = shape
@@ -107,11 +110,13 @@ class gameClass():
         hitFloor = False
         hitBlock = False
         pos = self.currentShape.Coordinates
+        done = False
         print(pos)
         user = input(">").lower()
         for i in pos:
             if user == "a":
-                if i[1] != 0:
+                print(i)
+                if i[1] != 0 and self.Board[i[0]][i[1]] != "X":
                     i[1] -= 1
             elif user == "d":
                 if i[1] != 9:
@@ -157,7 +162,7 @@ class gameClass():
         done = False
         pieceComplete = True
         while not done:
-            #self.Clear()
+            self.Clear()
             if pieceComplete:
                 pieceComplete = False
                 self.getShape()
@@ -173,7 +178,6 @@ class gameClass():
             self.checkBoard()
             #CheckBoard to see if any lines complete
             #Add points if completed
-
 
 class playerClass():
     def __init__(self):
