@@ -47,24 +47,24 @@ class pieceClass():
                     for shapeCol in range(size):
                         if self.Orientation == "D":
                             if self.piece[(len(self.piece)-1)-shapeRow][shapeCol] == " ":
-                                print(shapeRow, column+(shapeCol-1), "Not It")
+                                self.Coordinates.append([shapeRow, column+(shapeCol-1), "O"])
                             else:
-                                self.Coordinates.append([shapeRow, column+(shapeCol-1)])
+                                self.Coordinates.append([shapeRow, column+(shapeCol-1), "X"])
                         elif self.Orientation == "U":
                             if self.piece[shapeRow][shapeCol] == " ":
-                                print(shapeRow, column+(shapeCol-1), "Not It")
+                                self.Coordinates.append([shapeRow, column+(shapeCol-1), "O"])
                             else:
-                                self.Coordinates.append([shapeRow, column+(shapeCol-1)])
+                                self.Coordinates.append([shapeRow, column+(shapeCol-1), "X"])
                         elif self.Orientation == "L":
                             if self.piece[shapeRow][shapeCol] == " ":
-                                print(shapeCol, column+(shapeRow-1), "Not It")
+                                self.Coordinates.append([shapeCol, column+(shapeRow-1), "O"])
                             else:
-                                self.Coordinates.append([shapeCol, column+(shapeRow-1)])
+                                self.Coordinates.append([shapeCol, column+(shapeRow-1), "X"])
                         else:
                             if self.piece[shapeRow][shapeCol] == " ":
-                                print(shapeRow, column-(shapeRow-1), "Not It")
+                                self.Coordinates.append([shapeRow, column+(shapeCol-1), "O"])
                             else:
-                                self.Coordinates.append([shapeRow, column+(shapeCol-1)])
+                                self.Coordinates.append([shapeRow, column+(shapeCol-1), "X"])
 
 class gameClass():
     def __init__(self, player):
@@ -87,8 +87,8 @@ class gameClass():
                 done = False
                 for shape in self.Shapes:
                     for coords in shape.Coordinates:
-                        if coords[0] == row and coords[1] == column:
-                            rowList += " X |"
+                        if coords[0] == row and coords[1] == column and coords[2] != "O":
+                            rowList += f" {coords[2]} |"
                             done = True
                 if not done:
                     rowList += "   |"
@@ -96,7 +96,7 @@ class gameClass():
     def addShapeBoard(self):
         for shape in self.Shapes:
             for coords in shape.Coordinates:
-                self.Board[coords[0]][coords[1]] = "X"
+                self.Board[coords[0]][coords[1]] = coords[2]
     def getShape(self):
         shape = pieceClass()
         self.currentShape = shape
@@ -116,16 +116,16 @@ class gameClass():
         for i in pos:
             if user == "a":
                 print(i)
-                if i[1] != 0 and self.Board[i[0]][i[1]] != "X":
+                if i[1] != 0 and self.Board[i[0]][i[1]-1] != "O":
                     i[1] -= 1
             elif user == "d":
-                if i[1] != 9:
+                if i[1] != 9 and self.Board[i[0]][i[1]+1] != "O":
                     i[1] += 1
             elif user == "w":
-                if i[0] != 0:
+                if i[0] != 0 and self.Board[i[0]+1][i[1]] != "O":
                     i[0] -= 1
             elif user == "s":
-                if i[0] != 23 and not hitFloor:
+                if i[0] != 23 and self.Board[i[0]-1][i[1]] != "O":
                     i[0] += 1
             else:
                 print("Error")
