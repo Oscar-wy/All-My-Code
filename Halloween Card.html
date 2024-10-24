@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <title>Halloween Skeleton Skull</title>
+    <style>
+        body {
+            background-color: rgb(31, 31, 31);
+            color: azure;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .Base-Card {
+            background-color: #353535;
+            width: 500px;
+            height: 80vw;
+            padding: 20px;
+            border-radius: 20px;
+            border: 5px solid #ff7b00;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .Title {
+            -webkit-text-stroke: 1px red;
+            font-family: "Creepster"; 
+            color: orange;
+            font-size: 50px;
+            margin: 20px 0;
+        }
+        .Skull {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: #fff;
+            border-radius: 50% 50% 40% 40%;
+            margin: 0 auto;
+        }
+        .Eyes {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 60px;
+        }
+        .Eye {
+            background-color: black;
+            width: 25px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .Mouth {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 50px;
+            border: 5px solid black;
+            border-radius: 0 0 50% 50%;
+            background-color: white;
+        }
+        .Pumpkin {
+            position: absolute;
+            bottom: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            animation: jump 1s ease-in-out infinite;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .Pumpkin::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: green;
+            border-radius: 50%;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .Pumpkin-Face {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black;
+            font-size: 50px;
+        }
+        @keyframes jump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+        .Pumpkin:nth-child(1) { left: 20%; animation-delay: 0s; }
+        .Pumpkin:nth-child(2) { left: 40%; animation-delay: 0.2s; }
+        .Pumpkin:nth-child(3) { left: 60%; animation-delay: 0.4s; }
+        .Pumpkin:nth-child(4) { left: 80%; animation-delay: 0.6s; }
+        .Pumpkin:nth-child(5) { left: 40%; animation-delay: 0.8s; }
+
+        /* Candy Corn Styles */
+        .Candy {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid orange;
+            animation: fall 3s linear infinite;
+            left: calc(50% - 10px); /* Center candy on spawn */
+            transform: translateY(-100px); /* Start off-screen */
+        }
+        .Candy::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid yellow;
+        }
+        .Candy::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+        }
+        .Candy:nth-child(6) { left: 10%; animation-delay: 0s; }
+        .Candy:nth-child(7) { left: 30%; animation-delay: 0.5s; }
+        .Candy:nth-child(8) { left: 50%; animation-delay: 1s; }
+        .Candy:nth-child(9) { left: 70%; animation-delay: 1.5s; }
+        .Candy:nth-child(10) { left: 90%; animation-delay: 2s; }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px); }
+            100% { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body>
+    <div class="Base-Card">
+        <h1 class="Title">Happy Halloween</h1>
+        <div class="Skull">
+            <div class="Eyes">
+                <div class="Eye"></div>
+                <div class="Eye"></div>
+            </div>
+            <div class="Mouth"></div>
+        </div>
+        <div class="Pumpkin">
+            <div class="Pumpkin-Face">🎃</div>
+        </div>
+        <div class="Pumpkin">
+            <div class="Pumpkin-Face">🎃</div>
+        </div>
+        <div class="Pumpkin">
+            <div class="Pumpkin-Face">🎃</div>
+        </div>
+        <div class="Pumpkin">
+            <div class="Pumpkin-Face">🎃</div>
+        </div>
+        <div class="Pumpkin">
+            <div class="Pumpkin-Face">🎃</div>
+        </div>
+        <div class="Candy"></div>
+        <div class="Candy"></div>
+        <div class="Candy"></div>
+        <div class="Candy"></div>
+        <div class="Candy"></div>
+    </div>
+</body>
+</html>
