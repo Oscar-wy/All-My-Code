@@ -76,7 +76,7 @@ class User:
             print(err)
 
     def SetUserDB(self):
-        Values = (self.UUID, self.Username, self.FName, self.LName, self.Email, self.Password)
+        Values = (self.UUID, self.Username, self.FName, self.LName, self.Email, self.Password,)
         try:
             with sqlite3.connect("Data.db") as db:
                 cursor = db.cursor()
