@@ -1,0 +1,57 @@
+:root{
+    --Main-BG-Colour: #18191A;
+    --Secondary-BG-Colour: #1c1e21;
+    --Main-Text-Colour: #c0afaf;
+    --Primary-Colour: #a72828;
+    --Secondary-Colour: #122350;
+    --Primary-Gradient: linear-gradient(90deg, var(--Primary-Colour), var(--Secondary-Colour));
+    --Rev-Primary-Gradient: linear-gradient(90deg, var(--Secondary-Colour), var(--Primary-Colour))
+}
+
+/* 
+#301d6e
+#fffff
+#422869
+#1e1246
+#e6e6e6
+#5332bf
+ */
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.Main-Container{
+    display: flex;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #18191A;
+    flex-direction: column;
+}
+
+.TopBar{
+    background-color: #242425;
+    height: 6%;
+    width: 100%;
+    border-bottom: 1.5px solid #333131;
+}
+
+.Body{
+    height: 93.9%;
+    width: 100%;
+}
+
+.Logo {
+    cursor: pointer;
+    position: relative;
+    height: 80%;
+    width: 47.84px;
+    border-radius: 10px;
+    top: 50%;
+    left: 4px;
+    transform: translate(0, -50%);
+    background: url("SmallLogo.png") no-repeat;
+    background-size: 100% 100%;
+}

@@ -1,0 +1,84 @@
+*{
+    padding: 0;
+    margin: 0;
+    color: #dddcdc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.SignForm{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #242425;
+    height: 50%;
+    width: 40%;
+    border-radius: 20px;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    justify-content: center;
+    align-items: center;
+}
+
+.Name{
+    width: 81.3%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    justify-content: space-evenly;
+}
+
+.Inputs{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 70%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.SignForm input{
+    width: 80%;
+    height: 15%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: none;
+    text-align: center;
+    background-color: #444444;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.Name input{
+    width: 49%;
+    height: 100%;
+}
+
+.SignUpBtn{
+    cursor: pointer;
+    position: absolute;
+    height: 12%!important;
+    width: 40%!important;
+    bottom: 5%;
+    left: 50%;
+    font-size: 22px;
+    font-weight: 600;
+    transform: translate(-50%);
+    border-radius: 20px;
+    background-color: transparent;
+    border: none;
+    transition: .5s;
+    background-color: #301d6e!important;
+}
+.SignUpBtn:hover{
+    background: #1e1246!important;
+}
+
+.Title{
+    position: absolute;
+    font-weight: 700;
+    font-size: 35px;
+    top: 3%;
+}
