@@ -7,20 +7,24 @@ global user
 user = Handler.User()
 Handler.Initialise()
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def Index():
-    try:
-        userID = request.cookies.get("UUID")
-        if userID:
-            user.GetUser(userID)
-            if user.Got:
-                return render_template("Main.html")
-            else:
-                return redirect("/login")
+    userID = request.cookies.get("UUID")
+    if userID:
+        user.GetUser(userID)
+        if user.Got:
+            if request.method == "POST":
+                print(request.form["Logout"])
+                if request.form["Logout"] == "True":
+                    if request.cookies.get('UUID'):
+                        resp = make_response(redirect("/"))
+                        resp.set_cookie('UUID', expires=0)
+                        return resp
+            return render_template("Index.html")
         else:
-            return redirect("/signup")
-    except:
-        return render_template("Error.html")
+            return redirect("/login")
+    else:
+        return redirect("/signup")
 # def Home():
 
 @app.route("/login", methods=["GET", "POST"])

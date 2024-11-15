@@ -1,0 +1,14 @@
+{% extends "Main.html" %}
+
+{% block head %}
+<title>Error!</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='Error.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="Error-Container">
+    <form action="/" method="POST">
+        <input type="submit" name="Logout" value="True" class="Logout">Logout</input>
+    </form>
+</div>
+{% endblock %}
