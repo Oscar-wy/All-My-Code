@@ -18,7 +18,7 @@ def Index():
                 if request.form["Logout"] == "True":
                     if request.cookies.get('UUID'):
                         resp = make_response(redirect("/"))
-                        resp.set_cookie('UUID', expires=0)
+                        resp.set_cookie('SessionID', expires=0)
                         return resp
             return render_template("Index.html")
         else:
@@ -30,7 +30,9 @@ def Index():
 @app.route("/login", methods=["GET", "POST"])
 def Login():
     if request.method == "POST":
-        pass
+        if user.Login(Username=request.form["UserEmail"], Password=request.form["Password"]):
+            resp = make_response(redirect("/"))
+            resp.set_cookie("SessionID", str(user.SessionID))
     else:
         return render_template("Login.html")
     
@@ -40,7 +42,7 @@ def Signup():
         try:
             if user.CreateUser(Username=request.form["Username"], FName=request.form["FName"], LName=request.form["LName"], Email=request.form["Email"], Password=request.form["Password"]):
                 resp = make_response(redirect("/"))
-                resp.set_cookie("UUID", str(user.UUID))
+                resp.set_cookie("SessionID", str(user.SessionID))
                 return resp
             else:
                 return redirect("/signup", Error="Username Already Exists")
