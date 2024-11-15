@@ -30,9 +30,9 @@ def Index():
 @app.route("/login", methods=["GET", "POST"])
 def Login():
     if request.method == "POST":
-        return "Logging In"
+        pass
     else:
-        return "Hello"
+        return render_template("Login.html")
     
 @app.route("/signup", methods=["GET", "POST"])
 def Signup():
