@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="./static/Base.css">
+        <link rel="stylesheet" href="./static/Auth.css">
+    </head>
+    <body>
+        <div class="MainBody">
+            <div class="Main Frm {{ShowMain}}">
+                <h1 class="Title">Idk</h1>
+                <a href="/auth?signup" class="SignupFrmBtn FrmBtn">Signup</a>
+                <a href="/auth?login" class="LoginFrmBtn FrmBtn">Login</a>
+            </div>
+            <div class="LoginFrm Frm {{ShowLogin}}">
+                <h1 class="Title">Login</h1>
+                <a href="/Auth" class="BackBtn"><</a>
+                <input type="text" placeholder="Username or Email", class="Username Input">
+                <input type="password" placeholder="Password", class="Password Input">
+                <input type="button" value="Login", class="Password InputBtn">
+            </div>
+            <div class="SignupFrm Frm {{ShowLogin}}">
+                <a href="/Auth" class="BackBtn"><</a>
+                <h1 class="Title">Signup</h1>
+                <input type="text" placeholder="Username", class="Username Input">
+                <input type="text" placeholder="Email", class="Email Input">
+                <div class="Names">
+                    <input type="text" placeholder="Firstname", class="FName Input">
+                    <input type="text" placeholder="Lastname", class="LName Input">
+                </div>
+                <input type="password" placeholder="Password", class="Password Input">
+                <input type="button" value="Login", class="Password InputBtn">
+            </div>
+        </div>
+    </body>
+</html>

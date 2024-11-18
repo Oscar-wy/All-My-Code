@@ -1,0 +1,143 @@
+.Frm{
+    height: 50%;
+    width: 80vh;
+    background-color: #272727;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    border-radius: 15px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    transition: .5s;
+}
+
+a{
+    text-decoration: none;
+}
+
+.FrmBtn{
+    position: absolute;
+    padding: 12px 40px;
+    background-color: #474777;
+    border-radius: 10px;
+    bottom: 2%;
+    transition: .2s;
+}
+
+.SignupFrmBtn{
+    left: 2%;
+}
+
+.LoginFrmBtn{
+    right: 2%;
+}
+
+.FrmBtn:hover{
+    padding: 15px 42px;
+    background-color: #383866;
+}
+
+.Input{
+    width: 60%;
+    height: 10%;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #383737;
+    border: none;
+    padding: 0px 2px;
+}
+
+.InputBtn{
+    width: 20%;
+    height: 10%;
+    background-color: #383866;
+    border: none;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.Title{
+    position: relative;
+    top: -2%;
+}
+
+.Names{
+    width: 60%;
+    height: 10%;
+    margin: 10px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Names input{
+    width: 48%;
+    height: 100%;
+    margin: 0px;
+}
+
+.BackBtn{
+    position: absolute;
+    top: 3%;
+    padding: 10px 15px;
+    background-color: #474777;
+    border-radius: 10px;
+    left: 2%;
+}
+
+.LoginFrm{
+    right: -50%;
+}
+
+.SignupFrm{
+    right: 150%;
+}
+
+@keyframes SlideToLeft {
+    from {right: 50%;}
+    to {right: -50%;}
+}
+
+@keyframes SlideToRight {
+    from {right: 50%;}
+    to {right: 150%;}
+}
+
+@keyframes SlideLeftToContainer {
+    from {right: 150%;}
+    to {right: 50%;}
+}
+
+@keyframes SlideRightToContainer {
+    from {right: -50%;}
+    to {right: 50%;}
+}
+
+.Main.Hidden{
+    animation: SlideToLeft 1s ease-in-out;
+    right: 150%;
+}
+
+.Main.LogHidden{
+    animation: SlideToRight 1s ease-in-out;
+    right: 150%;
+}
+
+.LoginFrm.Hidden{
+    right: 150%;
+}
+
+.LoginFrm.Show{
+    animation: SlideRightToContainer 1s ease-in-out;
+    right: 50%;
+}
+
+.SignupFrm.Show{
+    animation: SlideLeftToContainer 1s ease-in-out;
+    right: 50%;
+}

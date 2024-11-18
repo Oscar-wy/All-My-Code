@@ -84,7 +84,19 @@ class User:
                 return True
             else:
                 return False
-            
+    def GetUserIDFromSession(self, SessionID):
+        Values = (SessionID)
+        try:
+            with sqlite3.connect("Data.db") as db:
+                cursor = db.cursor()
+                sql = """SELECT UUID FROM User
+                         WHERE SessionID = ?
+                """
+                result = cursor.execute(sql, Values)
+                return result
+        except sqlite3.Error as err:
+            print(err)
+            return None
     def GetUser(self, UUID):
         Values = (UUID,)
         try:
@@ -125,11 +137,11 @@ class User:
         self.UUID = str(uuid.uuid4()).replace("-","")
         self.Username = Username
         self.NID = Username
-        self.Passsword = Password
+        self.Password = Password
         self.FName = FName
         self.LName = LName
         self.Email = Email
-        self.SessionID = str(uuid.uuid4).replace("-","")
+        self.SessionID = str(uuid.uuid4()).replace("-","")
         self.Got = True
         if self.SetUserDB():
             return True

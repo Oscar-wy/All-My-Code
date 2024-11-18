@@ -9,14 +9,16 @@ Handler.Initialise()
 
 @app.route("/", methods=["GET", "POST"])
 def Index():
-    userID = request.cookies.get("UUID")
-    if userID:
-        user.GetUser(userID)
+    SessionID = request.cookies.get("SessionID")
+    print(SessionID)
+    if SessionID:
+        UserID = user.GetUserIDFromSession(SessionID)
+        user.GetUser(UserID)
         if user.Got:
             if request.method == "POST":
                 print(request.form["Logout"])
                 if request.form["Logout"] == "True":
-                    if request.cookies.get('UUID'):
+                    if request.cookies.get('SessionID'):
                         resp = make_response(redirect("/"))
                         resp.set_cookie('SessionID', expires=0)
                         return resp
@@ -37,17 +39,14 @@ def Login():
         return render_template("Login.html")
     
 @app.route("/signup", methods=["GET", "POST"])
-def Signup():
+def Signup(Error=None):
     if request.method == "POST":
-        try:
-            if user.CreateUser(Username=request.form["Username"], FName=request.form["FName"], LName=request.form["LName"], Email=request.form["Email"], Password=request.form["Password"]):
-                resp = make_response(redirect("/"))
-                resp.set_cookie("SessionID", str(user.SessionID))
-                return resp
-            else:
-                return redirect("/signup", Error="Username Already Exists")
-        except Exception as err:
-            return render_template("Error.html", Error=err)
+        if user.CreateUser(Username=request.form["Username"], FName=request.form["FName"], LName=request.form["LName"], Email=request.form["Email"], Password=request.form["Password"]):
+            resp = make_response(redirect("/"))
+            resp.set_cookie("SessionID", str(user.SessionID))
+            return resp
+        else:
+            return redirect("/signup", Error="Username Already Exists")
     else:
         return render_template("SignUp.html")
     
