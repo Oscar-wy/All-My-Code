@@ -23,6 +23,36 @@
     width: 100%;
 }
 
+.AccountContainer{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 150px;
+    height: 6%;
+    top: 0%;
+    right: 0%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Menu{
+    width: 30%;
+    height: 70%;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    border: none;
+    background-color: #1d1d1d;
+    cursor: pointer;
+}
+
+.ProfilePicture{
+    width: 30%;
+    height: 70%;
+    aspect-ratio: 1 / 1;
+    border-radius: 100px;
+    border: none;
+}
+
 .Logo {
     cursor: pointer;
     position: relative;
