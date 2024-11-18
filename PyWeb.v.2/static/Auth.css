@@ -141,3 +141,10 @@ a{
     animation: SlideLeftToContainer 1s ease-in-out;
     right: 50%;
 }
+
+@media only screen and (max-width: 600px) {
+    .Frm{
+        height: 100%;
+        width: 100%;
+    }
+}
