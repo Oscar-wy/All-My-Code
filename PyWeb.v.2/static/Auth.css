@@ -98,6 +98,11 @@ a{
     right: 150%;
 }
 
+@keyframes Idk {
+    from {width: 100%; height: 100%;}
+    to {width: 80vh; height: 50%;}
+}
+
 @keyframes SlideToLeft {
     from {right: 50%;}
     to {right: -50%;}
@@ -108,6 +113,10 @@ a{
     to {right: 150%;}
 }
 
+@keyframes ScaleOut { 
+    from {top: 150%}
+    to {top: 50%}
+}
 @keyframes SlideLeftToContainer {
     from {right: 150%;}
     to {right: 50%;}
@@ -121,6 +130,10 @@ a{
 .Main.Hidden{
     animation: SlideToLeft 1s ease-in-out;
     right: 150%;
+}
+
+.Main.Show{
+    animation: ScaleOut 1s ease-in-out;
 }
 
 .Main.LogHidden{
