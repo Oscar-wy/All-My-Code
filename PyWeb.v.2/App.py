@@ -49,12 +49,32 @@ def Login():
 @app.route("/logout/<UUID>")
 def Logout(UUID):
     CheckUser()
-    print(UUID, "UserId: ", user.UUID)
     if UUID == user.UUID:
         resp = make_response(redirect("/"))
         resp.delete_cookie('SessionID')
         return resp
     return redirect("/")
+
+@app.route("/chat")
+def Chat():
+    if CheckUser():
+        return render_template("Chat.html", Username="", UserProfile=url_for('static', filename="PFP.png"))
+    else:
+        return redirect("/")
+    
+@app.route("/feed")
+def Feed():
+    if CheckUser():
+        return redirect("/")
+    else:
+        return redirect("/")
+    
+@app.route("/profile")
+def Profile():
+    if CheckUser():
+        return redirect("/")
+    else:
+        return redirect("/")
 
 @app.errorhandler(404)
 def pageNotFound(error):

@@ -1,0 +1,23 @@
+{% extends "Base.html" %}
+
+{% block head %}
+<title>Chat</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='Base.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='Chat.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="Side">
+</div>
+<div class="MainChat">
+    <div class="TopChatBar">
+        <input type="button" value="X" class="CloseChatBtn">
+        <input type="image" src="{{UserProfile}}" alt="{{url_for('static', filename='PFP.png')}}">
+        <h3>{{Username}}</h3>
+    </div>
+    <div class="MessageBar">
+        <input type="text" placeholder="Enter Message.." class="MessageBox">
+        <input type="button" value=">" class="SendBtn">
+    </div>
+</div>
+{% endblock %}
