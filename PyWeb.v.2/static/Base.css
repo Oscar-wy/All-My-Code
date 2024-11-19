@@ -19,7 +19,7 @@
 }
 
 .Body{
-    height: 93.9%;
+    height: 93.6%;
     width: 100%;
 }
 
@@ -27,26 +27,25 @@
     position: absolute;
     display: flex;
     flex-direction: row;
-    width: 150px;
+    width: 15%;
     height: 6%;
     top: 0%;
     right: 0%;
-    justify-content: space-around;
+    justify-content: right;
     align-items: center;
 }
 
 .Menu{
-    width: 30%;
-    height: 70%;
+    height: 90%;
     aspect-ratio: 1 / 1;
     border-radius: 10px;
     border: none;
     background-color: #1d1d1d;
     cursor: pointer;
+    margin: 0 5px;
 }
 
 .ProfilePicture{
-    width: 30%;
     height: 70%;
     aspect-ratio: 1 / 1;
     border-radius: 100px;
@@ -65,4 +64,32 @@
     background: url("SmallLogo.png") no-repeat;
     background-size: 100% 100%;
     aspect-ratio: 1/1;
+}
+
+.Dock{
+    position: absolute;
+    display: flex;
+    bottom: 2%;
+    right: 50%;
+    transform: translate(50%, 0%);
+    background-color: #242425;
+    height: 10%;
+    width: 40vh;
+    border-radius: 15px;
+    padding: 5px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Dock.Hidden{
+    display: none;
+}
+
+.Dock input{
+    height: 90%;
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+    border: none;
+    background-color: #474777;
+    cursor: pointer;
 }

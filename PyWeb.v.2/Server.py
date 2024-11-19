@@ -83,7 +83,11 @@ class User():
                          WHERE NID = ? OR Email = ?
                 """
                 cursor.execute(sql, Values)
-                result, = cursor.fetchone()
+                result = ""
+                try:
+                    result, = cursor.fetchone()
+                except:
+                    result = None
                 if result == Password:
                     return True
                 return False

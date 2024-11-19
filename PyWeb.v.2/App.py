@@ -22,7 +22,7 @@ def Index():
 def Auth():
     if CheckUser():
         return redirect("/")
-    return render_template("Auth.html", ShowMain="Show", ShowSignup="Hidden", ShowLogin="Hidden")
+    return render_template("Auth.html", ShowMain="Show", ShowSignup="Hidden", ShowLogin="Hidden", ShowDock="Hidden")
 
 @app.route("/auth/signup", methods=["GET", "POST"])
 def Signup():
@@ -33,7 +33,7 @@ def Signup():
             resp = make_response(redirect("/"))
             resp.set_cookie("SessionID", user.SessionID)
             return resp
-    return render_template("Auth.html", ShowMain="Hidden", ShowSignup="Show", ShowLogin="Hidden")
+    return render_template("Auth.html", ShowMain="Hidden", ShowSignup="Show", ShowLogin="Hidden", ShowDock="Hidden")
 
 @app.route("/auth/login", methods=["GET", "POST"])
 def Login():
@@ -44,7 +44,7 @@ def Login():
             resp = make_response(redirect("/"))
             resp.set_cookie("SessionID", user.SessionID)
             return resp
-    return render_template("Auth.html", ShowMain="LogHidden", ShowSignup="Hidden", ShowLogin="Show")
+    return render_template("Auth.html", ShowMain="LogHidden", ShowSignup="Hidden", ShowLogin="Show", ShowDock="Hidden")
 
 @app.route("/logout/<UUID>")
 def Logout(UUID):
