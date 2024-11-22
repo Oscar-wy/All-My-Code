@@ -21,6 +21,7 @@
 .Body{
     height: 93.6%;
     width: 100%;
+    display: flex;
 }
 
 .AccountContainer{

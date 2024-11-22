@@ -1,12 +1,15 @@
 .Side{
-    height: 100%;
+    height: 85%;
     width: 30%;
+    position: relative;
+    top: 0;
     background-color: #1d1d1d;
 }
 
 .MainChat{
-    height: 100%;
+    height: 85%;
     width: 70%;
+    top: 0;
     position: relative;
     background-color: #242425;
 }
@@ -59,19 +62,28 @@
     border-radius: 25px;
 }
 
+.TopChatBar form{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .CloseChatBtn{
     font-weight: 700;   
     font-size: 20px;
     cursor: pointer;
     margin-left: 5px;
+    margin-right: 5px;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 600px) {
     .Side{
         height: 100%;
         width: 100%;
     }
-    .MessageBar{
+    .MainChat{
         height: 50px;
+        width: 0%;
+        display: none;
     }
 }

@@ -32,6 +32,12 @@ class User():
         self.Email = ""
         self.Password = ""
         self.SessionID = ""
+    def SetupTables(self):
+        try:
+            with sqlite3.connect("Data.db") as db:
+                cursor = db.cursor()
+        except sqlite3.Error as err:
+            print(err)
     def CheckUsernameExists(self, Username):
         Values = (Username,)
         try:
