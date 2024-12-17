@@ -1,0 +1,170 @@
+<html>
+<head> 
+	<title>Morse Code 2018</title>
+	<script> 
+		/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "nav") {
+				x.className += " responsive";
+			} else {
+				x.className = "nav";
+			}
+		}
+	</script>	
+	<script src="lightbox/js/jquery-1.10.2.min.js"></script>
+	<script src="lightbox/js/lightbox-2.6.min.js"></script>
+	
+	<link href="style.css" rel="stylesheet" />
+	<link href="lightbox/css/lightbox.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<!-- .container start -->
+<div class="container">
+	
+	<!-- .banner start -->
+	<div class="banner">
+	<div style="float:right; padding:0;font-size:0.8em;">Python3 Edition</div><br style="clear:both">	
+	<img src="images/banner.jpg" style="border:none;">
+		<ul id="nav" class="nav" id="myTopnav">		
+		<li><a href="index.html" class="selected">Commentary</a></li>
+		<li><a href="diagram.html">Structure Diagram Activity</a></li>
+		<li><a href="questions.html">Programming Questions</a></li>
+		<li><a href="tasks.html">Programming Tasks</a></li>
+		<li><a href="answers.html">Answers & Solutions</a></li>				
+	</ul>	
+	</div>
+	<!-- .banner end -->	
+
+	
+	<!-- .topic_header start -->
+	<div class="topic_header">
+	<table style="background-color:#ccf2ff"><tr><td><h1>Morse Code: <strong>Commentary</strong></h1></td></tr></table>
+		
+	</div>
+	<!-- .topic_header end -->
+	
+	<!-- .topic_info start -->		
+		
+	<div class="topic_info">		
+
+	<h1>Description of the Program</h1>
+	
+	<p>The program is a system that converts between plaintext and Morse code. </p>
+	<p>Plain text is language printed alphabetically (A, B, C, etc.), whereas Morse code uses patterns of dots and dashes to represent each letter in the alphabet:</p>
+	
+	<img src="images/img1.jpg" style="border:none; margin:6 0">
+	
+	<p>Each character is separated by a space, so the word HELLO is represented as follows:</p>
+	
+	<img src="images/img2.jpg" style="border:none; margin:6 0">
+	
+	<p>Included within the pre-release material is a text file called ‘message.txt’.  The contents of this file are as follows:</p>
+	
+	<img src="images/img3.jpg" style="border:none; margin:6 0">
+	
+	<div style="padding: 0px 6px 4px 6px; border:1px dotted; margin:10px 0px;"><p style="margin:0;"><em>Note: The <span style="font-size:1.5em;">&#8962;</span> symbols are not included in the text file, they have been included in these notes to represent spaces, to make them more visible for this explanation.  The message.txt file consists of spaces and equals symbols only. </em></p></div>
+	
+	
+	<br />
+	<h1>Overview</h1>
+	<p>The program has two subroutines that handle conversion between plaintext and Morse code: </p>	
+	
+	<h2> <span class="code">ReceiveMorseCode</span></h2>
+	<p>The subroutine  <span class="code">ReceiveMorseCode</span> reads Morse code from a text file and converts it to plain text.  One of the key subroutines used to perform this conversion is <span class="code">Decode</span>.  The subroutine <span class="code">SendMorseCode</span> takes plaintext from the user at the keyboard and converts it to Morse code.</p>
+	<p> <span class="code">ReceiveMorseCode</span> consists of three main stages:</p>
+	
+	<ol>
+		<li>Extract text from a file.  The file contains only spaces and equals symbols.  A single equals (=) makes a dot.  Three in a row (===) make a dash.  Below is an extract from the text file:
+		<br /><img src="images/img4.jpg" style="border:none;">
+		
+		<li>Convert the series of equals symbols to a series of dots and dashes.  The sequence in the box above would become:
+		<br /><img src="images/img5.jpg" style="border:none;">
+		
+		<li>Convert the series of dots and dashes to plaintext, which is a letter between A and Z.  The pattern in the box above would become:
+		<br /><img src="images/img6.jpg" style="border:none;">			
+	</ol>
+		
+	<p>This process is repeated until the entire message has been translated into plaintext, at which point it is displayed in the console.</p>
+
+	
+	<h2><span class="code">SendMorseCode</span></h2>
+	<p><span class="code">SendMorseCode</span> is less involved.  The user types uppercase plaintext at the console, which is converted into Morse code.  The Morse code is then displayed on the console.  Any spaces in the plaintext are represented as three spaces in Morse code.</p>
+
+	<img src="images/img7.jpg" style="border:none; margin:6 0">
+
+	<h1> <span class="code">ReceiveMorseCode</span> Subroutine</h1>
+	
+	<img src="images/img8.png" style="border:none; margin:6 0">
+
+	<p> <span class="code">ReceiveMorseCode</span> calls seven other subroutines, either directly or indirectly.  These calls are not all included in the flowchart, as the flowchart exists only to provide a top-level understanding of the program. </p>
+	
+	<br />
+	<h1><span class="code">Decode</span> Subroutine</h1>
+	<img src="images/img9.jpg" style="border:none; margin:6 0; float:right; margin-left:15px;">
+	
+	<p>The subroutine <span class="code">Decode</span> uses three lists in parallel; <span class="code">Dot</span>, <span class="code">Dash</span> and <span class="code">Letter</span>, whose contents remain the same throughout execution.  </p>
+	<p>The flowchart below shows how <span class="code">Decode</span> would translate the pattern -.- into the plaintext character ‘K’:</p>
+	
+	<img src="images/img10.png" style="border:none; margin:6 0">
+	
+	<p>If the first character is a dash (-), the program starts by looking at index 0 in the <span class="code">Dash</span> list.  If the first character is a dot (.), the starting point is index 0 of the <span class="code">Dot</span> list.</p>
+
+	<br style="clear:both;">
+	
+	<br />
+	<h1><span class="code">SendMorseCode</span> Subroutine</h1>
+	<p>Unlike  <span class="code">ReceiveMorseCode</span>, which calls several other subroutines, <span class="code">SendMorseCode</span> is self-contained, and calls no other subroutines.</p>
+	<p>The user enters a message, which is validated to ensure it contains only upper-case characters and spaces.  </p>
+	<p>The message is then translated, one character at-a-time, using Morse code equivalents taken from a list called <span class="code">MorseCode</span>.</p>
+	
+	<img src="images/img11.png" style="border:none; margin:6 0">
+	
+	<h1>The Text File (message.txt)</h1>
+
+	<p>The contents of the text file are explained below:</p>
+	
+	<img src="images/img3.jpg" style="border:none; margin:6 0">
+	
+	<table>
+		<tr><td style="width:135px;"><img src="images/img12.jpg" style="border:none; margin:6 0"></td><td>This is a dash (===), followed by three spaces.  Three spaces signals the end of a character, but not the end of a word.  The character that is made up of a single dash is the letter T.</td></tr>
+		<tr><td><img src="images/img13.jpg" style="border:none; margin:6 0"></td><td>This is the second character, which is a single dot, making it the letter E.</td></tr>
+		<tr><td><img src="images/img14.jpg" style="border:none; margin:6 0"></td><td>This character is a dot followed by a dash.  A single space is used between them (instead of three spaces), because the character is not finished yet.  The Morse code comprising a dot followed by a dash is for the letter A.</td></tr>
+		<tr><td><img src="images/img15.jpg" style="border:none; margin:6 0"></td><td>This is then followed by seven spaces, which are used to form a gap between two words.</td></tr>
+		<tr><td><img src="images/img16.jpg" style="border:none; margin:6 0"></td><td>This is a character that is made up of a dash, followed by a dot, followed by a dot, followed by a dash, which make up the letter X.</td></tr>
+	</table>
+
+	<p>The whole message, therefore, is:</p>
+	<img src="images/img17.jpg" style="border:none; margin:0">
+
+	<!--
+	<h1>Program Demonstration</h1>
+	<div class="textbox" style="margin-left:0; float:left; display:inline-block; width:auto;">						
+			The following demonstration is embedded.  Not working properly? <a href="files/WordsWithAQA.ppsx">Click here</a> to open it in PowerPoint.
+	</div>		
+	
+	<iframe src="https://onedrive.live.com/embed?cid=246D6BC5FC045A0F&resid=246D6BC5FC045A0F%21112&authkey=APAkj2S6nu1C_8o&em=2" width="860" height="720" frameborder="0" scrolling="no"></iframe>				
+	
+	-->	
+
+	</div>
+	
+	<div class="footer">
+	<p class="no_print"><a href="#top">Back to Top</a>
+	<span class="no_print" style="float:right;">&copy; <a href="http://zigzageducation.co.uk">ZigZag Education 2018</a></span></p>
+	</div>
+	
+	<!-- .topic_info end -->		
+	
+<!-- .container end -->
+</div>
+
+</body>
+</html>
+
+

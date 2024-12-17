@@ -1,0 +1,472 @@
+<html> 
+<head> 
+	<title>Morse Code 2018</title>
+	<script> 
+		/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "nav") {
+				x.className += " responsive";
+			} else {
+				x.className = "nav";
+			}
+		}
+	</script>	
+	<script src="lightbox/js/jquery-1.10.2.min.js"></script>
+	<script src="lightbox/js/lightbox-2.6.min.js"></script>
+	
+	<link href="style.css" rel="stylesheet" />
+	<link href="lightbox/css/lightbox.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<!-- .container start -->
+<div class="container">
+	
+	<!-- .banner start -->
+	<div class="banner">
+	<div style="float:right; padding:0;font-size:0.8em;">Python3 Edition</div><br style="clear:both">
+	<img src="images/banner.jpg" style="border:none;">
+		<ul id="nav" class="nav" id="myTopnav">		
+		<li><a href="index.html">Commentary</a></li>
+		<li><a href="diagram.html">Structure Diagram Activity</a></li>
+		<li><a href="questions.html">Programming Questions</a></li>
+		<li><a href="tasks.html" class="selected">Programming Tasks</a></li>
+		<li><a href="answers.html">Answers & Solutions</a></li>				
+	</ul>	
+	</div>
+	<!-- .banner end -->	
+
+	
+	<!-- .topic_header start -->
+	<div class="topic_header">
+	<table style="background-color:#ffa64d;"><tr><td><h1>Morse Code: <strong>Programming Tasks</h1></td></tr></table><br />
+	
+	</div>
+	<!-- .topic_header end -->
+	
+	<!-- topic_info start -->		
+		
+	<div class="topic_info">		
+				
+		<div class="textbox" style="margin:0 0 20 0; float:left; display:inline-block; width:auto">			
+			The following questions are provided in PDF format <a href="files/TaskWorksheet.pdf">here</a>.<br />			
+			An <a href="files/PAPER1_EAD.dotx">Electronic Answer Document (EAD)</a> is provided for all questions/tasks. <strong>Save this file to an accessible location before you start.</strong>			
+		</div>
+		
+		<table style="width:100%"><tr><th>The following questions require you to open the skeleton program and make modifications to it.</th></tr></table>	
+		
+		<p><strong>Jump to:</strong><br />
+		<a href="#q1">Task 1</a> | <a href="#q2">Task 2</a> | <a href="#q3">Task 3</a> | <a href="#q4">Task 4</a> | <a href="#q5">Task 5</a> | <a href="#q6">Task 6</a> | <a href="#q7">Task 7</a> | 
+		<a href="#q8">Task 8</a> | <a href="#q9">Task 9</a> | <a href="#q10">Task 10</a> | <a href="#q11">Task 11</a> | <a href="#q12">Task 12</a> | <a href="#q13">Task 13</a> | <a href="#q14">Task 14</a> | <a href="#q15">Task 15</a></p>
+	
+		<br />		
+		
+	
+		<a name="q1"><h1>Task 1</h1></a>
+		<p>This task refers to <span class="code">GetMenuOption</span>.</p>
+		<p>Currently, the program allows any single character to be entered as a choice from the menu.  Modify <span class="code">GetMenuOption</span> subroutine so that all values entered are converted to upper case and only valid choices can be made.  If an invalid choice is entered, the user should be prompted with the message:</p>
+		<p><img src="images/img26.jpg" style="border:none;"></p>
+		<p>This this should repeat until they have entered a valid choice.  For example:</p>		
+		<ul>
+			<li>Entering ‘a’ should result in the above prompt</li>
+			<li>Then pressing Enter should make the same prompt appear again</li>
+			<li>Finally entering ‘S’ should take you to the ‘Send Morse code’ option</li>
+		</ul>		
+		<p><em>Note that the first prompt to enter a choice from the menu should remain the same.</em></p>
+
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">9 marks</th></tr>
+		<td colspan="2"><ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">GetMenuOption</span></li>
+				<li>One screen capture showing the menu choice, the prompt and result for the following sequence:</li>
+				<ul><li>Begin the program and enter ‘y’ at the prompt</li>
+					<li>Press Enter at the prompt</li>
+					<li>Enter ‘SS’ at the prompt</li>
+					<li>Enter ‘R’ at the prompt</li>
+				</ul>
+				<li>One screen capture showing the menu choice, the prompts and result for the following sequence:</li>
+				<ul><li>Begin the program and enter ‘x’ at the prompt</li>
+				</ul>
+			</td>
+		</tr></table><br />	
+		
+		
+		<a name="q2"><h1>Task 2</h1></a>
+		<p>This task refers to <span class="code">SendReceiveMessages</span> and <span class="code">SendMorseCode</span>.  </p>
+		<p>The program currently only accepts upper case letters.  Modify the code so that full stops can be included using the sequence .-.-.- (dot, dash, dot, dash, dot dash):</p>
+		<ul>
+			<li>Alter the main code to add an additional constant called FULLSTOP (technically it’s a variable in Python but we use the convention of uppercase to indicate a constant).  </li>
+			<li>Modify the <span class="code">Letter</span> and <span class="code">MorseCode</span> lists in <span class="code">SendReceiveMessages</span> so that an additional element is added onto the end of each list for the full stop.  Modify the <span class="code">Dot</span> and <span class="code">Dash</span> lists to ensure that a full stop can be correctly received in a transmission.  </li>
+			<li>Modify <span class="code">SendMorseCode</span> so that a full stop is correctly identified (using the constant) and sent (using the 28th element of the <span class="code">MorseCode</span> list).</li>
+		</ul>
+		<p><em>Note that you will need to put the message2.txt file into the same folder as your program for this task.</em></p>
+
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">8 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM snippet showing the additional constant</li>
+					<li>Your amended SOURCE CODE PROGRAM for <span class="code">SendReceiveMessages</span></li>
+					<li>Your amended SOURCE CODE PROGRAM for <span class="code">SendMorseCode</span></li>
+					<li>One screen capture showing the values entered and the result for the following sequence:</li>					
+					<ul><li>Run the program and enter ‘S’ at the prompt</li>
+						<li>Enter ‘S.O.S.’ at the prompt</li>
+					</ul>
+					<li>One screen capture showing the result for the following sequence:</li>
+					<ul><li>Run the program and enter ‘R’ at the prompt</li>
+						<li>Enter ‘message2.txt’ at the prompt</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />			
+
+
+		
+		
+		<a name="q3"><h1>Task 3</h1></a>
+		<p>This task refers to <span class="code">DisplayMenu</span> and <span class="code">SendReceiveMessages</span>.  It also involves the creation of a new subroutine <span class="code">PrintMorseCodeSymbols</span> which will have two parameters, the lists <span class="code">Letter</span> and <span class="code">MorseCode</span> from <span class="code">SendReceiveMessages</span>.</p>
+		<p>Modify <span class="code">DisplayMenu</span> and <span class="code">SendReceiveMessages</span> to add the following as the third menu option (before X):</p>
+		<p><img src="images/img27.jpg" style="border:none;"></p>
+		<p>This new menu option will need to call a new subroutine <span class="code">PrintMorseCodeSymbols</span> and pass two arguments, the lists <span class="code">Letter</span> and <span class="code">MorseCode</span>.  The subroutine should print out a table of all the Morse code letters and symbols in the following format: <br />
+		<img src="images/img18.jpg" style="border:none; margin:6 0"></p>
+
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">9 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">DisplayMenu</span></li>
+					<li>Your amended SOURCE CODE PROGRAM for <span class="code">SendReceiveMessages</span></li>
+					<li>Your new SOURCE CODE PROGRAM for <span class="code">PrintMorseCodeSymbols</span></li>
+					<li>One screen capture showing the main menu, selection of option P and the FULL table of symbols</li>
+				</ul>
+			</td>
+		</tr></table><br />			
+		
+		
+
+		
+		<a name="q4"><h1>Task 4</h1></a>
+		<p>This task refers to <span class="code">DisplayMenu</span>, <span class="code">SendMorseCode</span> and <span class="code">SendReceiveMessages</span>.  It also involves the creation of a new subroutine  <span class="code">TransmitMorseCode</span> which will have one parameter, the list <span class="code">MorseCode</span> from <span class="code">SendReceiveMessages</span>.</p>
+		<p>Modify <span class="code">DisplayMenu</span> and <span class="code">SendReceiveMessages</span> to add the following as the third menu option (before X):</p>
+		<p><img src="images/img28.jpg" style="border:none;"></p>
+		<p>This new menu option will need to call a new subroutine,  <span class="code">TransmitMorseCode</span> and pass one argument, the list <span class="code">MorseCode</span>.  The new subroutine should call the existing subroutine <span class="code">SendMorseCode</span> which will need to be modified to return the message instead of printing it out.  (Note that you will also need to modify <span class="code">SendReceiveMessages</span> to print out the return value instead of just calling it.)  The new subroutine should then ask you for a file name and convert the Morse code message to transmission signals and store it in the file.  </p>
+		<p>For example:</p>
+		<ul>
+			<li>The user selects option ‘T’ from the menu and is asked to enter their message</li>
+			<li>They enter ‘TEA TIME’</li>
+			<li>The program prompts them for a file name and they enter ‘message4.txt’</li>
+			<li>The program generates the transmission (===   =   = ===       ===   = =   === ===   =   ) and stores it in the file message4.txt</li>
+		</ul>
+
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">21 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">DisplayMenu</span></li>
+					<li>Your amended SOURCE CODE PROGRAM for <span class="code">SendReceiveMessages</span></li>
+					<li>Your new SOURCE CODE PROGRAM for  <span class="code">TransmitMorseCode</span></li>
+					<li>One screen capture showing the following sequence:</li>
+					<ul><li>Run the program and enter ‘T’ from the main menu</li>
+						<li>Enter the message: ‘ZIG ZAG’</li>
+						<li>Enter ‘message4.txt’ as the file name</li>
+						<li>Select option R from the main menu</li>
+						<li>Enter the file name ‘message4.txt’</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />			
+		
+		
+		
+		<a name="q5"><h1>Task 5</h1></a>		
+		<p>This task refers to <span class="code">SendReceiveMessages</span>,  <span class="code">ReceiveMorseCode</span> and <span class="code">Decode</span>.</p>
+		<p>Currently, if an invalid sequence of dots and dashes is received, the program will return an incorrect letter instead of presenting a suitable error message.  </p>
+		<p>Modify <span class="code">SendReceiveMessages</span> to pass the list of valid symbols as the (new) fourth argument to  <span class="code">ReceiveMorseCode</span> and modify  <span class="code">ReceiveMorseCode</span> to pass the list of valid symbols as the (new) fifth argument to <span class="code">Decode</span>. </p>
+		<p>You should decode an invalid character(s) as the asterisk (*) symbol and print out an error message stating the invalid sequence of dots and dashes that was received.  You will use the message5.txt file to test this.  </p>
+		<p>For example:</p>
+		<img src="images/img19.jpg" style="border:none; margin:6 0"></p>
+		
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">9 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">SendReceiveMessages</span></li>
+					<li>Your amended SOURCE CODE PROGRAM for  <span class="code">ReceiveMorseCode</span></li>
+					<li>Your amended SOURCE CODE PROGRAM for <span class="code">Decode</span></li>
+					<li>One screen capture showing choosing option R from the main menu and entering a file name of ‘message5.txt’. (Note you will need to put message5.txt in the same folder as the program) </li>
+				</ul>
+			</td>
+		</tr></table><br />		
+		
+
+		
+
+		<a name="q6"><h1>Task 6</h1></a>
+		<p>This task refers to <span class="code">GetTransmission</span>.</p>
+		<p>The program currently expects the full file name to be typed in (including the .txt extension), but it would be better if this was flexible.</p>
+		<p>Modify the <span class="code">GetTransmission</span> subroutine so that it functions properly, with or without the filename extension.</p>
+		<p>No changes should be made to any of the prompts. </p>
+				
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">4 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">GetTransmission</span></li>
+					<li>One screen capture showing choosing option R from the main menu and entering a file name of ‘message6’</li>
+					<li>One screen capture showing choosing option R from the main menu and entering a file name of ‘message6.txt’</li>
+				</ul>
+			</td>
+		</tr></table><br />		
+
+		
+		
+		<a name="q7"><h1>Task 7</h1></a>
+		<p>This task refers to <span class="code">DisplayMenu</span> and <span class="code">SendReceiveMessages</span> and involves creating a new subroutine <span class="code">ConvertMorseCode</span>.</p>
+		<p>Currently, there is no option for the message to be entered in Morse code.  </p>
+		<p>Modify <span class="code">DisplayMenu</span> and <span class="code">SendReceiveMessages</span> to add the following as the third menu option (before X):</p>
+		<p><img src="images/img29.jpg" style="border:none;"></p>
+		<p>This new menu option will need to call a new subroutine <span class="code">ConvertMorseCode</span> and pass two arguments, the lists <span class="code">MorseCode</span> and <span class="code">Letter</span>.  The new subroutine should ask the user to enter the message in Morse code and print out the decoded message.  It should accept only valid Morse code and print out an error message if any symbol is invalid.</p>
+
+
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">17 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">DisplayMenu</span></li>
+					<li>Your amended SOURCE CODE PROGRAM for <span class="code">SendReceiveMessages</span></li>
+					<li>Your new SOURCE CODE PROGRAM for <span class="code">ConvertMorseCode</span></li>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>					
+					<ul><li>Run the program and enter ‘C’ from the main menu</li>
+						<li>Enter the Morse code: .... ..   - .... . .-. .</li>
+					</ul>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>
+					<ul><li>Run the program and enter ‘C’ from the main menu</li>
+						<li>Enter the Morse code: .... .-.--- .-.. .-.. ---</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />	
+
+
+		
+		<a name="q8"><h1>Task 8</h1></a>
+		<p>This task refers to <span class="code">SendMorseCode</span>.</p>
+		<p>Modify this subroutine to also generate the quaternary for the message to be sent.  It should print this out after the encoded message in Morse code (on a separate line).</p>
+
+		<table>
+			<tr><th>Quaternary Symbols</th>
+				<th>Encoding Examples</th></tr>
+			<tr>
+				<td>Letter separator (0)<br />Word separator (1)<br />Dot (2)<br />Dash (3)</td>
+				<td>Three dots: 222<br />Three dashes: 333<br />The word ‘son’: 2220333032<br />The phrase ‘is a’: 220222123</td>
+			</tr>
+		</table>		
+		
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">10 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">SendMorseCode</span></li>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>
+					<ul><li>Run the program and enter ‘S’ from the main menu</li>
+						<li>Enter the message: ‘TEST MSG’</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />		
+
+		
+		
+		<a name="q9"><h1>Task 9</h1></a>
+		<p>This task refers to <span class="code">DisplayMenu</span> and <span class="code">SendReceiveMessages</span>. It also involves the creation of a new subroutine <span class="code">SendEncryptedMorseCode</span> which will have one parameter, <span class="code">MorseCode</span>.</p>
+		<p>Modify <span class="code">DisplayMenu</span> and <span class="code">SendReceiveMessages</span> to add the following as the third menu option (before X):</p>
+		<p><img src="images/img30.jpg" style="border:none;"></p>
+		<p>This new menu option will need to call a new subroutine, <span class="code">SendEncryptedMorseCode</span> and pass one argument, the list <span class="code">MorseCode</span>.  The new subroutine should ask the user to enter a message, then ask the user what the Caesar Cipher Shift for the message is.  It should then apply the shift (but not shift spaces) and produce the Morse code for based on the cipher text for the message. </p>
+		<p>For example:</p>
+		<ul>
+			<li>User enters the message ‘I AM’</li>
+			<li>User chooses a Caesar Cipher Shift of 3</li>
+			<li>Message is shifted by 3 to L DP (not displayed)</li>
+			<li>Morse code version of the message is displayed: <br /><img src="images/img20.jpg" style="border:none;"></p>
+		</ul>
+		
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">16 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">DisplayMenu</span></li>
+					<li>Your amended SOURCE CODE PROGRAM for <span class="code">SendReceiveMessages</span></li>
+					<li>Your new SOURCE CODE PROGRAM for <span class="code">SendEncryptedMorseCode</span></li>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>					
+					<ul><li>Run the program and enter ‘S’ from the main menu</li>
+						<li>Enter the message: ‘TEST MSG’</li>
+						<li>Enter a Caesar Cipher Shift of: ‘12’</li>
+					</ul>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>
+					<ul><li>Run the program and enter ‘S’ from the main menu</li>
+						<li>Enter the message: ‘TEST MSG’</li>
+						<li>Enter a Caesar Cipher Shift of: ‘-5’</li>
+					</ul>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>
+					<ul><li>Run the program and enter ‘S’ from the main menu</li>
+						<li>Enter the message: ‘TEST MSG’</li>
+						<li>Enter a Caesar Cipher Shift of: ‘50’</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />				
+
+		
+		
+		<a name="q10"><h1>Task 10</h1></a>
+		<p>This task refers to <span class="code">SendMorseCode</span> and involves the creation of a new subroutine called <span class="code">CalculateTransmissionTime</span> that will take one parameter (the message in Morse code) and return a single integer which represents the number of time units required to send the message.</p>
+		<p>Modify <span class="code">SendMorseCode</span> so that it makes a call to <span class="code">CalculateTransmissionTime</span> passing a variable containing the message in Morse code as the argument.  It should retrieve the value returned and print it out in a suitable message of the following format:</p>
+		<p>Your message will take 80 time units to send.</p>
+		<p><em>Note that when calculating the length of time in time units, a dot is 1 time unit and a dash is 3 time units.  The gap between dots, dashes or spaces is 1 time unit.  The gap between letters is 3 time units (1 from the final dot or dash and 2 additional time units to indicate the end of a letter). The gap between words (a space) is 7 time units (3 from the space at the end of a letter and 4 additional time units to indicate the end of a word).</em></p>
+		
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">13 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">SendMorseCode</span></li>
+					<li>Your new SOURCE CODE PROGRAM for <span class="code">CalculateTransmissionTime</span></li>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>
+					<ul><li>Run the program and enter ‘S’ from the main menu</li>
+						<li>Enter the message: ‘TEST MSG’</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />			
+
+		
+		<a name="q11"><h1>Task 11</h1></a>
+		<p>This task refers to <span class="code">SendMorseCode</span>.</p>
+		<p>Modify the subroutine so that the user can put in the message in any case (upper, lower or mixed case). </p>
+		<p>If the input includes at least one lower case letter then the subroutine should print the following message:</p>
+		<p><img src="images/img31.jpg" style="border:none;"></p>
+		<p>… followed by the message in uppercase. </p>
+		
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">6 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">SendMorseCode</span></li>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>					
+					<ul><li>Run the program and enter ‘S’ from the main menu</li>
+						<li>Enter the message: ‘TEST MSG’</li>
+					</ul>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>
+					<ul><li>Run the program and enter ‘S’ from the main menu</li>
+						<li>Enter the message: ‘Test Message’</li>
+					</ul>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>
+					<ul><li>Run the program and enter ‘S’ from the main menu</li>
+						<li>Enter the message: test msg’</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />			
+		
+		
+		<a name="q12"><h1>Task 12</h1></a>
+		<p>This task refers to  <span class="code">ReceiveMorseCode</span>.
+		<p>Modify the subroutine so that is prints out a message showing how many symbols and characters have been received.  Only dots and dashes count as symbols and only letters count as characters (ignore spaces).
+		<p>For example:
+		<ul>
+			<li>User selects ‘R’ from the menu and enters a file name containing a transmission signal</li>
+			<li>8 symbols received:<br /><img src="images/img21.jpg" style="border:none;"></li>
+			<li>Which represent 4 characters:<br /><img src="images/img22.jpg" style="border:none;"></li>
+		</ul>		
+				
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">6 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for  <span class="code">ReceiveMorseCode</span></li>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>					
+					<ul><li>Run the program and enter ‘R’ from the main menu</li>
+						<li>Enter the file name: message12.txt</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />	
+		
+		
+		<a name="q13"><h1>Task 13</h1></a>
+		<p>This task refers to <span class="code">SendReceiveMessages</span> and <span class="code">DisplayMenu</span>.
+		<p>The program currently uses the International Morse Code but needs to be updated to be able to switch between that and the American Morse Code system.  
+		<p>Modify the subroutine <span class="code">DisplayMenu</span> so that the menu informs the user what standard of Morse code is being used.  You will need to pass in a Boolean argument (<span class="code">InternationalMorseCode</span>) – True by default – to specify either International (True) or American (False).
+		<p>Create the following new menu option:</p>
+		<p><img src="images/img32.jpg" style="border:none;"></p>			  
+		<p>Once this menu option has been chosen and American Morse code is being used, the menu option will change to:</p>
+		<p><img src="images/img33.jpg" style="border:none;"></p>		
+		<p>This new menu option should appear as the third menu option before X.    For example:</p>
+		<p><img src="images/img23.jpg" style="border:none;"></p>
+		<p><em>Note there is no need to actually change all of the symbols and mappings for this task but of course it would be followed through by actually changing the lists <span class="code">Dash</span>, <span class="code">Dot</span> and <span class="code">MorseCode</span> were the entire change to be implemented.</em></p>
+				
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">17 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">SendReceiveMessages</span></li>
+					<li>Your amended SOURCE CODE PROGRAM for <span class="code">DisplayMenu</span></li>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>					
+					<ul><li>Run the program and enter ‘V’ from the main menu</li>
+						<li>Enter ‘V’ again from the main menu</li>
+						<li>Enter ‘V’ a third time from the main menu</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />	
+		
+		
+		<a name="q14"><h1>Task 14</h1></a>
+		<p><strong>This task is an extension of Task 4 which you will need to have solved first in order to attempt this.  </strong></p>
+		<p>This task refers to  <span class="code">TransmitMorseCode</span>.<p>
+		<p>Modify your solution so that before it writes the transmission signals to the file, it checks to see if the file exists and asks the user whether they would like to overwrite the file or choose another file name instead. </p>
+		<p>For example:</p>
+		<p><img src="images/img24.jpg" style="border:none;"></p>
+				
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">11 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for  <span class="code">TransmitMorseCode</span></li>					
+					<li>One screen capture showing all of the input and output for the following sequence:</li>					
+					<ul><li>Run the program and enter ‘T’ from the main menu</li>
+						<li>Enter the message: ‘TEST MSG’</li>
+						<li>Enter the file name: ‘message4.txt’</li>
+						<li>Choose ‘N’</li>
+						<li>Enter the file name ‘message14.txt’</li>
+					</ul>
+					<li>One screen capture showing all of the input and output for the following sequence:</li>					
+					<ul><li>Run the program and enter ‘T’ from the main menu</li>
+						<li>Enter the message: ‘TEST MESSAGE’</li>
+						<li>Enter the file name: ‘message14.txt’</li>
+						<li>Choose ‘Y’</li>
+						<li>Choose ‘R’ from the main menu</li>
+						<li>Enter the file name ‘message14.txt’</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />				
+
+		<a name="q15"><h1>Task 15</h1></a>
+		<p>This task refers to <span class="code">GetTransmission</span>.</p>
+		<p>After the transmission has been received, display a message saying how many symbols are in the file and break this down into the number of units of a signal (=) and the number of units of no signal (space).   Leading and trailing spaces should not be counted.  
+		<p>For example:</p>
+		<p><img src="images/img25.jpg" style="border:none;"></p>		
+				
+		<table class="evidencebox"><tr><th>Evidence you need to provide:</th><th style="text-align:right;">7 marks</th></tr>
+		<td colspan="2">
+				<ul><li>Your amended SOURCE CODE PROGRAM for <span class="code">GetTransmission</span></li>					
+					<li>One screen capture showing all of the input and output for the following sequence:</li>					
+					<ul><li>Run the program and enter ‘R’ from the main menu</li>						
+						<li>Enter the file name: ‘message.txt’</li>
+					</ul>
+				</ul>
+			</td>
+		</tr></table><br />			
+		
+	<!--activity end-->
+		
+		<script type="text/javascript" src="https://zigzageducation.co.uk/public/support-files/morse-code-extension-python.js" type="application/json">
+		</script>
+		
+		<script>
+		document.write(a.data);
+		</script>
+
+		
+
+	<div class="footer">
+	<p class="no_print"><a href="#top">Back to Top</a>
+	<span class="no_print" style="float:right;">&copy; <a href="http://zigzageducation.co.uk">ZigZag Education 2018</a></span></p>
+	</div>
+	
+	<!-- .topic_info end -->		
+	
+<!-- .container end -->
+</div>
+
+</body>
+</html>
+
+
