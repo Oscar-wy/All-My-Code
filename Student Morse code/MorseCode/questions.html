@@ -1,0 +1,188 @@
+<html> 
+<head> 
+	<title>Morse Code 2018</title>
+	<script> 
+		/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "nav") {
+				x.className += " responsive";
+			} else {
+				x.className = "nav";
+			}
+		}
+	</script>	
+	<script src="lightbox/js/jquery-1.10.2.min.js"></script>
+	<script src="lightbox/js/lightbox-2.6.min.js"></script>
+	
+	<link href="style.css" rel="stylesheet" />
+	<link href="lightbox/css/lightbox.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<!-- .container start -->
+<div class="container">
+	<!-- .banner start -->
+	<div class="banner">	
+	<div style="float:right; padding:0;font-size:0.8em;">Python3 Edition</div><br style="clear:both">
+	<img src="images/banner.jpg" style="border:none;">
+		<ul id="nav" class="nav" id="myTopnav">		
+		<li><a href="index.html">Commentary</a></li>
+		<li><a href="diagram.html">Structure Diagram Activity</a></li>
+		<li><a href="questions.html" class="selected">Programming Questions</a></li>
+		<li><a href="tasks.html">Programming Tasks</a></li>
+		<li><a href="answers.html">Answers & Solutions</a></li>				
+	</ul>	
+	</div>
+	<!-- .banner end -->		
+
+	
+	<!-- .topic_header start -->
+	<div class="topic_header">
+	<table style="background-color:#ffff80;"><tr><td><h1>Morse Code: <strong>Programming Questions</h1></td></tr></table>
+	
+	</div>
+	<!-- .topic_header end -->
+	
+	<!-- topic_info start -->		
+		
+	<div class="topic_info">
+		
+		<div class="textbox" style="margin:10 0; float:left; display:inline-block; width:auto;">						
+			A printable worksheet of the following questions are provided in PDF <a href="files/QuestionsWorksheet.pdf">here</a><br />
+			An <a href="files/PAPER1_EAD.dotx">Electronic Answer Document (EAD)</a> is provided for all questions/tasks. <strong>Save this file to an accessible location before you start.</strong>
+			
+		</div>		
+		
+		<br style="clear:both;">
+	
+		<table style="width:100%"><tr><th>These questions refer to the preliminary material and require you to load the skeleton program, but do not require any additional programming.</th></tr></table>
+		
+		<table style="width:100%">		
+			<tr><td>
+				<ol start ="1">
+					<li>State the name of an identifier for:</li>
+					<ul>
+						<li>A string constant (or variable used as a constant) [1]</li>
+						<li>A subroutine with two parameters [1] </li>
+						<li>A subroutine that returns a tuple (more than one value) [1]</li>
+						<li>A Boolean variable [1]</li>
+						<li>A parameter that is a list [1]</li>
+						<li>An integer list [1]</li>
+						<li>A built-in function called from within the <span class="code">GetMenuOption</span> subroutine [1]</li>
+						<li>The identifier for a user-defined function called from the <span class="code">GetNextLetter</span> subroutine [1]</li>
+					</ul>
+				</ol>
+			</td></tr>
+
+			<tr><td>
+				<ol start="2">
+					<li>State the purpose of each of the following lines in the <span class="code">GetTransmission</span> subroutine: [4]</li>
+					<textarea rows="6" cols="70">FileName = input("Enter file name: ")
+...
+    FileHandle = open(FileName, 'r')
+    Transmission = FileHandle.readline()
+    FileHandle.close()
+    ...
+</textarea></li></ol>
+			</td></tr>	
+
+			<tr><td>
+				<ol start="3">
+					<li>Describe the purpose of the <span class="code">While</span> loop within the <span class="code">SendReceiveMessages</span> subroutine. [2] </li>
+				</ol>
+			</td></tr>	
+
+			<tr><td>
+				<ol start="4">
+					<li>Describe the nature and purpose of the <span class="code">Dash</span> data structure in <span class="code">SendReceiveMessages</span>. [3]	</li>
+				</ol>
+			</td></tr>				
+			
+
+			<tr><td>
+				<ol start="5">
+					<li>Look at the subroutine <span class="code">StripLeadingSpaces</span>.  Describe the purpose and use of the variable <span class="code">FirstSignal</span>. [2]</li>						
+				</ol>
+			</td></tr>				
+			
+
+			<tr><td>
+				<ol start="6">
+					<li>Describe each of the following lines of code, taken from the <span class="code">StripTrailingSpaces</span> subroutine: [6]</li>						
+					<textarea rows="5" cols="70">LastChar = len(Transmission) - 1
+while Transmission[LastChar] == SPACE:
+    LastChar -= 1
+    Transmission = Transmission[:-1]
+return Transmission
+</textarea></li>					
+				</ol>
+			</td></tr>				
+			
+			
+			<tr><td>
+				<ol start="7">
+					<li>Describe the function of the following line from the <span class="code">SendMorseCode</span> subroutine: [3]</li>		
+					<textarea rows="1" cols="70">Index = ord(PlainTextLetter) - ord('A') + 1</textarea></li>					
+				</ol>
+			</td></tr>	
+
+				
+			<tr><td>
+				<ol start="8">
+					<li>Describe the purpose of the except: block in the <span class="code">GetTransmission</span> subroutine.  <br />State one situation in which the code in the except: block would be executed. [2]</li>
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="9">
+					<li>The skeleton program begins with a number of constants (or variables used as constants by convention).<br />State two benefits of the program being written in this way. [2]</li>						
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="10">
+					<li>The <span class="code">StripLeadingSpaces</span> subroutine uses the <span class="code">[1:]</span> operation.	<br />Describe the purpose of the <span class="code">[1:]</span> operation and explain how it is used in <span class="code">StripLeadingSpaces</span>. [3]</li>
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="11">
+					<li>Describe each of the circumstances that would lead to the subroutine <span class="code">ReportError</span> being called. [5]</li>						
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="12">
+					<li>Describe fully the operation of the <span class="code">Decode</span> subroutine if the value of <span class="code">CodedLetter</span> is -..-  [10]</li>						
+				</ol>
+			</td></tr>	
+
+			</table>
+	
+		
+	<!--activity end-->
+		
+
+	<div class="footer">
+	<p class="no_print"><a href="#top">Back to Top</a>
+	<span class="no_print" style="float:right;">&copy; <a href="http://zigzageducation.co.uk">ZigZag Education 2018</a></span></p>
+	</div>
+	
+	<!-- .topic_info end -->		
+	
+<!-- .container end -->
+</div>
+
+</body>
+</html>
+
+
