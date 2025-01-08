@@ -4,6 +4,16 @@ def Main():
     if user.lower() == "x":
         exit()
     calc = user.strip()
+    calcLi = []
+    num = ""
+    for i in range(len(calc)):
+        if calc[i].isnumeric():
+            print(num)
+            num += calc[i]
+        else:
+            calcLi.append(num)
+            num = ""
+    print("Cal", calcLi)
     calc = list(calc)
     Operators = []
     nums = {}
