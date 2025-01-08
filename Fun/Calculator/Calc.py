@@ -4,39 +4,42 @@ def Main():
     if user.lower() == "x":
         exit()
     calc = user.strip()
-    calcLi = []
+    print(calc)
+    calc += "="
+    nums = {}
+    Operators = []
     num = ""
+    ctr = 0
     for i in range(len(calc)):
         if calc[i].isnumeric():
-            print(num)
             num += calc[i]
+            print(num)
         else:
-            calcLi.append(num)
+            nums[ctr] = int(num)
             num = ""
-    print("Cal", calcLi)
+            ctr += 1
+    print(nums)
     calc = list(calc)
-    Operators = []
-    nums = {}
     lencalc = len(calc)
+    opCtr = 0
     for i in range(len(calc)):
         print(i)
         if calc[i] == "x" or calc[i] == "*":
-            Operators.append(["Mul", i])
+            Operators.append(["Mul", opCtr])
             calc[i] = " "
+            opCtr += 1
         elif calc[i] == "/" or calc[i] == "÷":
-            Operators.append(["Div", i])
+            Operators.append(["Div", opCtr])
             calc[i] = " "
-        thing = calc[i].isnumeric()
-        print(thing)
-        if thing:
-            nums[i] = int(calc[i])
-    for i in range(len(calc)):
-        if calc[i] == "+":
-            Operators.append(["Plus", i])
+            opCtr += 1
+        elif calc[i] == "+":
+            Operators.append(["Plus", opCtr])
             calc[i] = " "
+            opCtr += 1
         elif calc[i] == "-":
-            Operators.append(["Min", i])
+            Operators.append(["Min", opCtr])
             calc[i] = " "
+            opCtr += 1
     stri = ""
     for i in calc:
         stri += i
@@ -49,35 +52,38 @@ def Main():
         Operator = Operators[i]
         num = 0
         if Operator[0] == "Mul":
-            num = nums[Operator[1]-1] * nums[Operator[1]+1]
+            print(Operator[1])
+            print(nums)
+            print(nums[Operator[1]])
+            num = nums[Operator[1]] * nums[Operator[1]+1]
             nums.pop(Operator[1]+1)
-            nums.pop(Operator[1]-1)
-            if Operator[1]-1 != 0:
-                nums[Operator[1]-1] = num
+            nums.pop(Operator[1])
+            if Operator[1] > 0:
+                nums[Operator[1]] = num
             else:
                 nums[Operator[1]+1] = num
         elif Operator[0] == "Div":
-            num = nums[Operator[1]-1] / nums[Operator[1]+1]
+            num = nums[Operator[1]] / nums[Operator[1]+1]
             nums.pop(Operator[1]+1)
-            nums.pop(Operator[1]-1)
+            nums.pop(Operator[1])
             if Operator[1]-1 != 0:
-                nums[Operator[1]-1] = num
+                nums[Operator[1]] = num
             else:
                 nums[Operator[1]+1] = num
         elif Operator[0] == "Plus":
-            num = nums[Operator[1]-1] + nums[Operator[1]+1]
+            num = nums[Operator[1]] + nums[Operator[1]+1]
             nums.pop(Operator[1]+1)
-            nums.pop(Operator[1]-1)
+            nums.pop(Operator[1])
             if Operator[1]-1 != 0:
-                nums[Operator[1]-1] = num
+                nums[Operator[1]] = num
             else:
                 nums[Operator[1]+1] = num
         elif Operator[0] == "Min":
-            num = nums[Operator[1]-1] - nums[Operator[1]+1]
+            num = nums[Operator[1]] - nums[Operator[1]+1]
             nums.pop(Operator[1]+1)
-            nums.pop(Operator[1]-1)
+            nums.pop(Operator[1])
             if Operator[1]-1 != 0:
-                nums[Operator[1]-1] = num
+                nums[Operator[1]] = num
             else:
                 nums[Operator[1]+1] = num
     print(num)
