@@ -36,6 +36,8 @@ def StripTrailingSpaces(Transmission):
 
 def GetTransmission():
   FileName = input("Enter file name: ")
+  if ".txt" not in FileName:
+    FileName += ".txt"
   try:
     FileHandle = open(FileName, 'r')
     Transmission = FileHandle.readline()
@@ -90,22 +92,57 @@ def GetNextLetter(i, Transmission):
     SymbolString = SymbolString + Symbol
   return i, SymbolString
 
-def Decode(CodedLetter, Dash, Letter, Dot):
+def Decode(CodedLetter, Dash, Letter, Dot, MorseCode):
+  if CodedLetter not in MorseCode:
+    print(f"Invalid Symbol ({CodedLetter}) recieved")
+    return "*"
   CodedLetterLength = len(CodedLetter)
   Pointer = 0
   for i in range(CodedLetterLength):
     Symbol = CodedLetter[i]
     if Symbol == SPACE:
       return SPACE
-    elif Symbol == FULLSTOP:
-        return FULLSTOP
     elif Symbol == '-':
       Pointer = Dash[Pointer]
     else:
       Pointer = Dot[Pointer]
   return Letter[Pointer]
 
-def ReceiveMorseCode(Dash, Letter, Dot): 
+def printMorseCodeSymbols(Letter, MorseCode):
+  for i in range(len(Letter)):
+    print(f"{Letter[i]}   |   {MorseCode[i]}")
+
+def transmitMorseCode(MorseCode):
+  result = SendMorseCode(MorseCode)
+  Data = ""
+  for i in result:
+    if i == ".":
+      Data += "= "
+    elif i == "-":
+      Data += "=== "
+    if i == " ":
+      Data += "  "
+  fileName = input("Enter name of file: ")
+  with open(fileName, "w+") as file:
+    file.write(Data)
+    file.close()
+
+def ConvertMorseCode(MorseCode, Letter):
+  Message = input("Enter a message in Morse Code: ")
+  Message = Message.split(" ")
+  Output = ""
+  for i in Message:
+    if i in MorseCode:
+      Index = list.index(MorseCode, i)
+      Output += Letter[Index]
+    elif i == "":
+      Output += " "
+    else:
+      print("Invalid Symbol")  
+      Output += "*"
+  print(Output)
+
+def ReceiveMorseCode(Dash, Letter, Dot, MorseCode): 
   PlainText = EMPTYSTRING
   MorseCodeString = EMPTYSTRING
   Transmission = GetTransmission() 
@@ -114,12 +151,13 @@ def ReceiveMorseCode(Dash, Letter, Dot):
   while i < LastChar:
     i, CodedLetter = GetNextLetter(i, Transmission)
     MorseCodeString = MorseCodeString + SPACE + CodedLetter
-    PlainTextLetter = Decode(CodedLetter, Dash, Letter, Dot)
+    PlainTextLetter = Decode(CodedLetter, Dash, Letter, Dot, MorseCode)
     PlainText = PlainText + PlainTextLetter
   print(MorseCodeString)
   print(PlainText)
 
 def SendMorseCode(MorseCode):
+  Quatenery = ""
   PlainText = input("Enter your message (uppercase letters and spaces only): ")
   PlainTextLength = len(PlainText)
   MorseCodeString = EMPTYSTRING
@@ -128,12 +166,21 @@ def SendMorseCode(MorseCode):
     if PlainTextLetter == SPACE:
       Index = 0
     elif PlainTextLetter == FULLSTOP:
-        Index = 27
+      Index = 27
     else: 
       Index = ord(PlainTextLetter) - ord('A') + 1
     CodedLetter = MorseCode[Index]
+    for i in CodedLetter:
+      if i == ".":
+        Quatenery += "2"
+      elif i == "-":
+        Quatenery += "3"
+      elif i == " ":
+        Quatenery += "1"
+    Quatenery += "0"
     MorseCodeString = MorseCodeString + CodedLetter + SPACE
-  print(MorseCodeString)
+  Quatenery = Quatenery[:-1]
+  return(MorseCodeString, Quatenery)
 
 def DisplayMenu():
   print()
@@ -141,6 +188,9 @@ def DisplayMenu():
   print("=========")
   print("R - Receive Morse code")
   print("S - Send Morse code")
+  print("P - Print Morse code symbols")
+  print("T - Transmit Morse Code")
+  print("C - Convert Morse Code")
   print("X - Exit program")
   print()
 
@@ -148,27 +198,35 @@ def GetMenuOption():
   MenuOption = EMPTYSTRING
   while len(MenuOption) != 1:
     MenuOption = input("Enter your choice: ").upper()
-    if MenuOption != "R" and MenuOption != "S" and MenuOption != "X":
+    Options = ["R", "S", "P", "T", "X", "C"]
+    if MenuOption not in Options:
         print("Invalid choice, please choose a letter from the menu:")
         DisplayMenu()
   return MenuOption
     
 def SendReceiveMessages():
-  Dash = [20,23,0,0,24,1,0,17,0,21,0,25,0,15,11,0,0,0,0,22,13,0,0,10,0,0,0]
-  Dot = [5,18,0,0,2,9,0,26,0,19,0,3,0,7,4,0,0,0,12,8,14,6,0,16,0,0,0]
-  Letter = [' ','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z', "."]
+  Dash = [20,23,27,0,24,1,0,17,0,21,0,25,0,15,11,0,0,0,2,22,13,0,0,10,0,0,0]
+  Dot = [5,18,2,0,2,9,0,26,0,19,0,3,0,7,4,0,0,0,12,8,14,6,0,16,0,0,0]
+  Letter = [' ','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','.']
 
-  MorseCode = [' ','.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..', ".-.-.-"]
+  MorseCode = [' ','.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..','.-.-.-']
 
   ProgramEnd = False
-  menuOptions = ["R", "S", "X"]
   while not ProgramEnd:
-    DisplayMenu()
+    DisplayMenu() 
     MenuOption = GetMenuOption()
     if MenuOption == 'R':
-      ReceiveMorseCode(Dash, Letter, Dot)
+      ReceiveMorseCode(Dash, Letter, Dot, MorseCode)
     elif MenuOption == 'S':
-      SendMorseCode(MorseCode) 
+      Printer = (SendMorseCode(MorseCode))
+      print(Printer[0])
+      print(Printer[1])
+    elif MenuOption == "P":
+      printMorseCodeSymbols(Letter, MorseCode)
+    elif MenuOption == "T":
+      transmitMorseCode(MorseCode)
+    elif MenuOption == "C":
+      ConvertMorseCode(MorseCode, Letter)
     elif MenuOption == 'X':
       ProgramEnd = True
     
