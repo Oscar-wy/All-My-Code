@@ -166,6 +166,22 @@ def SendEncryptedMorseCode(MorseCode):
 
 def CalculateTransmissionTime(mCMessage):
   Time = 0
+  print(len(mCMessage))
+  for i in range(len(mCMessage)):
+    print(i)
+    if mCMessage[i] == ".":
+      Time += 1
+    elif mCMessage[i] == "-":
+      Time += 3
+    elif mCMessage[i] == " ":
+      if i != len(mCMessage)-1:
+        if mCMessage[i+1] == " "and mCMessage[i+2] == " ":
+          Time += 7
+        else:
+          Time += 3
+      else:
+        Time += 3
+    Time += 1
   print(f"Your message will take {Time} time units to send")
 
 def ReceiveMorseCode(Dash, Letter, Dot, MorseCode): 
@@ -179,12 +195,27 @@ def ReceiveMorseCode(Dash, Letter, Dot, MorseCode):
     MorseCodeString = MorseCodeString + SPACE + CodedLetter
     PlainTextLetter = Decode(CodedLetter, Dash, Letter, Dot, MorseCode)
     PlainText = PlainText + PlainTextLetter
-  print(MorseCodeString)
-  print(PlainText)
+  ctr = 0
+  wCtr = 0
+  for i in MorseCodeString:
+    if i == "-" or i == ".":
+      ctr += 1
+  for i in PlainText:
+    if i != " ":
+      wCtr += 1
+  print(f"{ctr} symbols recieved:\n{MorseCodeString}")
+  print(f"Which represent {wCtr} characters:\n{PlainText}")
 
 def SendMorseCode(MorseCode):
   Quatenery = ""
+  containsLower = False
   PlainText = input("Enter your message (uppercase letters and spaces only): ")
+  for i in PlainText:
+    if i.islower():
+      containsLower = True
+  if containsLower:
+    PlainText = PlainText.upper()
+    print(f"Only uppercase letters can be used, your message has to be converted to: {PlainText}")
   PlainTextLength = len(PlainText)
   MorseCodeString = EMPTYSTRING
   for i in range(PlainTextLength):
