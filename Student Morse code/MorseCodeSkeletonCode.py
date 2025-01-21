@@ -142,6 +142,32 @@ def ConvertMorseCode(MorseCode, Letter):
       Output += "*"
   print(Output)
 
+def SendEncryptedMorseCode(MorseCode):
+  user = input("Enter The Message: ")
+  cipher = int(input("Enter Caser Cipher: "))
+  MorseCodeString = ""
+  cMessage = ""
+  for i in user:
+    if i != " ":
+      cMessage += chr(ord(i) + cipher)
+    else:
+      cMessage += i
+  for i in range(len(cMessage)):
+    PlainTextLetter = cMessage[i]
+    if PlainTextLetter == SPACE:
+      Index = 0
+    elif PlainTextLetter == FULLSTOP:
+      Index = 27
+    else: 
+      Index = ord(PlainTextLetter) - ord('A') + 1
+    CodedLetter = MorseCode[Index]
+    MorseCodeString = MorseCodeString + CodedLetter + SPACE
+  print(MorseCodeString)
+
+def CalculateTransmissionTime(mCMessage):
+  Time = 0
+  print(f"Your message will take {Time} time units to send")
+
 def ReceiveMorseCode(Dash, Letter, Dot, MorseCode): 
   PlainText = EMPTYSTRING
   MorseCodeString = EMPTYSTRING
@@ -180,6 +206,7 @@ def SendMorseCode(MorseCode):
     Quatenery += "0"
     MorseCodeString = MorseCodeString + CodedLetter + SPACE
   Quatenery = Quatenery[:-1]
+  CalculateTransmissionTime(MorseCodeString)
   return(MorseCodeString, Quatenery)
 
 def DisplayMenu():
@@ -191,6 +218,7 @@ def DisplayMenu():
   print("P - Print Morse code symbols")
   print("T - Transmit Morse Code")
   print("C - Convert Morse Code")
+  print("E - Send Encrypted Message")
   print("X - Exit program")
   print()
 
@@ -198,7 +226,7 @@ def GetMenuOption():
   MenuOption = EMPTYSTRING
   while len(MenuOption) != 1:
     MenuOption = input("Enter your choice: ").upper()
-    Options = ["R", "S", "P", "T", "X", "C"]
+    Options = ["R", "S", "P", "T", "X", "C", "E"]
     if MenuOption not in Options:
         print("Invalid choice, please choose a letter from the menu:")
         DisplayMenu()
@@ -227,6 +255,8 @@ def SendReceiveMessages():
       transmitMorseCode(MorseCode)
     elif MenuOption == "C":
       ConvertMorseCode(MorseCode, Letter)
+    elif MenuOption == "E":
+      SendEncryptedMorseCode(MorseCode)
     elif MenuOption == 'X':
       ProgramEnd = True
     
