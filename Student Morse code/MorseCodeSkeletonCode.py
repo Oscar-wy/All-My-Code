@@ -47,6 +47,14 @@ def GetTransmission():
     if len(Transmission) > 0:
       Transmission = StripTrailingSpaces(Transmission)
       Transmission = Transmission + EOL
+    signals = 0
+    breaks = 0
+    for i in Transmission:
+      if i == "=":
+        signals += 1
+      else:
+        breaks += 1
+    print(f"{signals+breaks} symbols recieved in transmission consisting of {signals} signals and {breaks} breaks.")
   except:
     ReportError("No transmission found")
     Transmission = EMPTYSTRING
@@ -116,13 +124,14 @@ def printMorseCodeSymbols(Letter, MorseCode):
 def transmitMorseCode(MorseCode):
   result = SendMorseCode(MorseCode)
   Data = ""
-  for i in result:
+  for i in result[0]:
     if i == ".":
       Data += "= "
     elif i == "-":
       Data += "=== "
     if i == " ":
       Data += "  "
+  print("DATA: "+Data)
   fileName = input("Enter name of file: ")
   filePath = os.path.isfile(f"./{fileName}")
   if filePath:
