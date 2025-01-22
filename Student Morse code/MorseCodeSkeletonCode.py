@@ -5,6 +5,7 @@
 
 
 # Version Number : 1.6
+import os
 
 SPACE = ' '
 EOL = '#'
@@ -123,6 +124,17 @@ def transmitMorseCode(MorseCode):
     if i == " ":
       Data += "  "
   fileName = input("Enter name of file: ")
+  filePath = os.path.isfile(f"./{fileName}")
+  if filePath:
+    overWrite = input("File already exists, would you like to overwrite it (Y/N)? ").upper()
+    if overWrite == "Y":
+      with open(fileName, "w+") as file:
+        file.write(Data)
+        file.close()
+    else:
+      while filePath:
+        fileName = input("Enter name of file: ")
+        filePath = os.path.isfile(f"./{fileName}")
   with open(fileName, "w+") as file:
     file.write(Data)
     file.close()
@@ -240,7 +252,7 @@ def SendMorseCode(MorseCode):
   CalculateTransmissionTime(MorseCodeString)
   return(MorseCodeString, Quatenery)
 
-def DisplayMenu():
+def DisplayMenu(mOption):
   print()
   print("Main Menu")
   print("=========")
@@ -250,6 +262,7 @@ def DisplayMenu():
   print("T - Transmit Morse Code")
   print("C - Convert Morse Code")
   print("E - Send Encrypted Message")
+  print(f"V - Change to {mOption} Morse code")
   print("X - Exit program")
   print()
 
@@ -257,7 +270,7 @@ def GetMenuOption():
   MenuOption = EMPTYSTRING
   while len(MenuOption) != 1:
     MenuOption = input("Enter your choice: ").upper()
-    Options = ["R", "S", "P", "T", "X", "C", "E"]
+    Options = ["R", "S", "P", "T", "X", "C", "E", "V"]
     if MenuOption not in Options:
         print("Invalid choice, please choose a letter from the menu:")
         DisplayMenu()
@@ -271,8 +284,12 @@ def SendReceiveMessages():
   MorseCode = [' ','.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..','.-.-.-']
 
   ProgramEnd = False
+  mOptions = ["American", "International"]
+  mOption = mOptions[1]
+  notOption = mOptions[0]
   while not ProgramEnd:
-    DisplayMenu() 
+    DisplayMenu(notOption) 
+    print(f"System is currently using the {mOption} version of Morse code.")
     MenuOption = GetMenuOption()
     if MenuOption == 'R':
       ReceiveMorseCode(Dash, Letter, Dot, MorseCode)
@@ -288,6 +305,13 @@ def SendReceiveMessages():
       ConvertMorseCode(MorseCode, Letter)
     elif MenuOption == "E":
       SendEncryptedMorseCode(MorseCode)
+    elif MenuOption == "V":
+      if mOption == mOptions[1]:
+        notOption = mOption
+        mOption = mOptions[0]
+      else:
+        notOption = mOption
+        mOption = mOptions[1]
     elif MenuOption == 'X':
       ProgramEnd = True
     
