@@ -1,3 +1,4 @@
+import os
 Quit = False
 
 def CheckArgs(Input, Args):
@@ -10,7 +11,16 @@ class Assistant:
     def __init__(self):
         pass
     def Touch(self, command):
-        print(command)
+        try:
+            file = open(f"./{command[0]}", "x")
+            file.close()
+        except:
+            print("File Already Exists")
+    def Remove(self, command):
+        try:
+            os.remove(f"./{command[0]}")
+        except:
+            print("File does not exist")
 
 myAssis = Assistant()
 
