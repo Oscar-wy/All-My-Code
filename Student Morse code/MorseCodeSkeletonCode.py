@@ -277,9 +277,9 @@ def DisplayMenu(mOption):
 
 def GetMenuOption():
   MenuOption = EMPTYSTRING
+  Options = ["R", "S", "P", "T", "X", "C", "E", "V"]
   while len(MenuOption) != 1:
     MenuOption = input("Enter your choice: ").upper()
-    Options = ["R", "S", "P", "T", "X", "C", "E", "V"]
     if MenuOption not in Options:
         print("Invalid choice, please choose a letter from the menu:")
         DisplayMenu()
