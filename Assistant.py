@@ -22,17 +22,24 @@ class Assistant:
         except:
             print("File does not exist")
     def Nano(self, command):
-        subs = []
-        for i in command:
-            if "-" in i:
-                subs.append(i)
-        print(subs)
-        print(command, command[i])
         try:
+            subs = []
+            for i in command:
+                if "-" in i:
+                    subs.append(i)
+                    command.remove(i)
+            if len(subs) == 1:
+                subs = subs[0]
+            print(command, command[1])
             if "\n" not in command[1]:
                 command[1] += "\n"
             if os.path.isfile(f"./{command[0]}"):
-                user = input("Do you want to overwrite or append the file (o/a)? ").lower()
+                if "a" in subs:
+                    user = "a"
+                elif "o" in subs:
+                    user = "o"
+                else:
+                    user = input("Do you want to overwrite or append the file (o/a)? ").lower()
                 if user == "o":
                     with open(f"./{command[0]}", "w+") as f:
                         f.write(command[1])
