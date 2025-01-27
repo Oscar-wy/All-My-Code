@@ -21,6 +21,34 @@ class Assistant:
             os.remove(f"./{command[0]}")
         except:
             print("File does not exist")
+    def Nano(self, command):
+        subs = []
+        for i in command:
+            if "-" in i:
+                subs.append(i)
+        print(subs)
+        print(command, command[i])
+        try:
+            if "\n" not in command[1]:
+                command[1] += "\n"
+            if os.path.isfile(f"./{command[0]}"):
+                user = input("Do you want to overwrite or append the file (o/a)? ").lower()
+                if user == "o":
+                    with open(f"./{command[0]}", "w+") as f:
+                        f.write(command[1])
+                        f.close()
+                elif user == "a":
+                    with open(f"./{command[0]}", "a") as f:
+                        f.write(command[1])
+                        f.close()
+                else:
+                    print("Incorrect option")
+            else:
+                with open(f"./{command[0]}", "w+") as f:
+                    f.write(command[1])
+                    f.close()
+        except:
+            print("Error")
 
 myAssis = Assistant()
 
