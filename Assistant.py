@@ -1,4 +1,5 @@
 import os
+import pyperclip as pc 
 Quit = False
 
 def CheckArgs(Input, Args):
@@ -56,6 +57,18 @@ class Assistant:
                     f.close()
         except:
             print("Error")
+    def Read(self, command):
+        with open(f"./{command[0]}", "r") as f:
+            text = f.read()
+            f.close()
+        print(text)
+    def Copy(self, command):
+        text = ""
+        with open(f"./{command[0]}", "r") as f:
+            text = f.read()
+            f.close()
+        pc.copy(text)
+        print("Copied to clipboard!")
 
 myAssis = Assistant()
 
