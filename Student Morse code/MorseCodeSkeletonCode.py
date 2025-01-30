@@ -131,7 +131,6 @@ def transmitMorseCode(MorseCode):
       Data += "=== "
     if i == " ":
       Data += "  "
-  print("DATA: "+Data)
   fileName = input("Enter name of file: ")
   filePath = os.path.isfile(f"./{fileName}")
   if filePath:
