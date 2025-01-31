@@ -62,13 +62,13 @@ class Assistant:
             text = f.read()
             f.close()
         print(text)
-    def Copy(self, command):
-        text = ""
-        with open(f"./{command[0]}", "r") as f:
-            text = f.read()
-            f.close()
-        pc.copy(text)
-        print("Copied to clipboard!")
+    # def Copy(self, command):
+    #     text = ""
+    #     with open(f"./{command[0]}", "r") as f:
+    #         text = f.read()
+    #         f.close()
+    #     pc.copy(text)
+    #     print("Copied to clipboard!")
 
 myAssis = Assistant()
 
