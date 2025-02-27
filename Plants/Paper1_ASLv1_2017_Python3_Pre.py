@@ -19,7 +19,9 @@ def GetHowLongToRun():
   print('You can step through the simulation a year at a time')
   print('or run the simulation for 0 to 5 years')
   print('How many years do you want the simulation to run?')
-  Years = int(input('Enter a number between 0 and 5, or -1 for stepping mode: '))
+  Years = 10
+  while Years < -1 and Years > 5:
+    Years = int(input('Enter a number between 0 and 5, or -1 for stepping mode: '))
   return Years
 
 def CreateNewField(): 
@@ -27,10 +29,19 @@ def CreateNewField():
   Row = FIELDLENGTH // 2
   Column = FIELDWIDTH // 2
   Field[Row][Column] = SEED
+  for i in range(5):
+    rockRow = randint(0, FIELDLENGTH-1)
+    rockCol = randint(0, FIELDWIDTH-1)
+    if Field[rockRow][rockCol] == ROCKS:
+      i=i-1
+    else:
+      Field[rockRow][rockCol] = ROCKS
   return Field
 
 def ReadFile():   
   FileName = input('Enter file name: ')
+  if ".txt" not in FileName:
+    FileName += ".txt"
   Field = [[SOIL for Column in range(FIELDWIDTH)] for Row in range(FIELDLENGTH)]
   try:
     FileHandle = open(FileName, 'r')
@@ -74,7 +85,7 @@ def SimulateSpring(Field):
   for Row in range(FIELDLENGTH):
     for Column in range(FIELDWIDTH):
       if Field[Row][Column] == SEED:
-        dat = random.randint(1, 100)
+        dat = randint(1, 100)
         if dat <= 40:
           Field[Row][Column] = PLANT
   CountPlants(Field)
@@ -95,6 +106,7 @@ def SimulateSpring(Field):
   return Field
 
 def SimulateSummer(Field): 
+  ctr = 0
   RainFall = randint(0, 2)
   if RainFall == 0:
     PlantCount = 0
@@ -104,7 +116,8 @@ def SimulateSummer(Field):
           PlantCount += 1
           if PlantCount % 2 == 0:
             Field[Row][Column] = SOIL
-    print('There has been a severe drought')
+            ctr += 1
+    print(f"There has been a severe drought {ctr} plants have died")
     CountPlants(Field)
   return Field
 
@@ -149,6 +162,7 @@ def Simulation():
   YearsToRun = GetHowLongToRun()
   if YearsToRun != 0:
     Field = InitialiseField()
+    Display(Field, 'start', 0)
     if YearsToRun >= 1:
       for Year in range(1, YearsToRun + 1):
         SimulateOneYear(Field, Year)
