@@ -63,7 +63,7 @@ def ChangeSettings():
 
 def ReadInSimulationData():
   Data = [[0, 0] for i in range(MAX_TIME + 1)]
-  FileIn = open("SimulationData.txt", 'r')
+  FileIn = open("./SimulationData.txt", 'r')
   DataString = FileIn.readline()
   Count = 0
   while DataString != "" and Count < MAX_TIME:
