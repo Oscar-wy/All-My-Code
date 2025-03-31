@@ -13,10 +13,10 @@ for i in Grid:
 print(Real)
 
 MagicRowCol = True
-for Row in range(Real):
+for Row in range(len(Real)):
     tot1 = 0
     tot2 = 0
-    for i in Real[Row]:
+    for i in range(len(Real[Row])):
         tot1 += Real[Row][i]
         tot2 += Real[i][Row]
     if tot1 != 15:
@@ -26,13 +26,17 @@ for Row in range(Real):
 
 def CheckDiag(Real):
     Total = 0
-    for i in range(Real):
-        for j in range(Real[i]):
+    Total2 = 0
+    for i in range(len(Real)):
+        for j in range(len(Real[i])):
             if i == j:
-                Tot1 += Real[i][j]
-                Tot2 += Real[3-i][j]
+                Total += Real[i][j]
+            if i + j == 2:
+                Total2 += Real[i][j]
+        return True
 
 if MagicRowCol:
-    CheckDiag(Real)
+    if CheckDiag(Real):
+        print("magic")
 else:
-    print("Muggle")
+    print("muggle")
