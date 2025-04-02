@@ -63,18 +63,18 @@ def SaveData():
 
 def LoadData():
     player = ("./UserSaves/UserSave"+Player.Username)
-    # try:
-    with open(player, "r+") as playerdata:
-        print('Save Found! Welcome back :D')
-        data = []
-        data = playerdata.readlines()
-        Player.Money = float(data[1])
-        print(json.loads(data[2]))
-        Player.Day = int(data[3])
-    # except:
-    #     CreateLocal()
-    #     print('No player data found.')
-    #     print('Creating new save.')
+    try:
+        with open(player, "r+") as playerdata:
+            print('Save Found! Welcome back :D')
+            data = []
+            data = playerdata.readlines()
+            Player.Money = float(data[1])
+            print(json.loads(data[2]))
+            Player.Day = int(data[3])
+    except:
+        CreateLocal()
+        print('No player data found.')
+        print('Creating new save.')
 
 
 def stockinvest():
