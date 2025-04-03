@@ -10,7 +10,8 @@ def CheckArgs(Input, Args):
 
 class Assistant:
     def __init__(self):
-        pass
+        self.Memory = {}
+        
     def Touch(self, command):
         try:
             file = open(f"./{command[0]}", "x")

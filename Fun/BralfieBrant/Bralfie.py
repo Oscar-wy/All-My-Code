@@ -6,13 +6,17 @@ Player = GF.Player()
 
 def Invest():
     for i in range(len(Investments)):
-        print(f"{i} - {Investments[i].Name} £{Investments[i].stockValue} {Investments[i].stockPercent}%")
+        print(f"{i+1} - {Investments[i].Name} £{Investments[i].stockValue} {Investments[i].stockPercent}%")
     selection = int(input("Choose Which To Invest In: "))
     print(f"{Player.Money}")
     amount = int(input("How Much: "))
-    Player.Invest(selection, amount)
+    Player.Invest(Investments[selection-1], amount)
 
 if __name__ == "__main__":
+    if Player.Username == "":
+        user = input("Enter Your Username: ")
+        Player.Username = user
+        Player.createLocal()
     while Stop != True:
         currentDay = Player.Day
         for i in Investments:
@@ -26,3 +30,4 @@ if __name__ == "__main__":
             Player.repairLaptop()
         else:
             print("Not A Part Of The Game?")
+        Player.saveData()

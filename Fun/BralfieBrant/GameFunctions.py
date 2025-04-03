@@ -1,4 +1,5 @@
 import random
+import json
 
 class Player():
     def __init__(self):
@@ -10,14 +11,19 @@ class Player():
         self.Repaired = False
         self.repairCost = 50000
         self.Username = ""
-        self.localSave = ""
         self.Messages = [f'It\'s day {self.Day} lets get started.', f'Rise and shine it\'s day {self.Day} time to start investing.', f'GooPlayer.Day it\'s day {self.Day}. Get the flippity dippity flop up and start investing YOU LAZY BASTARD!', 'Good morning sunshine, invest don\'t rest and get to it', f'Day {self.Day} wow look how far we\'ve come, tired of investing yet? I DONT CARE DO YOU WANT YOUR LAPTOP FIXED OR NOT!','Get up! Your snooze button isn\'t going to press itself.',f'WAKE UP! Its day {self.Day}, your pillow is begging for a break seriously.', f'Morning, it\'s day {self.Day}! Your bed might miss you but the world won\'t. I promise.']
     def Invest(self, selection, amount):
         currentStockPrice = selection.stockValue
         totalPrice = currentStockPrice * amount
         if totalPrice < self.Money:
             investmentList = [selection, amount]
-            self.Investments[selection.Name] = investmentList
+            print(selection.Name)
+            print(self.Investments)
+            try:
+                if not self.Investments[selection.Name]:
+                    self.Investments[selection.Name] = investmentList
+            except:
+                self.Investments[selection.Name][1] += amount
             print(self.Investments)
             self.Money = self.Money - totalPrice
             print("Invested!")
@@ -43,13 +49,32 @@ class Player():
     def createLocal(self):
         text = ""
         try:
-            with open(f".UserSaves/UserSave{Player.Username}", "r+") as file:
+            with open(f"./UserSaves/UserSave{self.Username}", "r+") as file:
                 text = file.readline()
                 file.close()
         except:
-            open(f".UserSaves/UserSave{Player.Username}", "x")
-        if text == "":
-            self.localSave()
+            open(f"./UserSaves/UserSave{self.Username}", "x")
+        if text != "":
+            self.loadData()
+    def saveData(self):
+        Data = f"{self.Username}\n{str(self.Money)}\n{str(self.Investments)}\n{str(self.Day)}"
+        with open("./UserSaves/UserSave"+self.Username, "w+") as file:
+            file.write(Data)
+            file.close()
+    def loadData(self):
+        player = ("./UserSaves/UserSave"+self.Username)
+        try:
+            with open(player, "r+") as playerdata:
+                print('Save Found! Welcome back :D')
+                data = []
+                data = playerdata.readlines()
+                self.Money = float(data[1])
+                print(json.loads(data[2]))
+                self.Day = int(data[3])
+        except:
+            self.createLocal()
+            print('No player data found.')
+            print('Creating new save.')
     
 class Investment:
     def __init__(self, name):
