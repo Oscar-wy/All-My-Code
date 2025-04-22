@@ -5,6 +5,8 @@
 
 # Version number: 0.0.1
 
+
+
 BLANK = "   "
 MAX_Q_SIZE = 30
 MAX_TILLS = 5
