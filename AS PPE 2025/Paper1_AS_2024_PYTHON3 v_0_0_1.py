@@ -39,8 +39,8 @@ def ResetDataStructures():
   return Stats, Tills, BuyerQ
 
 def ChangeSettings():
-  SimulationTime = 10
-  NoOfTills = 2
+  SimulationTime = 20
+  NoOfTills = 3
   print("Settings set for this simulation:")
   print("=================================")
   print(f"Simulation time: {SimulationTime}")
@@ -209,8 +209,11 @@ def QueueSimulator():
     print(f"{TimeUnit:>3d}", end='')
     if TimeToNextArrival == 0:
       BuyerNumber += 1
-      BuyerQ, QLength, NoOfTills, Stats = BuyerArrives(Data, BuyerQ, QLength, BuyerNumber, NoOfTills, Stats)
-      TimeToNextArrival = Data[BuyerNumber + 1][ARRIVAL_TIME]
+      if BuyerNumber <= 10:
+        BuyerQ, QLength, NoOfTills, Stats = BuyerArrives(Data, BuyerQ, QLength, BuyerNumber, NoOfTills, Stats)
+        TimeToNextArrival = Data[BuyerNumber + 1][ARRIVAL_TIME]
+      else:
+        print("Queue is full - cannot add more buyers")
     else:
       print()
     Tills, NoOfTills, BuyerQ, QLength, Stats = Serving(Tills, NoOfTills, BuyerQ, QLength, Stats)
