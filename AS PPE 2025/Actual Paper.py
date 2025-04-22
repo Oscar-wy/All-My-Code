@@ -109,10 +109,13 @@ def ServeBuyer(BuyerQ, QLength):
   ThisBuyerID = BuyerQ[0].BuyerID
   ThisBuyerWaitingTime = BuyerQ[0].WaitingTime
   ThisBuyerItems = BuyerQ[0].ItemsInBasket
+  current = None
   for Count in range(QLength):
     BuyerQ[Count].BuyerID = BuyerQ[Count + 1].BuyerID
     BuyerQ[Count].WaitingTime = BuyerQ[Count + 1].WaitingTime
     BuyerQ[Count].ItemsInBasket = BuyerQ[Count + 1].ItemsInBasket
+    if len(BuyerQ[Count].ItemsInBasket) < len(current.ItemsInBasket):
+      current = BuyerQ[Count]
   BuyerQ[QLength].BuyerID = BLANK
   BuyerQ[QLength].WaitingTime = 0
   BuyerQ[QLength].ItemsInBasket = 0
