@@ -6,4 +6,4 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def Index():
-    pass
+    return render_template("Landing.html")
