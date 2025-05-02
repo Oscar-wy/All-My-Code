@@ -1,10 +1,39 @@
-{% extends "Main.html" %}
+{% extends "Base.html" %}
 
 {% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Landing</title>
+<link rel="stylesheet" href="./static//Main.css">
+<link rel="stylesheet" href="./static/Landing.css">
+<link rel="stylesheet" href="./static/navBar.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='Error.css') }}">
 {% endblock %}
 
 {% block body %}
+<div class="Page">
+    <nav class="navBar Hidden">
+        <ul class="">
+            <a class="navButton" href=""></a>
+            <a class="navButton" href=""></a>
+            <a class="navButton" href=""></a>
+        </ul>
+        <div class="AccountSection">
+            <a href="" class="navButton Profile Hidden"></a>
+            <a href="" class="navButton Signup">Account</a>
+        </div>
+    </nav>
+    <div class="mainBody">
+        <div class="topBar">
+            <a href="" class="Logo">Something</a>
+            <div class="topAccSection">
+                <a href="" class="profileBtn Profile {{NoAccount}}"></a>
+                <a href="" class="signupBtn Signup {{HasAccount}}">Account</a>
+            </div>
+        </div>
+        <div class="Body">
 
+        </div>
+    </div>
+</div>
 {% endblock %}
