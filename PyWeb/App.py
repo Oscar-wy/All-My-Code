@@ -24,3 +24,6 @@ def Index():
 @app.route("/App", methods=["GET", "POST"])
 def App():
     pass
+
+if __name__ == "__main__":
+    app.run(debug=True)
