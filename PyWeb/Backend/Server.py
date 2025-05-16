@@ -2,12 +2,65 @@ import sqlite3
 import random
 
 def InitialiseTables():
-    pass
+    with sqlite3.connect("./Database.db") as db:
+        cursor = db.cursor()
+        sql = """
+                CREATE TABLE IF NOT EXISTS Users
+                (
+                 NID INTEGER Primary Key AUTOINCREMENT,
+                 Username TEXT,
+                 FName TEXT,
+                 LName TEXT,
+                 Email TEXT,
+                 Password TEXT
+                )
+              """
+        cursor.execute(sql)
 
 class User():
     def __init__(self):
-        self.NID = ""
+        self.NID = None
         self.Username = ""
-        self.Name = ""
+        self.FName = ""
+        self.LName = ""
         self.Email = ""
         self.Password =  ""
+    def Login(self, username, password):
+        with sqlite3.connect("./Databse.db") as db:
+            cursor = db.cursor()
+            db.row_factory = sqlite3.Row
+            cursor.execute("SELECT * FROM users WHERE Username = ? AND Password = ?", (username, password))
+            row = cursor.fetchone()
+            if row:
+                self.SetData()
+                return True
+            else:
+                return False
+    def SetData(self, row):
+        for key in row.keys():
+            setattr(self, key, row[key])
+    
+    def fetchUserData(self, username):
+        with sqlite3.connect("./Database.db") as db:
+            cursor = db.cursor()
+            db.row_factory = sqlite3.Row
+            cursor.execute("SELECT * FROM Users WHERE Username = ?", (username,))
+            row = cursor.fetchone()
+            if row:
+                user = User()
+                user.SetData(row)
+                return user
+            return None
+    def Register(self, username, password, fname, lname, email):
+        with sqlite3.connect("./Database.db") as db:
+            cursor = db.cursor()
+            cursor.execute("SELECT * FROM Users WHERE Username = ?", (username,))
+            existing_user = cursor.fetchone()
+
+            if existing_user:
+                return False  # User already exists
+            else:
+                cursor.execute("INSERT INTO Users (Username, Password, FName, LName, Email) VALUES (?, ?, ?, ?, ?)",
+                               (username, password, fname, lname, email))
+                db.commit()
+                return True

@@ -4,7 +4,7 @@
     left: 50%;
     bottom: 2%;
     background-color: #1f1f1f;
-    width: 300px;
+    width: 280px;
     height: 70px;
     transform: translate(-50%, 0%);
     border-radius: 15px;
@@ -29,7 +29,7 @@
 
 .navButton{
     display: flex;
-    aspect-ratio: 1/0.9;
+    aspect-ratio: 1/.95;
     height: 75%;
     background-color: #6c6161;
     border-radius: 10px;
