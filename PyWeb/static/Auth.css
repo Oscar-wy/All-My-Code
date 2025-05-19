@@ -149,12 +149,12 @@
     font-weight: bold;
 }
 
-.errorMessage {
-    color: red;
+.errorMessage p{
+    color: red!important;
 }
 
-.successMessage {
-    color: green;
+.successMessage p{
+    color: green!important;
 }
 
 /* Heading for the form section */
