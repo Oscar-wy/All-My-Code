@@ -26,13 +26,14 @@ class User():
         self.Email = ""
         self.Password =  ""
     def Login(self, username, password):
-        with sqlite3.connect("./Databse.db") as db:
-            cursor = db.cursor()
+        with sqlite3.connect("./Database.db") as db:
             db.row_factory = sqlite3.Row
-            cursor.execute("SELECT * FROM users WHERE Username = ? AND Password = ?", (username, password))
+            cursor = db.cursor()
+            cursor.execute("SELECT * FROM Users WHERE Username = ? AND Password = ?", (username, password))
             row = cursor.fetchone()
             if row:
-                self.SetData()
+                row = dict(row)
+                self.SetData(row)
                 return True
             else:
                 return False
@@ -42,11 +43,12 @@ class User():
     
     def fetchUserData(self, username):
         with sqlite3.connect("./Database.db") as db:
-            cursor = db.cursor()
             db.row_factory = sqlite3.Row
+            cursor = db.cursor()
             cursor.execute("SELECT * FROM Users WHERE Username = ?", (username,))
             row = cursor.fetchone()
             if row:
+                row = dict(row)
                 user = User()
                 user.SetData(row)
                 return user

@@ -1,8 +1,10 @@
 from flask import *
+import os
 import random
 import Backend.Server as Server
 
 app = Flask(__name__)
+app.secret_key = "3c841f496de2c2b9fa5d197d7b5c2f44"
 
 Server.InitialiseTables()
 
