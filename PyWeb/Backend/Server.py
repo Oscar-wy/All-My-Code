@@ -11,7 +11,7 @@ def InitialiseTables():
                  Username TEXT,
                  FName TEXT,
                  LName TEXT,
-                 Email TEXT,
+                 Email TEXT UNIQUE,
                  Password TEXT
                 )
               """
@@ -29,7 +29,9 @@ class User():
         with sqlite3.connect("./Database.db") as db:
             db.row_factory = sqlite3.Row
             cursor = db.cursor()
-            cursor.execute("SELECT * FROM Users WHERE Username = ? AND Password = ?", (username, password))
+            sql = "SELECT * FROM Users WHERE Username = ? AND Password = ?"
+            print(sql)
+            cursor.execute(sql, (username, password))
             row = cursor.fetchone()
             if row:
                 row = dict(row)
@@ -40,7 +42,6 @@ class User():
     def SetData(self, row):
         for key in row.keys():
             setattr(self, key, row[key])
-    
     def fetchUserData(self, username):
         with sqlite3.connect("./Database.db") as db:
             db.row_factory = sqlite3.Row
@@ -49,9 +50,7 @@ class User():
             row = cursor.fetchone()
             if row:
                 row = dict(row)
-                user = User()
-                user.SetData(row)
-                return user
+                self.SetData(row)
             return None
     def Register(self, username, password, fname, lname, email):
         with sqlite3.connect("./Database.db") as db:

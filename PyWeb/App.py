@@ -10,6 +10,12 @@ Server.InitialiseTables()
 
 # user = Server.User()
 
+def getUser():
+    username = session['username']
+    user = Server.User()
+    user.fetchUserData(username)
+    return user
+
 # def CheckUser():
 #     SessionID = request.cookies.get("SessionID")
 #     if user.AssignUser(SessionID):
@@ -19,25 +25,25 @@ Server.InitialiseTables()
 @app.route("/", methods=["GET", "POST"])
 def Index():
     if 'username' in session:
-        return redirect("/App")
+        return redirect("/app")
     return render_template("Landing.html", HasAccount="Hidden", NoAccount="")
 
-@app.route("/App", methods=["GET", "POST"])
+@app.route("/app", methods=["GET", "POST"])
 def App():
     if 'username' not in session:
         return redirect("/")
 
-    username = session['username']
-    user = Server.User()
-    user_data = user.fetchUserData(username)
-    
-    if user_data:
-        return render_template("App.html", user=user_data)
+    user = getUser()
+
+    if user:
+        return render_template("App.html", user=user)
     else:
         return "User not found."
     
 @app.route("/auth", methods=["GET", "POST"])
 def auth():
+    if 'username' in session:
+        return redirect("/app")
     if request.method == "POST":
         # Handle login
         if 'login' in request.form:
@@ -47,7 +53,7 @@ def auth():
 
             if user.Login(username, password):
                 session['username'] = username
-                return redirect("/App")
+                return redirect("/app")
             else:
                 error_message = "Invalid username or password. Please try again."
                 return render_template("Auth.html", error_message=error_message, login=True)

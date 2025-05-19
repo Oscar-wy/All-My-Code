@@ -13,13 +13,13 @@
     <div class="topBar">
         <a href="/" class="Logo">Something</a>
         <div class="topAccSection">
-            <a href="/profile" class="profileBtn Profile {{ HasAccount }}"></a>
-            <a href="/auth" class="signupBtn Signup {{ NoAccount }}">Sign Up / Login</a>
+            <a href="/profile" class="profileBtn Profile Hidden"></a>
+            <a href="/auth" class="signupBtn Signup">Account</a>
         </div>
     </div>
 
     <div class="Body">
-        <h1 class="authHeading">Account</h1>
+        <h1 class="authHeading">Login / Sign Up</h1>
 
         {% if error_message %}
             <div class="message errorMessage">
