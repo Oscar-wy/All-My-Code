@@ -67,7 +67,11 @@ def auth():
                 error_message = "Username already exists. Please choose another."
                 return render_template("Auth.html", error_message=error_message, login=False)
             
-    return render_template("Auth.html", error_message=None, success_message=None, login=True)
+    form_type = request.args.get('signup')
+    if form_type == 'true':
+        return render_template("Auth.html", login=False)  # Show sign-up form
+
+    return render_template("Auth.html", login=True)
     
 @app.route("/logout", methods=["GET"])
 def logout():

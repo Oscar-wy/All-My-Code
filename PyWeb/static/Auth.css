@@ -1,22 +1,13 @@
-/* Reset padding and margin for all elements */
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
 }
 
 /* Page layout */
 .Page {
-    width: 100vw;
-    height: 100vh;
-    background-color: #141414;
-}
-
-/* Main body */
-.mainBody {
     width: 100%;
     height: 100%;
-    position: relative;
+    background-color: #141414;
 }
 
 /* Top bar for the header */

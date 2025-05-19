@@ -9,85 +9,66 @@
 {% endblock %}
 
 {% block body %}
-<div class="Page">
-    <nav class="navBar">
-        <ul>
-            <a class="navButton" href="/">Home</a>
-            <a class="navButton" href="/about">About</a>
-            <a class="navButton" href="/contact">Contact</a>
-        </ul>
-        <div class="AccountSection">
-            <a href="/profile" class="navButton Profile {{ HasAccount }}">Profile</a>
-            <a href="/auth" class="navButton Signup {{ NoAccount }}">Sign Up / Login</a>
+<div class="mainBody">
+    <div class="topBar">
+        <a href="/" class="Logo">Something</a>
+        <div class="topAccSection">
+            <a href="/profile" class="profileBtn Profile {{ HasAccount }}"></a>
+            <a href="/auth" class="signupBtn Signup {{ NoAccount }}">Sign Up / Login</a>
         </div>
-    </nav>
+    </div>
 
-    <div class="mainBody">
-        <div class="topBar">
-            <a href="/" class="Logo">Something</a>
-            <div class="topAccSection">
-                <a href="/profile" class="profileBtn Profile {{ HasAccount }}"></a>
-                <a href="/auth" class="signupBtn Signup {{ NoAccount }}">Sign Up / Login</a>
+    <div class="Body">
+        <h1 class="authHeading">Account</h1>
+
+        {% if error_message %}
+            <div class="message errorMessage">
+                <p>{{ error_message }}</p>
             </div>
-        </div>
+        {% endif %}
 
-        <div class="Body">
-            <h1 class="authHeading">Login / Sign Up</h1>
+        {% if success_message %}
+            <div class="message successMessage">
+                <p>{{ success_message }}</p>
+            </div>
+        {% endif %}
 
-            <!-- Display error message if exists -->
-            {% if error_message %}
-                <div class="message errorMessage">
-                    <p>{{ error_message }}</p>
-                </div>
-            {% endif %}
-
-            <!-- Display success message if exists -->
-            {% if success_message %}
-                <div class="message successMessage">
-                    <p>{{ success_message }}</p>
-                </div>
-            {% endif %}
-
-            <!-- Login Form -->
+        <div class="formContainer">
             {% if login %}
-                <div class="formContainer">
-                    <h2>Login</h2>
-                    <form action="/auth" method="POST">
-                        <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" required><br>
+                <!-- Login Form -->
+                <h2>Login</h2>
+                <form action="/auth" method="POST">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br>
 
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required><br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br>
 
-                        <button type="submit" name="login" class="submitButton">Login</button>
-                    </form>
-                    <p>Don't have an account? <a href="/auth" class="authLink">Sign up here</a></p>
-                </div>
-
-            <!-- Sign-up Form -->
+                    <button type="submit" name="login" class="submitButton">Login</button>
+                </form>
+                <p>Don't have an account? <a href="/auth?signup=true" class="authLink">Sign up here</a></p>
             {% else %}
-                <div class="formContainer">
-                    <h2>Sign Up</h2>
-                    <form action="/auth" method="POST">
-                        <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" required><br>
+                <!-- Sign-Up Form -->
+                <h2>Sign Up</h2>
+                <form action="/auth" method="POST">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br>
 
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required><br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br>
 
-                        <label for="fname">First Name:</label>
-                        <input type="text" id="fname" name="fname" required><br>
+                    <label for="fname">First Name:</label>
+                    <input type="text" id="fname" name="fname" required><br>
 
-                        <label for="lname">Last Name:</label>
-                        <input type="text" id="lname" name="lname" required><br>
+                    <label for="lname">Last Name:</label>
+                    <input type="text" id="lname" name="lname" required><br>
 
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required><br>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br>
 
-                        <button type="submit" name="signup" class="submitButton">Sign Up</button>
-                    </form>
-                    <p>Already have an account? <a href="/auth" class="authLink">Login here</a></p>
-                </div>
+                    <button type="submit" name="signup" class="submitButton">Sign Up</button>
+                </form>
+                <p>Already have an account? <a href="/auth?login=true" class="authLink">Login here</a></p>
             {% endif %}
         </div>
     </div>
