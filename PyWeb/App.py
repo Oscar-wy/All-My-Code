@@ -23,16 +23,16 @@ def getUser():
 #         return True
 #     return False
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/landing", methods=["GET", "POST"])
 def Index():
     if 'username' in session:
-        return redirect("/app")
+        return redirect("/ap")
     return render_template("Landing.html", HasAccount="Hidden", NoAccount="")
 
-@app.route("/app", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def App():
     if 'username' not in session:
-        return redirect("/")
+        return redirect("/landing")
 
     user = getUser()
 
@@ -44,7 +44,7 @@ def App():
 @app.route("/auth", methods=["GET", "POST"])
 def auth():
     if 'username' in session:
-        return redirect("/app")
+        return redirect("/")
     if request.method == "POST":
         # Handle login
         if 'login' in request.form:
@@ -54,7 +54,7 @@ def auth():
 
             if user.Login(username, password):
                 session['username'] = username
-                return redirect("/app")
+                return redirect("/")
             else:
                 error_message = "Invalid username or password. Please try again."
                 return render_template("Auth.html", error_message=error_message, login=True)
@@ -84,7 +84,7 @@ def auth():
 @app.route("/logout", methods=["GET"])
 def logout():
     session.pop('username', None)  # Remove session on logout
-    return redirect("/")
+    return redirect("/landing")
 
 if __name__ == "__main__":
     app.run(debug=True)
