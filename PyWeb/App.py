@@ -2,11 +2,12 @@ from flask import *
 import os
 import random
 import Backend.Server as Server
+from flask_socketio import SocketIO, emit
+
+Server.InitialiseTables()
 
 app = Flask(__name__)
 app.secret_key = "3c841f496de2c2b9fa5d197d7b5c2f44"
-
-Server.InitialiseTables()
 
 # user = Server.User()
 
@@ -78,7 +79,6 @@ def auth():
     form_type = request.args.get('signup')
     if form_type == 'true':
         return render_template("Auth.html", login=False)  # Show sign-up form
-
     return render_template("Auth.html", login=True)
     
 @app.route("/logout", methods=["GET"])

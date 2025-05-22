@@ -1,5 +1,19 @@
 import sqlite3
 import random
+import hashlib
+import os
+
+def hashSaltText(text):
+    salt = os.urandom(16)
+
+    salted_password = salt + text.encode()
+
+    hash_digest = hashlib.sha256(salted_password).hexdigest()
+    return salt.hex(), hash_digest
+
+def verifySaltText(text, salt):
+    input_hash = hashlib.sha256(salt + text.encode()).hexdigest()
+    return input_hash
 
 def InitialiseTables():
     with sqlite3.connect("./Database.db") as db:
@@ -12,7 +26,8 @@ def InitialiseTables():
                  FName TEXT,
                  LName TEXT,
                  Email TEXT UNIQUE,
-                 Password TEXT
+                 Password TEXT,
+                 Salt TEXT
                 )
               """
         cursor.execute(sql)
@@ -25,7 +40,20 @@ class User():
         self.LName = ""
         self.Email = ""
         self.Password =  ""
+
+    def getSalt(self, username):
+        with sqlite3.connect("./Database.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT Salt FROM Users WHERE Username = ?"
+            cursor.execute(sql, (username,))
+            result = cursor.fetchone()
+            if result:
+                result = result[0]
+            return result
     def Login(self, username, password):
+        salt = self.getSalt(username)
+        salt = bytes.fromhex(salt)
+        password = verifySaltText(password, salt)
         with sqlite3.connect("./Database.db") as db:
             db.row_factory = sqlite3.Row
             cursor = db.cursor()
@@ -53,6 +81,7 @@ class User():
                 self.SetData(row)
             return None
     def Register(self, username, password, fname, lname, email):
+        salt, password = hashSaltText(password)
         with sqlite3.connect("./Database.db") as db:
             cursor = db.cursor()
             cursor.execute("SELECT * FROM Users WHERE Username = ?", (username,))
@@ -61,7 +90,7 @@ class User():
             if existing_user:
                 return False  # User already exists
             else:
-                cursor.execute("INSERT INTO Users (Username, Password, FName, LName, Email) VALUES (?, ?, ?, ?, ?)",
-                               (username, password, fname, lname, email))
+                cursor.execute("INSERT INTO Users (Username, FName, LName, Email, Password, Salt) VALUES (?, ?, ?, ?, ?, ?)",
+                               (username, fname, lname, email, password, salt))
                 db.commit()
                 return True
