@@ -1,0 +1,11 @@
+from monster import Monster
+you = Monster("My Name")
+print(you)
+you.setName("Peter")
+print(you)
+print(you.describe())
+print(you.is_alive())
+you.subtract_hp(10)
+print(you.is_alive())
+print(f"Your attack did {you.attack()} damage")
+print(you.describe())
