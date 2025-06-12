@@ -1,10 +1,10 @@
 import random
 
 class Monster:
-    def __init__(self, monsterName):
+    def __init__(self, monsterName, damageRange, health):
         self.name = monsterName
-        self.health = 100
-        self.damage = random.randint(1, 10)
+        self.health = health
+        self.damageRange = damageRange
     def __repr__(self):
         return f"This is the monster class with the name: {self.name}"
     def getName(self):
@@ -22,11 +22,15 @@ class Monster:
             return "You are very unwell"
         else:
             return "You are dead!"
-    def is_alive(self):
+    def isAlive(self):
         if self.health > 0:
             return True
         return False
-    def subtract_hp(self, hp):
+    def subtractHp(self, hp):
         self.health -= hp
-    def attack(self):
-        return self.damage
+    def getDamageAttack(self):
+        return random.randint(self.damageRange[0], self.damageRange[1])
+    def attack(self, target):
+        damage = self.getDamageAttack()
+        target.subtractHp(damage)
+        print(f">>> {self.name} damages {target.name} for {damage} HP")
