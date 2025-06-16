@@ -1,0 +1,2224 @@
+<html>
+<head> 
+	<title>Hex Baron 2021</title>
+	<script> 
+		/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "nav") {
+				x.className += " responsive";
+			} else {
+				x.className = "nav";
+			}
+		}
+	</script>	
+	<script src="lightbox/js/jquery-1.10.2.min.js"></script>
+	<script src="lightbox/js/lightbox-2.6.min.js"></script>
+	
+	<link href="style.css" rel="stylesheet" />
+	<link href="lightbox/css/lightbox.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<!-- .container start -->
+<div class="container">
+	
+	<!-- .banner start -->
+	<div class="banner">	
+	<img src="images/banner.jpg" style="border:1px solid #000;">
+		<ul id="nav" class="nav" id="myTopnav">		
+		<li><a href="index.html" class="selected">Introduction</a></li>
+		<li><a href="walkthrough.html">Walkthrough</a></li>
+		<li><a href="diagrams.html">Class Diagram Tasks</a></li>
+		<li><a href="questions.html">Theory Questions</a></li>
+		<li><a href="tasks.html">Programming Tasks</a></li>
+		<li><a href="answers.html">Solutions</a></li>
+		<li class="end">Python Edition</li>
+	</ul>	
+	</div>
+	<!-- .banner end -->	
+
+	
+	<!-- .topic_header start -->
+	<div class="topic_header">
+	<table style="background-color:#ccf2ff"><tr><td><h1><strong>Commentary</strong></h1></td></tr></table>
+		
+	</div>
+	<!-- .topic_header end -->
+	
+	<!-- .topic_info start -->		
+		
+	<div class="topic_info">	
+	
+		<div class="textbox" style="margin:0;">						
+			The following commentary is provided in PDF format <a href="files/p01-Commentary.pdf">here</a>.
+		</div>
+
+	
+		<p style="margin-top:20px; font-size:0.95em;"><strong>Jump to:</strong> <a href="#c1">Introduction</a> | <a href="#c2">Subroutines</a> | <a href="#c3">Classes</a></p>
+
+		<hr><a name="c1"><h1><strong>Introduction</strong></h1></a>
+
+		<p>
+			Hex Baron is a two-player game in which the main objective is to gain as
+			many Victory Points (VPs) as possible, normally by killing your opponent’s
+			Baron. All adjacent hexes count as a distance of 1 and are legal moves,
+			although for some pieces this will cost 2 fuel. It is best to start by
+			creating a LESS and then you will have enough lumber to be able to spawn
+			another Serf and start digging for fuel.
+		</p>
+		<p>
+			In the game you have to enter three moves before any of them are validated,
+			so if you make a mistake with the first move you could end up losing your
+			entire turn of all three moves as it might affect your second and third
+			move if you thought you’d achieved something that had in fact failed.
+		</p>
+		<p>
+			Please watch the <a href="walkthrough.html">video explanation</a> for a better understanding of the game
+			mechanics.
+		</p>
+		<p>
+			Please note that throughout this resource, subroutines are considered to be
+			part of the main program, and methods and attributes belong to classes.
+		</p>
+
+	
+		<a name="c2"><h1><strong>Subroutines</strong></h1></a>
+		
+		<h2>Subroutines (Main Program): Hierarchy Diagram </h2>
+		<div style="text-align:center"><img src="images/hierachy.png" style="border:none;"></div>
+		
+		<h2>Subroutines (All)</h2>
+
+			<table class="commentary">
+				<thead>
+					<tr>
+						<td class="name">
+							<p>
+								<strong>Name</strong>
+							</p>
+						</td>
+						<td class="name">
+							<p>
+								<strong>Data</strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong>Description</strong>
+							</p>
+						</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<p>
+								CheckCommandIsValid
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Items (list of strings)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Boolean
+							</p>
+						</td>
+						<td>
+							<p>
+								Depending on the first string in the list Items, this
+								calls one of the other Check…CommandFormat subroutines.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CheckMoveCommandFormat
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Items (list of strings)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Boolean
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns True if the following conditions are met:
+							</p>
+							<p>
+								1) There are three elements in the Items list
+							</p>
+							<p>
+								2) The second and third items are strings containing
+								integers
+							</p>
+							<p>
+								Otherwise it returns False.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CheckStandardCommandFormat
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Items (list of strings)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Boolean
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns True if the following conditions are met:
+							</p>
+							<p>
+								1) There are two elements in the Items list
+							</p>
+							<p>
+								2) The second item is a string containing an integer
+							</p>
+							<p>
+								Otherwise it returns False.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CheckUpgradeCommandFormat
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Items (list of strings)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Boolean
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns True if the following conditions are met:
+							</p>
+							<p>
+								1) There are three elements in the Items list
+							</p>
+							<p>
+								2) The third item is a string containing an integer
+							</p>
+							<p>
+								3) The second item is either less or pbds (any case)
+							</p>
+							<p>
+								Otherwise it returns False.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								DisplayEndMessages
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								<br/>
+								Player1, Player2 (Player objects)
+							</p>
+							<p>
+								<strong><em></em></strong>
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Displays the following for both players:
+							</p>
+							<p>
+								1) Their remaining resources
+							</p>
+							<p>
+								2) Their VPs
+							</p>
+							<p>
+								Then, displays the winner.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								DisplayMainMenu
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Prints out the main menu for the game.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								LoadGame
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Boolean,
+								<br/>
+								Player1 (Player object),
+								<br/>
+								Player2 (Player object),
+								<br/>
+								Grid (HexGrid object)
+							</p>
+						</td>
+						<td>
+							<p>
+								Asks for the name of a .csv text file in the format
+								documented by AQA which will load a saved game into
+								memory and then allow it to be played by returning the
+								HexGrid and Player objects, which can be passed into
+								PlayGame.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								Main
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Calls DisplayMainMenu and processes the result to
+								either quit, load a game by calling LoadGame or play
+								the default game by calling SetUpDefaultGame and then
+								calling PlayGame to play the game.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								PlayGame
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								<br/>Player1 (Player object),
+								<br/>
+								Player2 (Player object),
+								<br/>
+								Grid (HexGrid object)
+							</p>
+							<p>
+								<strong><em></em></strong>
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								This alternates between Player 1 and Player 2 and
+								always ensures that Player 2 has an equal number of
+								turns even if Player 1 has just killed their Baron.
+							</p>
+							<p>
+								For each player’s turn, the board is printed out and
+								then three commands are read in and validated (by
+								calling CheckCommandIsValid) and then executed (by
+								calling ExecuteCommand on the HexGrid object for the
+								game – stored in the variable Grid).
+							</p>
+							<p>
+								After each command, the UpdateLumber, UpdateFuel and
+								RemoveTileFromSupply (if necessary) methods are called
+								on the Player object for that player’s turn.
+							</p>
+							<p>
+								Once the commands have been executed, pieces are
+								destroyed, VPs are assigned and a check is made to see
+								whether the game is over. Before the game moves on to
+								the next player’s turn, the status of both players
+								(resources and VPs) is displayed.
+							</p>
+							<p>
+								If the game is over and Player 2 has played, then
+								DisplayEndMessages is called to display the final
+								scores and the winner.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								SetUpDefaultGame
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em></em></strong>
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								Player1 (Player object),
+								<br/>
+								Player2 (Player object),
+								<br/>
+								Grid (HexGrid object)
+							</p>
+						</td>
+						<td>
+							<p>
+								Initialises the game with the default values and board
+								size as determined by AQA.
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+		
+		<p>
+			<strong></strong>
+		</p>
+		
+		<a name="c3"><h1><strong>Classes</strong></h1></a>
+		
+		<span style="text-align:center;"><img src="images/class-diagram.png" style="border:none;"/></span>
+			
+		<p align="center">
+			<strong>Hex Baron: Class Diagram</strong>
+			
+			<strong></strong>
+		</p>
+		<h3>
+			BaronPiece (inherits from Piece)
+		</h3>
+
+			<table class="commentary">
+				<tbody>
+					<tr>
+						<td class="name">
+							<p>
+								<strong>Name</strong>
+							</p>
+						</td>
+						<td class="name">
+							<p>
+								<strong>Data</strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong>Description</strong>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								__init__ (constructor)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Player1 (Boolean)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Calls the super constructor (Piece) and passes Player1
+								as an argument.
+							</p>
+							<p>
+								Initialises the following protected attributes:
+							</p>
+							<ul>
+								<li>
+									PieceType to “B”
+								</li>
+								<li>
+									VPValue to 10
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CheckMoveIsValid (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								<br/>
+								DistanceBetweenTiles (int), StartTerrain (string),
+								<br/>
+								EndTerrain (string)
+							</p>
+							<p>
+								<strong><em></em></strong>
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								FuelCostOfMove (int)
+							</p>
+						</td>
+						<td>
+							<p>
+								If the value of the parameter DistanceBetweenTiles is 1
+								then it returns the value of the protected attribute
+								FuelCostOfMove otherwise it returns -1.
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+				
+		<h3>
+			HexGrid
+		</h3>
+
+			<table class="commentary">
+				<thead>
+					<tr>
+						<td class="name">
+							<p>
+								<strong>Name</strong>
+							</p>
+						</td>
+						<td class="name">
+							<p>
+								<strong>Data</strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong>Description</strong>
+							</p>
+						</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<p>
+								__init__ (constructor)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								n (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Initialises the following protected attributes:
+							</p>
+							<ul>
+								<li>Size from parameter n</li>
+								<li>
+									Player1Turn to True
+								</li>
+								<li>Tiles to an empty list</li>
+								<li>
+									Pieces to an empty list
+								</li>
+							</ul>
+							<p>
+								It also initialises the private attribute
+								ListPositionOfTile to 0 and then calls the private
+								methods SetUpTiles and SetUpNeighbours.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								AddPiece (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								<br/>
+								BelongsToPlayer1 (Boolean), TypeOfPiece (string),
+								Location (int)
+							</p>
+							<p>
+								<strong><em></em></strong>
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Calls the appropriate constructor to create a new Piece
+								of the correct type according to TypeOfPiece and passes
+								BelongsToPlayer1 as an argument to the constructor.
+							</p>
+							<p>
+								Once created, it appends the Piece to the protected
+								attribute Pieces and then adds the Piece to the Tile
+								using Location as an index into the Tiles list and
+								calling the SetPiece method on the Tile, passing the
+								newly created Piece as an argument.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CheckPieceAndTileAreValid (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								TileToUse (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Boolean<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns True if there is a piece belonging to the
+								current player in TileToUse, otherwise it returns
+								False.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CheckTileIndexIsValid (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								TileToCheck (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Boolean<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns True if the parameter TileToCheck is a valid
+								index of the protected attribute Tiles.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CreateBottomLine (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Line (string)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns a string containing the bottom line of the
+								HexGrid (as displayed at the start of each turn when
+								playing the game).
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CreateEvenLine (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Line (string)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns a string containing the correct string of an
+								even line of the HexGrid (as displayed at the start of
+								each turn when playing the game).
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CreateOddLine (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Line (string)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns a string containing the correct string of an
+								odd line of the HexGrid (as displayed at the start of
+								each turn when playing the game).
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CreateTopLine (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Line (string)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns a string containing the top line of the HexGrid
+								(as displayed at the start of each turn when playing
+								the game).
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								DestroyPiecesAndCountVPs (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								BaronDestroyed (Boolean),
+								<br/>
+								Player1VPs (int),
+								<br/>
+								Player2VPs (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Loops through every Tile in the HexGrid and checks for
+								any Pieces that need to be destroyed by counting the
+								number of connections for each Piece and comparing it
+								to the number of connections needed to destroy the
+								Piece in question.
+							</p>
+							<p>
+								For each piece that is destroyed, track the VPs for the
+								relevant player and also whether their Baron was
+								destroyed or not.
+							</p>
+							<p>
+								Finally, it then removes any Pieces from the HexGrid
+								that were destroyed.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								ExecuteCommand (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Items (list of strings), FuelAvailable (int),
+								<br/>
+								LumberAvailable (int), PiecesInSupply (int)
+							</p>
+							<p>
+								<strong><em></em></strong>
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Status (string), FuelChange (int), 
+								<br/>
+								LumberChange (int),
+								<br/>
+								SupplyChange (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Depending on the first element of Items, it either
+								calls ExecuteMoveCommand, ExecuteSpawnCommand,
+								ExecuteUpgradeCommand or ExecuteCommandInTile.
+							</p>
+							<p>
+								Each of these private methods’ return values is used to
+								create a suitable status message and determine the
+								figures for the return values of FuelChange,
+								LumberChange and SupplyChange (which were initialised
+								to 0).
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								ExecuteCommandInTile (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters: </em></strong>
+								Items (list of strings)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								Status (Boolean), Fuel (int),
+								<br/>
+								Lumber (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Checks whether there is a Piece belonging to the player
+								in the Tile specified as the second string in Items, if
+								not then False, 0 and 0 are returned.
+							</p>
+							<p>
+								It then uses HasMethod to determine whether the Piece
+								in the Tile has a saw or dig command as specified by
+								the first string in the Items list and calls that
+								method. If it was a dig and more than 5 fuel was
+								returned then it sets the terrain of the Tile to a
+								field using the SetTerrain method.
+							</p>
+							<p>
+								The method then returns True and the Fuel or Lumber
+								gained from digging or sawing or it returns False and
+								0,0 if the command could not be executed.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								ExecuteMoveCommand (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Items (list of strings), FuelAvailable (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								FuelCost (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Checks whether there is a Piece belonging to the player
+								in the Tile specified as the second string in Items and
+								that the Tile specified in the third string of Items is
+								empty, if not then -1 is returned straight away.
+							</p>
+							<p>
+								Otherwise, it then checks that the move is allowed by
+								calling the CheckMoveIsValid method on the Piece in the
+								first Tile and if there is enough Fuel available and
+								the move was valid then it calls MovePiece to execute
+								the move and returns FuelCost (normally 1 or 2),
+								otherwise it returns -1.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								ExecuteSpawnCommand (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Items (list of strings), LumberAvailable (int),
+								<br/>
+								PiecesInSupply (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								LumberCost (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Checks to see whether the player has at least 1
+								PieceInSupply and 3 Lumber and that the Tile specified
+								as the second string in the Items list is empty,
+								otherwise it returns -1.
+							</p>
+							<p>
+								The method then checks to see that the player’s own
+								Baron is a neighbour and then spawns a new Serf in the
+								Tile, appends it to the attribute Pieces and returns 3,
+								otherwise it returns -1.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								ExecuteUpgradeCommand (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Items (list of strings), LumberAvailable (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								LumberCost (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								If the tile specified as the third item of the Items
+								list is available and contains a Serf belonging to the
+								player whose turn it is and that player has at least 5
+								lumber available then it is upgraded to a LESSPiece or
+								PBDSPiece according to the second string in Items and 5
+								is returned as the cost, otherwise -1 is returned.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetGridAsString (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								P1Turn (Boolean)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								GridAsString (string)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Uses the private attribute ListPositionOfTile to loop
+								through the Tiles in the grid calling the private
+								methods CreateTopLine, CreateOddLine, CreateEvenLine
+								and CreateBottomLine as needed to form a string
+								containing the entire HexGrid.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetPieceTypeInTile (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								ID (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								PieceType (string)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								If there is no Piece in the Tile specified by ID then
+								this returns “ ” (string with a single space),
+								otherwise it returns the result of the GetPieceType
+								method which is called on the Piece in the Tile.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								MovePiece (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								NewIndex (int), OldIndex (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Sets the Piece at NewIndex (in the Tiles attribute) to
+								the same as the Piece (or None) at OldIndex by calling
+								the SetPiece method on the tile, then sets the Piece at
+								the OldIndex to None, again by calling the SetPiece
+								method on the Tile.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								SetUpGridTerrain (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								<br/>
+								ListOfTerrain (list of strings)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Loops through the ListOfTerrain and calls SetTerrain
+								for each Tile in the protected attribute Tiles (which
+								is a list of all the Tiles on the Grid) in the same
+								order.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								SetUpNeighbours (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								For each Tile on the HexGrid, it loops through all of
+								the Tiles on the HexGrid and adds any Tile that is a
+								distance of 1 away (as determined by the
+								GetDistanceToTileT method in the Tile class) to the
+								list of neighbours by calling the AddToNeighbours
+								method on the Tile and passing an argument of the Tile
+								that is 1 away.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								SetUpTiles (private)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Loops through and creates all of the tiles needed for
+								the HexGrid according to the protected attribute Size
+								and adds them to the protected attribute Tiles.
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+		<h3>
+			LESSPiece (inherits from Piece)
+		</h3>
+
+			<table class="commentary">
+				<tbody>
+					<tr>
+						<td class="name">
+							<p>
+								<strong>Name</strong>
+							</p>
+						</td>
+						<td class="name">
+							<p>
+								<strong>Data</strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong>Description</strong>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								__init__ (constructor)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Player1 (Boolean)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Calls the super constructor (Piece) and passes Player1
+								as an argument.
+							</p>
+							<p>
+								Initialises the following protected attributes:
+							</p>
+							<ul>
+								<li>
+									PieceType to “L”
+								</li>
+								<li>
+									VPValue to 3
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CheckMoveIsValid (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								DistanceBetweenTiles (int), StartTerrain (string),
+								<br/>
+								EndTerrain (string)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								FuelCostOfMove (int)
+							</p>
+						</td>
+						<td>
+							<p>
+								If the value of the parameter DistanceBetweenTiles is 1
+								and StartTerrain is not a forest then if the move
+								begins or ends in a peat bog it returns FuelCostOfMove
+								x2 and if the move doesn’t begin or end in a peat bog
+								then it returns FuelCostOfMove otherwise it returns -1.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								Saw (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Terrain (string)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Lumber (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								If Terrain is a forest it returns 1, otherwise it
+								returns 0.
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+		<h3>
+			PBDSPiece (inherits from Piece)
+		</h3>
+
+			<table class="commentary">
+				<tbody>
+					<tr>
+						<td class="name">
+							<p>
+								<strong>Name</strong>
+							</p>
+						</td>
+						<td class="name">
+							<p>
+								<strong>Data</strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong>Description</strong>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								__init__ (constructor)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Player1 (Boolean)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Calls the super constructor (Piece) and passes Player1
+								as an argument.
+							</p>
+							<p>
+								Initialises the following protected attributes:
+							</p>
+							<ul>
+								<li>
+									FuelCostOfMove to 2
+								</li>
+								<li>
+									PieceType to “P”
+								</li>
+								<li>
+									VPValue to 2
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CheckMoveIsValid (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								<br/>
+								DistanceBetweenTiles (int), StartTerrain (string),
+								<br/>
+								EndTerrain (string)
+							</p>
+							<p>
+								<strong><em></em></strong>
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								FuelCostOfMove (int)
+							</p>
+						</td>
+						<td>
+							<p>
+								If the value of the parameter DistanceBetweenTiles is 1
+								and StartTerrain is not a peat bog then it returns the
+								value of the protected attribute FuelCostOfMove
+								otherwise it returns -1.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								Dig (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Terrain (string)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Fuel (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								If Terrain is a peat bog then it has a 90% chance of
+								returning 1 and a 10% chance of returning 5, otherwise
+								it returns 0.
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+		<h3>
+			Piece
+		</h3>
+
+			<table class="commentary">
+				<tbody>
+					<tr>
+						<td class="name">
+							<p>
+								<strong>Name</strong>
+							</p>
+						</td>
+						<td class="name">
+							<p>
+								<strong>Data</strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong>Description</strong>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								__init__ (constructor)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								Player1 (Boolean)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Initialises the following protected attributes:
+							</p>
+							<ul>
+								<li>
+									BelongsToPlayer1 to Player1
+								</li>
+								<li>
+									ConnectionsToDestroy to 2
+								</li>
+								<li>
+									Destroyed to False
+								</li>
+								<li>
+									FuelCostOfMove to 1
+								</li>
+								<li>
+									PieceType to “S”
+								</li>
+								<li>
+									VPValue to 1
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								CheckMoveIsValid (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								<br/>
+								DistanceBetweenTiles (int), StartTerrain (string),
+								<br/>
+								EndTerrain (string)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								FuelCostOfMove (int)
+							</p>
+						</td>
+						<td>
+							<p>
+								If the value of the parameter DistanceBetweenTiles is 1
+								then if the move begins or ends in a peat bog it
+								returns FuelCostOfMove ×2 and if the move doesn’t begin
+								or end in a peat bog then it returns FuelCostOfMove
+								otherwise it returns -1.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								DestroyPiece (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Sets the value of the protected attribute Destroyed to
+								True.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetBelongsToPlayer1 (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								BelongsToPlayer1 (Boolean)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the protected attribute
+								BelongsToPlayer1.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetConnectionsNeededToDestroy (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								ConnectionsToDestroy (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the protected attribute
+								ConnectionsToDestroy.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetPieceType (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+								PieceType (string)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								If the attribute BelongsToPlayer1 is True then it
+								returns the value of the attribute PieceType otherwise
+								it returns the lower case value.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetVPs (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								VPValue (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the protected attribute VPValue.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								HasMethod (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								MethodName (string)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>callable (Boolean)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								If the method name specified as a parameter exists in
+								the object then it returns True, otherwise it returns
+								False.
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+		
+		<h3>
+			Player
+		</h3>
+
+			<table class="commentary">
+				<tbody>
+					<tr>
+						<td class="name">
+							<p>
+								<strong>Name</strong>
+							</p>
+						</td>
+						<td class="name">
+							<p>
+								<strong>Data</strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong>Description</strong>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								__init__ (constructor)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								N (string),V (int),
+								<br/>
+								F (int),L (int),T (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Initialises the following protected attributes:
+							</p>
+							<ul>
+								<li>Name from parameter N	</li>								
+								<li>VPs from parameter V</li>
+								<li>Fuel from parameter F</li>
+								<li>Lumber from parameter L</li>
+								<li>PiecesInSupply from parameter T</li>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								AddToVPs (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								n (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Increments the attribute VPs by n.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetFuel (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Fuel (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the attribute Fuel.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetLumber (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Lumber (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the attribute Lumber.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetName (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Name (string)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the attribute Name.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetPiecesInSupply (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>PiecesInSupply (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the attribute PiecesInSupply.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetStateString (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								string<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns a string containing the VPs, the
+								PiecesInSupply, the Lumber and the Fuel.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetVPs (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								VPs (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the attribute VPs.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								RemoveTileFromSupply (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Decrements the PiecesInSupply attribute by 1.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								UpdateFuel (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								n
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Increments the attribute Fuel by n.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								UpdateLumber (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								n
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Increments the attribute Lumber by n.
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+		
+		<h3>
+			Tile
+		</h3>
+
+			<table class="commentary">
+				<tbody>
+					<tr>
+						<td class="name">
+							<p>
+								<strong>Name</strong>
+							</p>
+						</td>
+						<td class="name">
+							<p>
+								<strong>Data</strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong>Description</strong>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								__init__ (constructor)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								xcoord (int), 
+								<br/>
+								ycoord (int), zcoord (int)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Initialises the following protected attributes:
+							</p>
+							<ul>
+								<li>
+									x from parameter xcoord
+								</li>
+								<li>
+									y from parameter ycoord
+								</li>
+								<li>
+									z from parameter zcoord
+								</li>
+								<li>
+									Terrain to “ ” (a string containing a single space)
+								</li>
+								<li>
+									PieceInTile to None
+								</li>
+								<li>
+									 Neighbours to an empty list
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								AddToNeighbours (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								N (Tile object)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-
+							</p>
+						</td>
+						<td>
+							<p>
+								Adds the tile N to the end of the list stored in the
+								protected attribute Neighbours.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetDistanceToTileT (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								T (Tile object)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Distance (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the maximum of the absolute difference in x, y
+								and z between the current tile and T.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetNeighbours (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>Neighbours (list of Tiles)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the protected attribute
+								Neighbours.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetPieceInTile (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								<br/>
+		PieceInTile (Piece object or None)                        <strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the protected attribute
+								PieceInTile.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								GetTerrain (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								Terrain (string)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the protected attribute Terrain.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								Getx (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								x (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the protected attribute x.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								Gety (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								y (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the protected attribute y.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								Getz (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								-
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								z (int)<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Returns the value of the protected attribute z.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								SetPiece (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								<br/>
+								ThePiece (Piece object)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Sets the value of the protected attribute PieceInTile
+								to ThePiece.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								SetTerrain (public)
+							</p>
+						</td>
+						<td>
+							<p>
+								<strong><em>Parameters:</em></strong>
+								T (string)
+							</p>
+							<p>
+								<strong><em>Return value(s):</em></strong>
+								-<strong><em></em></strong>
+							</p>
+						</td>
+						<td>
+							<p>
+								Sets the value of the protected attribute Terrain to T.
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>					
+
+	</div>
+	
+
+	<div class="footer">
+	<p class="no_print"><a href="#top">Back to Top</a>
+	<span class="no_print" style="float:right;">&copy; <a href="http://zigzageducation.co.uk">ZigZag Education 2020</a></span></p>
+	</div>
+	
+	<!-- .topic_info end -->		
+	
+<!-- .container end -->
+</div>
+
+</body>
+</html>
+
+
