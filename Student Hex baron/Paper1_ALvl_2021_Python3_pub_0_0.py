@@ -482,8 +482,8 @@ def SetUpDefaultGame():
   T = [" ", "#", "#", " ", "~", "~", " ", " ", " ", "~", " ", "#", "#", " ", " ", " ", " ", " ", "#", "#", "#", "#", "~", "~", "~", "~", "~", " ", "#", " ", "#", " "]
   GridSize = 8
   Grid = HexGrid(GridSize)
-  Player1 = Player("Player One", 0, 10, 10, 5)
-  Player2 = Player("Player Two", 1, 10, 10, 5)
+  Player1 = Player(input(">"), 0, 10, 10, 5)
+  Player2 = Player(input(">"), 1, 10, 10, 5)
   Grid.SetUpGridTerrain(T)
   Grid.AddPiece(True, "Baron", 0)
   Grid.AddPiece(True, "Serf", 8)
@@ -544,10 +544,8 @@ def PlayGame(Player1, Player2, Grid):
     else:
       print(Player2.GetName() + " state your three commands, pressing enter after each one.")
     for Count in range (1, 4):
-      Commands.append(input("Enter command: ").lower())
+      Commands.append(input("Enter command: ").lower().strip())
     for C in Commands:
-      C = C.strip()
-      print(C)
       Items = C.split(" ")
       ValidCommand = CheckCommandIsValid(Items)
       if not ValidCommand:
