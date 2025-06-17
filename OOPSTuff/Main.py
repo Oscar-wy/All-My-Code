@@ -1,6 +1,7 @@
 import random
 from monster import Monster
-you = Monster("Peter", [7, 20], 100)
+from player import Player
+you = Player("Peter", [7, 20], 100) # CREATED THE PLAYER
 enemies = []
 for i in range(4):
     enemies.append(Monster(f"enemy{i}", [1,5], 50))
