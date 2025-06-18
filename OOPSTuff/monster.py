@@ -1,12 +1,13 @@
 import random
 
 class Monster:
-    def __init__(self, monsterName, damageRange, health):
-        self.name = monsterName
+    def __init__(self, name, damageRange, health):
+        self.name = name
         self.health = health
         self.damageRange = damageRange
+        self.type = "Monster"
     def __repr__(self):
-        return f"This is the monster class with the name: {self.name}"
+        return f"This is the {self.type} class with the name: {self.name}"
     def getName(self):
         return self.name
     def setName(self, name):
@@ -34,3 +35,5 @@ class Monster:
         damage = self.getDamageAttack()
         target.subtractHp(damage)
         print(f">>> {self.name} damages {target.name} for {damage} HP")
+    def getHealth(self):
+        return self.health
