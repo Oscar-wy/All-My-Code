@@ -19,6 +19,9 @@ while you.isAlive():
             if you.health <= 0:
                 break
             you.attack(enemy)
+            defend = input(">")
+            if defend.lower() == "y":
+                you.defend()
             enemy.attack(you)
             if not enemy.isAlive():
                 print(f"You killed {enemy.name}")

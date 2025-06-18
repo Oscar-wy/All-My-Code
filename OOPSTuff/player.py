@@ -10,5 +10,7 @@ class Player(Monster):
         self.defending = not self.defending
 
     def subtractHp(self, hp):
+        print(self.defending)
         if not self.defending:
-            return super().subtractHp(hp)
+            self.defend()
+            self.health -= hp
