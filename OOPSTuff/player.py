@@ -5,6 +5,7 @@ class Player(Monster):
         super().__init__(monsterName, damageRange, health)
         self.type = "Player"
         self.defending = False
+        self.items = []
     
     def defend(self):
         self.defending = True
@@ -14,3 +15,11 @@ class Player(Monster):
         if not self.defending:
             self.defend()
             self.health -= hp
+
+    def attack(self, target):
+        damage = self.getDamageAttack()
+        enemHealth = target.health - damage
+        if enemHealth <= 0:
+            self.items.append(target.getLoot())
+        target.subtractHp(damage)
+        print(f">>> {self.name} damages {target.name} for {damage} HP")

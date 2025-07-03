@@ -1,4 +1,5 @@
 import random
+from item import Item
 
 class Monster:
     def __init__(self, name, damageRange, health):
@@ -7,6 +8,7 @@ class Monster:
         self.damageRange = damageRange
         self.type = "Monster"
         self.weapon = None
+        self.loot = Item("Flesh", "Bloody Flesh From Zombie", 0)
     def __repr__(self):
         return f"This is the {self.type} class with the name: {self.name}"
     def giveWeapon(self, weapon):
@@ -35,18 +37,20 @@ class Monster:
     def getDamageAttack(self):
         return random.randint(self.damageRange[0], self.damageRange[1])
     def attack(self, target):
-        if self.type == Monster:
-            if target.defending == True:
-                print(target.defending)
-                defendchance = random.randint(1, 10)
-                if defendchance == 1:
-                    if self.weapon != None:
-                        damage = self.weapon.get_attack_value()
-                        target.subtractHp(damage)
-            target.defending = False
-            return
-        damage = self.getDamageAttack()
-        target.subtractHp(damage)
-        print(f">>> {self.name} damages {target.name} for {damage} HP")
+        if target.defending == True:
+            print(target.defending)
+            defendchance = random.randint(1, 10)
+            if defendchance == 1:
+                if self.weapon != None:
+                    damage = self.weapon.get_attack_value()
+                    target.subtractHp(damage)
+                    print(f">>> {self.name} damages {target.name} for {damage} HP")
+        else:
+            damage = self.weapon.get_attack_value()
+            target.subtractHp(damage)
+            print(f">>> {self.name} damages {target.name} for {damage} HP")
+        target.defending = False
     def getHealth(self):
         return self.health
+    def getLoot(self):
+        return self.loot

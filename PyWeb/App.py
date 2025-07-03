@@ -83,8 +83,12 @@ def auth():
     
 @app.route("/logout", methods=["GET"])
 def logout():
-    session.pop('username', None)  # Remove session on logout
-    return redirect("/landing")
+    NID = request.args.get("NID")  # Correctly extract from query string
+    user = getUser()
+    if str(NID) == str(user.NID):
+        session.pop('username', None)
+        return redirect("/landing")
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)

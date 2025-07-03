@@ -7,7 +7,6 @@ class Item():
         self.description = desc
         self._attack_value = attv     # An attribute that is "private"
         # You can call the methods of a class inside that class, like this
-        self._generate_random_item()
 
     # This method begins with an underscore _ because it is not meant to be called
     # outside of the class itself. This notation means 'private' in Python, although
