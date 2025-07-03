@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Xyra Holdings - Contact</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <h1>Xyra Holdings</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 600px; margin: 4rem auto 6rem; padding: 0 1.5rem;">
+    <h2>Contact Us</h2>
+    <p>If you are a startup or company interested in partnering or investment opportunities, please reach out.</p>
+
+    <form action="mailto:contact@xyraholdings.com" method="post" enctype="text/plain" novalidate>
+      <label for="name">Name *</label>
+      <input type="text" id="name" name="name" required placeholder="Your full name" />
+
+      <label for="company">Company</label>
+      <input type="text" id="company" name="company" placeholder="Your company name (optional)" />
+
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com" />
+
+      <label for="message">Message *</label>
+      <textarea id="message" name="message" required placeholder="Write your message here"></textarea>
+
+      <button type="submit" class="btn-primary">Send Message</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 Xyra Holdings. All rights reserved.
+  </footer>
+</body>
+</html>

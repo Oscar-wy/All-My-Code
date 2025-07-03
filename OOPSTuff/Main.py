@@ -1,10 +1,13 @@
 import random
 from monster import Monster
 from player import Player
+from item import Item
 you = Player("Peter", [7, 20], 100) # CREATED THE PLAYER
+sword = Item("Sword", "A great sword", 5)
 enemies = []
 for i in range(4):
     enemies.append(Monster(f"enemy{i}", [1,5], 50))
+    enemies[i].giveWeapon(sword)
 # print(you)
 # you.setName("Peter")
 # print(you)

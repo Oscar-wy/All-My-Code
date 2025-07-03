@@ -7,7 +7,7 @@ class Player(Monster):
         self.defending = False
     
     def defend(self):
-        self.defending = not self.defending
+        self.defending = True
 
     def subtractHp(self, hp):
         print(self.defending)

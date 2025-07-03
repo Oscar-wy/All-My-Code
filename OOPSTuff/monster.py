@@ -6,8 +6,11 @@ class Monster:
         self.health = health
         self.damageRange = damageRange
         self.type = "Monster"
+        self.weapon = None
     def __repr__(self):
         return f"This is the {self.type} class with the name: {self.name}"
+    def giveWeapon(self, weapon):
+        self.weapon = weapon
     def getName(self):
         return self.name
     def setName(self, name):
@@ -32,6 +35,16 @@ class Monster:
     def getDamageAttack(self):
         return random.randint(self.damageRange[0], self.damageRange[1])
     def attack(self, target):
+        if self.type == Monster:
+            if target.defending == True:
+                print(target.defending)
+                defendchance = random.randint(1, 10)
+                if defendchance == 1:
+                    if self.weapon != None:
+                        damage = self.weapon.get_attack_value()
+                        target.subtractHp(damage)
+            target.defending = False
+            return
         damage = self.getDamageAttack()
         target.subtractHp(damage)
         print(f">>> {self.name} damages {target.name} for {damage} HP")
