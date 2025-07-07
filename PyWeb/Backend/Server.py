@@ -2,6 +2,7 @@ import sqlite3
 import random
 import hashlib
 import os
+import secrets
 
 def hashSaltText(text):
     salt = os.urandom(16)
@@ -27,7 +28,8 @@ def InitialiseTables():
                  LName TEXT,
                  Email TEXT UNIQUE,
                  Password TEXT,
-                 Salt TEXT
+                 Salt TEXT,
+                 SessionID TEXT
                 )
               """
         cursor.execute(sql)
@@ -40,6 +42,7 @@ class User():
         self.LName = ""
         self.Email = ""
         self.Password =  ""
+        self.SessionID = ""
 
     def getSalt(self, username):
         with sqlite3.connect("./Database.db") as db:
@@ -70,11 +73,11 @@ class User():
     def SetData(self, row):
         for key in row.keys():
             setattr(self, key, row[key])
-    def fetchUserData(self, username):
+    def fetchUserData(self, sessionID):
         with sqlite3.connect("./Database.db") as db:
             db.row_factory = sqlite3.Row
             cursor = db.cursor()
-            cursor.execute("SELECT * FROM Users WHERE Username = ?", (username,))
+            cursor.execute("SELECT * FROM Users WHERE SessionID = ?", (sessionID,))
             row = cursor.fetchone()
             if row:
                 row = dict(row)
@@ -86,11 +89,12 @@ class User():
             cursor = db.cursor()
             cursor.execute("SELECT * FROM Users WHERE Username = ?", (username,))
             existing_user = cursor.fetchone()
-
             if existing_user:
                 return False  # User already exists
             else:
-                cursor.execute("INSERT INTO Users (Username, FName, LName, Email, Password, Salt) VALUES (?, ?, ?, ?, ?, ?)",
-                               (username, fname, lname, email, password, salt))
+                cursor.execute("INSERT INTO Users (Username, FName, LName, Email, Password, Salt, SessionID) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                               (username, fname, lname, email, password, salt, self.createSessionID()))
                 db.commit()
                 return True
+    def createSessionID(self):
+        return secrets.token_hex(32)

@@ -12,9 +12,9 @@ app.secret_key = "3c841f496de2c2b9fa5d197d7b5c2f44"
 # user = Server.User()
 
 def getUser():
-    username = session['username']
+    sessionID = session['sessionID']
     user = Server.User()
-    user.fetchUserData(username)
+    user.fetchUserData(sessionID)
     return user
 
 # def CheckUser():
@@ -25,13 +25,13 @@ def getUser():
 
 @app.route("/landing", methods=["GET", "POST"])
 def Index():
-    if 'username' in session:
+    if 'sessionID' in session:
         return redirect("/ap")
     return render_template("Landing.html", HasAccount="Hidden", NoAccount="")
 
 @app.route("/", methods=["GET", "POST"])
 def App():
-    if 'username' not in session:
+    if 'sessionID' not in session:
         return redirect("/landing")
 
     user = getUser()
@@ -43,7 +43,7 @@ def App():
     
 @app.route("/auth", methods=["GET", "POST"])
 def auth():
-    if 'username' in session:
+    if 'sessionID' in session:
         return redirect("/")
     if request.method == "POST":
         # Handle login
@@ -53,7 +53,7 @@ def auth():
             user = Server.User()
 
             if user.Login(username, password):
-                session['username'] = username
+                session['sessionID'] = user.SessionID
                 return redirect("/")
             else:
                 error_message = "Invalid username or password. Please try again."
@@ -86,7 +86,7 @@ def logout():
     NID = request.args.get("NID")  # Correctly extract from query string
     user = getUser()
     if str(NID) == str(user.NID):
-        session.pop('username', None)
+        session.pop('sessionID', None)
         return redirect("/landing")
     return redirect("/")
 
