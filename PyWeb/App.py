@@ -26,7 +26,7 @@ def getUser():
 @app.route("/landing", methods=["GET", "POST"])
 def Index():
     if 'sessionID' in session:
-        return redirect("/ap")
+        return redirect("/")
     return render_template("Landing.html", HasAccount="Hidden", NoAccount="")
 
 @app.route("/", methods=["GET", "POST"])
@@ -37,7 +37,7 @@ def App():
     user = getUser()
 
     if user:
-        return render_template("App.html", user=user)
+        return render_template("App.html", NID=user.NID)
     else:
         return "User not found."
     
@@ -80,10 +80,24 @@ def auth():
     if form_type == 'true':
         return render_template("Auth.html", login=False)  # Show sign-up form
     return render_template("Auth.html", login=True)
+
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    if 'sessionID' not in session:
+        return redirect("/landing")
+    user = getUser()
+    NID = request.args.get("NID")
+    if not user:
+        return redirect("/landing")
+    if NID:
+        userProfile = user.getProfileFromNID(NID)
+        print(userProfile)
+        if userProfile != "No User Found":
+            return render_template("Profile.html", UserName=userProfile[0], FName=userProfile[1], LName=userProfile[2])
     
 @app.route("/logout", methods=["GET"])
 def logout():
-    NID = request.args.get("NID")  # Correctly extract from query string
+    NID = request.args.get("NID")
     user = getUser()
     if str(NID) == str(user.NID):
         session.pop('sessionID', None)

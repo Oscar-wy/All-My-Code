@@ -98,3 +98,12 @@ class User():
                 return True
     def createSessionID(self):
         return secrets.token_hex(32)
+    def getProfileFromNID(self, NID):
+        with sqlite3.connect("./Database.db") as db:
+            cursor = db.cursor()
+            cursor.execute("SELECT Username, FName, LName FROM USERS WHERE NID = ?", (NID,))
+            user = cursor.fetchone()
+            if user:
+                return user
+            else:
+                return "No User Found"
