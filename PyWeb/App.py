@@ -12,7 +12,9 @@ app.secret_key = "3c841f496de2c2b9fa5d197d7b5c2f44"
 # user = Server.User()
 
 def getUser():
-    sessionID = session['sessionID']
+    sessionID = session.get('sessionID')
+    if not sessionID:
+        return None
     user = Server.User()
     user.fetchUserData(sessionID)
     return user
@@ -91,9 +93,9 @@ def profile():
         return redirect("/landing")
     if NID:
         userProfile = user.getProfileFromNID(NID)
-        print(userProfile)
         if userProfile != "No User Found":
             return render_template("Profile.html", UserName=userProfile[0], FName=userProfile[1], LName=userProfile[2])
+    return "User not found", 404
     
 @app.route("/logout", methods=["GET"])
 def logout():
