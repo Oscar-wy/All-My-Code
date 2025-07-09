@@ -8,20 +8,26 @@
     </head>
     <body>
         <div class="Page">
-            <div class="Banner"></div>
-            <image class="ProfileImage"></image>
-            <h3 class="Users-Name"></h3>
-            <p class="Username"></p>
-            <button class="SocialBtn">{{Connection}}</button>
-            <button class="MsgBtn">></button>
-            <button class="EditBtn">Edit</button>
-            <button class="ElipseBtn">...</button>
-            <div class="ElipseMenu">
-                <button class="BlockBtn">Block</button>
-                <button class="ReportBtn">Report</button>
-                <button class="ShareBtn">Share</button>
+            <div class="TopProfile">
+                <div class="Banner"></div>
+                <div class="UserInformation">
+                    <img src="" alt="" class="ProfileImage">
+                    <div class="UsersNameBox">
+                        <h3 class="Users-Name">{{FName}} {{LName}}</h3>
+                        <p class="Username">{{Username}}</p>
+                    </div>
+                    <button class="SocialBtn">{{Connection}}</button>
+                    <button class="MsgBtn">></button>
+                    <button class="EditBtn">Edit</button>
+                    <button class="ElipseBtn">...</button>
+                    <div class="ElipseMenu Hidden">
+                        <button class="BlockBtn">Block</button>
+                        <button class="ReportBtn">Report</button>
+                        <button class="ShareBtn">Share</button>
+                    </div>
+                </div>
             </div>
-            <div class="InfoMenu"></div>
+            <div class="UsersPage"></div>
         </div>
     </body>
 </html>
