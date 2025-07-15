@@ -92,9 +92,14 @@ def profile():
     if not user:
         return redirect("/landing")
     if NID:
-        userProfile = user.getProfileFromNID(NID)
+        userProfile = user.getProfileFromNID(int(NID))
+        if user.NID != int(NID):
+            relationStatus = user.getUserRelations(int(NID))
+        else:
+            relationStatus = "Own Profile"
+            print("Own Profile?")
         if userProfile != "No User Found":
-            return render_template("Profile.html", UserName=userProfile[0], FName=userProfile[1], LName=userProfile[2])
+            return render_template("Profile.html", UserName=userProfile[0], FName=userProfile[1], LName=userProfile[2], Connection=relationStatus)
     return "User not found", 404
     
 @app.route("/logout", methods=["GET"])

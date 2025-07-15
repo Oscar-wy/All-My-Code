@@ -1,2 +1,55 @@
-<h1>{{UserName}}</h1>
-<p>{{FName}}   {{LName}}</p>
+{% extends "Base.html" %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='Profile.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="Page">
+    <div class="TopProfile">
+        <div class="Banner"></div>
+        <div class="UserInformation">
+            <img src="{{ ProfileImageURL }}" alt="Profile Image" class="ProfileImage">
+            <div class="UsersNameBox">
+                <h3 class="Users-Name">{{ FName }} {{ LName }}</h3>
+                <p class="Username">{{ Username }}</p>
+            </div>
+            {% if Connection == "Not Friends" %}
+                <button class="SocialBtn">Add Friend</button>
+
+            {% elif Connection == "Requested" %}
+                <button class="SocialBtn">Cancel Request</button>
+
+            {% elif Connection == "Request Received" %}
+                <button class="SocialBtn">Accept Request</button>
+                <button class="SocialBtn DeclineBtn">Decline</button>
+
+            {% elif Connection == "Friends" %}
+                <button class="SocialBtn">UnAdd Friend</button>
+
+            {% elif Connection == "Own Profile" %}
+                <button class="Hidden">UnAdd Friend</button>
+
+            {% else %}
+                <button class="SocialBtn">Add Friend</button>
+            {% endif %}
+            {% if Connection != "Own Profile" %}
+                <button class="MsgBtn">></button>
+            {% endif %}
+            {% if Connection == "Own Profile" %}
+                <button class="EditBtn">Edit</button>
+            {% endif %}
+            <button class="ElipseBtn">...</button>
+            <div class="ElipseMenu Hidden">
+                <button class="BlockBtn">Block</button>
+                <button class="ReportBtn">Report</button>
+                <button class="ShareBtn">Share</button>
+            </div>
+        </div>
+    </div>
+    <div class="UsersPage"></div>
+</div>
+{% endblock %}

@@ -20,19 +20,45 @@ def InitialiseTables():
     with sqlite3.connect("./Database.db") as db:
         cursor = db.cursor()
         sql = """
-                CREATE TABLE IF NOT EXISTS Users
-                (
-                 NID INTEGER Primary Key AUTOINCREMENT,
-                 Username TEXT,
-                 FName TEXT,
-                 LName TEXT,
-                 Email TEXT UNIQUE,
-                 Password TEXT,
-                 Salt TEXT,
-                 SessionID TEXT
-                )
+                CREATE TABLE IF NOT EXISTS Users (
+                    NID INTEGER Primary Key AUTOINCREMENT,
+                    Username TEXT,
+                    FName TEXT,
+                    LName TEXT,
+                    Email TEXT UNIQUE,
+                    Password TEXT,
+                    Salt TEXT,
+                    SessionID TEXT
+                );
               """
         cursor.execute(sql)
+        sql = """
+                CREATE TABLE IF NOT EXISTS UserRelations (
+                    RequesterID INTEGER,
+                    AddresseeID INTEGER,
+                    Status TEXT CHECK(Status IN ('Pending', 'Accepted')),
+                    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    PRIMARY KEY (RequesterID, AddresseeID),
+                    FOREIGN KEY (RequesterID) REFERENCES Users(NID),
+                    FOREIGN KEY (AddresseeID) REFERENCES Users(NID)
+                );
+              """
+        cursor.execute(sql)
+        sql = """
+                CREATE TABLE IF NOT EXISTS Blocks (
+                    BlockerID INTEGER,
+                    BlockedID INTEGER,
+                    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    PRIMARY KEY (BlockerID, BlockedID),
+                    FOREIGN KEY (BlockerID) REFERENCES Users(NID),
+                    FOREIGN KEY (BlockedID) REFERENCES Users(NID)
+                );
+              """
+        cursor.execute(sql)
+        sql = """
+                CREATE TABLE IF NOT EXISTS Messages (
+                );
+              """
 
 class User():
     def __init__(self):
@@ -55,6 +81,9 @@ class User():
             return result
     def Login(self, username, password):
         salt = self.getSalt(username)
+        if not salt:
+            print("Login Error", salt)
+            return False
         salt = bytes.fromhex(salt)
         password = verifySaltText(password, salt)
         with sqlite3.connect("./Database.db") as db:
@@ -107,3 +136,24 @@ class User():
                 return user
             else:
                 return "No User Found"
+    def getUserRelations(self, selectUserNid):
+        with sqlite3.connect("./Database.db") as db:
+            cursor =  db.cursor()
+            values = (self.NID, selectUserNid, selectUserNid, self.NID)
+            sql = """
+                    SELECT RequesterID, AddresseeID, Status FROM UserRelations
+                    WHERE (RequesterID = ? AND AddresseeID = ?)
+                    OR (RequesterID = ? AND AddresseeID = ?)
+                  """
+            cursor.execute(sql, values)
+            relation = cursor.fetchone()
+            if not relation:
+                return ("Not Friends", None) 
+            requester, addressee, status = relation
+            if status == "Accepted":
+                return ("Friends", None)
+            elif status == "Pending":
+                if requester == self.NID:
+                    return ("Requested", requester)
+                else:
+                    return ("Request Received", requester)
