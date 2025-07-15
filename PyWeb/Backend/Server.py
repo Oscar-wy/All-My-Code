@@ -147,6 +147,7 @@ class User():
                   """
             cursor.execute(sql, values)
             relation = cursor.fetchone()
+            print(relation)
             if not relation:
                 return ("Not Friends", None) 
             requester, addressee, status = relation
@@ -157,3 +158,70 @@ class User():
                     return ("Requested", requester)
                 else:
                     return ("Request Received", requester)
+                
+    def sendRequest(self, targetNID):
+        with sqlite3.connect("./Database.db") as db:
+            cursor = db.cursor()
+            values = (self.NID, targetNID, targetNID, self.NID)
+            sql = """
+                    SELECT * FROM UserRelations
+                    WHERE (RequesterID = ? AND AddresseeID = ?)
+                    OR (RequesterID = ? AND AddresseeID = ?)
+                  """
+            cursor.execute(sql, values)
+            relation = cursor.fetchone()
+            if relation:
+                return "Friend request already exists or you are already friends.", 400
+            values = (self.NID, targetNID)
+            sql = """
+                    INSERT INTO UserRelations (RequesterID, AddresseeID, Status) 
+                    VALUES (?, ?, 'Pending')
+                  """
+            cursor.execute(sql, values)
+            db.commit()
+
+    def cancelRequest(self, targetNID):
+        with sqlite3.connect("./Database.db") as db:
+            cursor = db.cursor()
+            values = (self.NID, targetNID)
+            sql = """
+                    DELETE FROM UserRelations
+                    WHERE RequesterID = ? AND AddresseeID = ? AND Status = 'Pending'
+                  """
+            cursor.execute(sql, values)
+            db.commit()
+
+    def acceptRequest(self, requesterNID):
+        with sqlite3.connect("./Database.db") as db:
+            cursor = db.cursor()
+            values = (requesterNID, self.NID)
+            sql = """
+                    UPDATE UserRelations
+                    SET Status = 'Accepted'
+                    WHERE RequesterID = ? AND AddresseeID = ? AND Status = 'Pending'
+                  """
+            cursor.execute(sql, values)
+            db.commit()
+
+    def declineRequest(self, requesterNID):
+        with sqlite3.connect("./Database.db") as db:
+            cursor = db.cursor()
+            values = (requesterNID, self.NID)
+            sql = """
+                    DELETE FROM UserRelations
+                    WHERE RequesterID = ? AND AddresseeID = ? AND Status = 'Pending'
+                  """
+            cursor.execute(sql, values)
+            db.commit()
+
+    def unfriend(self, targetNID):
+        with sqlite3.connect("./Database.db") as db:
+            cursor = db.cursor()
+            values = (self.NID, targetNID, targetNID, self.NID)
+            sql = """
+                    DELETE FROM UserRelations
+                    WHERE ((RequesterID = ? AND AddresseeID = ?) OR (RequesterID = ? AND AddresseeID = ?))
+                    AND Status = 'Accepted'
+                  """
+            cursor.execute(sql, values)
+            db.commit()

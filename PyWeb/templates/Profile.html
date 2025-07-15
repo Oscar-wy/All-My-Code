@@ -4,10 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profile</title>
+<link rel="stylesheet" href="{{url_for('static', filename='Main.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename='Profile.css') }}">
+<link rel="stylesheet" href="{{url_for('static', filename='navBar.css')}}">
 {% endblock %}
 
 {% block body %}
+<nav class="navBar {{HasAccount}}">
+    <ul class="">
+        <a class="navButton" href=""></a>
+        <a class="navButton" href=""></a>
+        <a class="navButton" href=""></a>
+    </ul>
+    <div class="AccountSection">
+        <a href="" class="navButton Profile {{HasAccount}}"></a>
+    </div>
+</nav>
 <div class="Page">
     <div class="TopProfile">
         <div class="Banner"></div>
@@ -18,23 +30,35 @@
                 <p class="Username">{{ Username }}</p>
             </div>
             {% if Connection == "Not Friends" %}
-                <button class="SocialBtn">Add Friend</button>
+                <form action="{{ url_for('sendRequest', targetNID=NID) }}" method="post">
+                    <button type="submit" class="SocialBtn">Add Friend</button>
+                </form>
 
             {% elif Connection == "Requested" %}
-                <button class="SocialBtn">Cancel Request</button>
+                <form action="{{ url_for('cancelRequest', targetNID=NID) }}" method="post">
+                    <button type="submit" class="SocialBtn">Cancel Request</button>
+                </form>
 
-            {% elif Connection == "Request Received" %}
-                <button class="SocialBtn">Accept Request</button>
-                <button class="SocialBtn DeclineBtn">Decline</button>
+            {% elif Connection == 'Request Received' %}
+                <form action="{{ url_for('acceptRequest', requesterNID=requesterID) }}" method="post" style="display:inline;">
+                    <button type="submit" class="SocialBtn">Accept Request</button>
+                </form>
+                <form action="{{ url_for('declineRequest', requesterNID=requesterID) }}" method="post" style="display:inline;">
+                    <button type="submit" class="SocialBtn DeclineBtn">Decline</button>
+                </form>
 
-            {% elif Connection == "Friends" %}
-                <button class="SocialBtn">UnAdd Friend</button>
+            {% elif Connection == 'Friends' %}
+                <form action="{{ url_for('unfriend', targetNID=NID) }}" method="post">
+                    <button type="submit" class="SocialBtn">Unadd</button>
+                </form>
 
             {% elif Connection == "Own Profile" %}
                 <button class="Hidden">UnAdd Friend</button>
 
             {% else %}
-                <button class="SocialBtn">Add Friend</button>
+                <form action="{{ url_for('sendRequest', targetNID=NID) }}" method="post">
+                    <button type="submit" class="SocialBtn">Add Friend</button>
+                </form>
             {% endif %}
             {% if Connection != "Own Profile" %}
                 <button class="MsgBtn">></button>

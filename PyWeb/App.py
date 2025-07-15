@@ -98,9 +98,61 @@ def profile():
         else:
             relationStatus = "Own Profile"
             print("Own Profile?")
+        if isinstance(relationStatus, tuple):
+            status, requesterID = relationStatus
+        else:
+            status = relationStatus
+            requesterID = None
         if userProfile != "No User Found":
-            return render_template("Profile.html", UserName=userProfile[0], FName=userProfile[1], LName=userProfile[2], Connection=relationStatus)
+            return render_template("Profile.html", UserName=userProfile[0], FName=userProfile[1], LName=userProfile[2], Connection=status, NID=int(NID), requesterID=requesterID)
     return "User not found", 404
+
+@app.route("/sendRequest<int:targetNID>", methods=["POST"])
+def sendRequest(targetNID):
+    user = getUser()
+    if not user:
+        return redirect("/landing")
+    if user.NID == targetNID:
+        return "You cannot friend Yourself", 400
+    user.sendRequest(targetNID)
+    return redirect(f"/profile?NID={targetNID}")
+
+@app.route("/cancelRequest<int:targetNID>", methods=["POST"])
+def cancelRequest(targetNID):
+    user = getUser()
+    if not user:
+        return redirect("/landing")
+
+    user.cancelRequest(targetNID)
+    return redirect(f"/profile?NID={targetNID}")
+
+@app.route("/acceptRequest<int:requesterNID>", methods=["POST"])
+def acceptRequest(requesterNID):
+    user = getUser()
+    if not user:
+        return redirect("/landing")
+
+    user.acceptRequest(requesterNID)
+    return redirect(f"/profile?NID={requesterNID}")
+
+@app.route("/declineRequest<int:requesterNID>", methods=["POST"])
+def declineRequest(requesterNID):
+    user = getUser()
+    if not user:
+        return redirect("/landing")
+
+    user.declineRequest(requesterNID)
+    return redirect(f"/profile?NID={requesterNID}")
+
+@app.route("/unfriend<int:targetNID>", methods=["POST"])
+def unfriend(targetNID):
+    user = getUser()
+    if not user:
+        return redirect("/landing")
+
+    user.unfriend(targetNID)
+    return redirect(f"/profile?NID={targetNID}")
+
     
 @app.route("/logout", methods=["GET"])
 def logout():
