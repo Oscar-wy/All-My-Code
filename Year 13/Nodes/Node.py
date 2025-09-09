@@ -29,10 +29,3 @@ class Node:
         """String"""
         return str(self._data)
     
-newNode = Node("James is a stinky guy")
-newNode2 = Node("James still stinks")
-print(newNode.get_data())
-newNode.set_next(newNode2)
-print(newNode.get_next())
-print(newNode)
-print(newNode2)
