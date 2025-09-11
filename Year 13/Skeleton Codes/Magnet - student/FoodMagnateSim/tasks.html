@@ -1,0 +1,633 @@
+<html> 
+<head> 
+	<title>Food Magnate Simulation 2020</title>
+	<script> 
+		/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "nav") {
+				x.className += " responsive";
+			} else {
+				x.className = "nav";
+			}
+		}
+	</script>	
+	<script src="lightbox/js/jquery-1.10.2.min.js"></script>
+	<script src="lightbox/js/lightbox-2.6.min.js"></script>
+	
+	<link href="style.css" rel="stylesheet" />
+	<link href="lightbox/css/lightbox.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<!-- .container start -->
+<div class="container">
+	
+	<!-- .banner start -->
+	<div class="banner">
+	<div style="float:right; padding:0;font-size:0.8em;">Python Edition</div><br style="clear:both">
+	<img src="images/banner.jpg" style="border:none;">
+		<ul id="nav" class="nav" id="myTopnav">		
+		<li><a href="index.html">Introduction</a></li>
+		<li><a href="visualisation.html">Visualisation</a></li>
+		<li><a href="diagrams.html">Class Diagram Tasks</a></li>
+		<li><a href="questions.html">Theory Questions</a></li>
+		<li><a href="tasks.html" class="selected">Programming Tasks</a></li>
+		<li><a href="answers.html">Solutions</a></li>				
+	</ul>
+	</div>
+	<!-- .banner end -->	
+
+	
+	<!-- .topic_header start -->
+	<div class="topic_header">
+	<table style="background-color:#ffa64d;"><tr><td><h1><strong>Programming Tasks</h1></td></tr></table>
+	
+	</div>
+	<!-- .topic_header end -->
+	
+	<!-- topic_info start -->		
+		
+	<div class="topic_info">		
+				
+		<div class="textbox" style="margin:0;">						
+			The following questions are provided in PDF format <a href="files/p04-ProgrammingTasks.pdf">here</a>.<br />					
+			An <a href="files/PAPER1_EAD.dotx">Electronic Answer Document (EAD)</a> is provided for all questions/tasks. <strong>Save this file to an accessible location before you start.</strong>			
+		</div>
+		
+		<table style="width:100%"><tr><th>The following questions require you to open the skeleton program and make modifications to it.</th></tr></table>	
+		
+		<p style="font-size:0.95em;"><strong>Jump to:</strong><br />
+		<a href="#q1">Task 1</a> | <a href="#q2">Task 2</a> | <a href="#q3">Task 3</a> | <a href="#q4">Task 4</a> | <a href="#q5">Task 5</a> | <a href="#q6">Task 6</a> | <a href="#q7">Task 7</a> | 
+		<a href="#q8">Task 8</a> | <a href="#q9">Task 9</a> | <a href="#q10">Task 10</a> | <a href="#q11">Task 11</a> | <a href="#q12">Task 12</a> | <a href="#q13">Task 13</a> | <a href="#q14">Task 14</a> | <a href="#q15">Task 15</a></p>
+
+		<a name="q1"><h1><strong>Task 1</strong> (max. 3 marks)</sup></h1></a>
+		
+		<p>This question refers to the subroutine <span class="code">ModifyCompany</span> within the <span class="code">Simulation</span> class.</p>
+		<p>Currently, the user is prompted to enter a value of 1, 2 or 3, but if nothing is entered by the user, the program responds by outputting a blank line.</p>
+		<p>Change the subroutine <span class="code">ModifyCompany</span> to present the user with an additional choice: "C. Cancel".&nbsp; If the user enters anything other than 1, 2, 3 or an upper-case 'C', the menu should be redisplayed repeatedly until either 1, 2, 3 or C is selected.&nbsp; If 1, 2 or 3 is entered, <span class="code">ModifyCompany</span> should behave as normal.&nbsp; If an upper-case 'C' is entered, the program should output 'Operation Cancelled', and <span class="code">ModifyCompany</span> should return without executing any additional code.</p>
+		<p>Test that the changes you have made work:</p>
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 3 for 'modify company'</li>
+			<li>enter 'AQA Burgers' when prompted for a company name</li>
+			<li>enter 'X' at the first prompt of the 'modify company' submenu</li>
+			<li>enter 'C' at the second prompt of the 'modify company' submenu</li>
+		</ul>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">ModifyCompany</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+
+	
+		<a name="q2"><h1><strong>Task 2</strong> (max. 3 marks)</sup></h1></a>
+
+		<p>This question refers to the subroutine <span class="code">GetRandomLocation</span> within the <span class="code">Settlement</span> class.</p>
+		<p>This subroutine generates a random location within the bounds of the settlement that is used to position a new household.&nbsp; Currently, there is no mechanism for ensuring that a new household is not assigned the location of an existing household.</p>
+		<p>Change the subroutine <span class="code">GetRandomLocation</span> to ensure that only unoccupied locations are returned.&nbsp; Prior to returning the location, a check should be made to determine whether the location is already occupied by a household.&nbsp; If it is already occupied, a new location should be generated, repeatedly if necessary.</p>
+		<p>Test that the changes you have made work:</p>
+		<ul>
+			<li>modify the <span class="code">Settlement</span> constructor in the following ways:
+			<ul>
+				<li>change <span class="code">XSize = 1000</span> to <span class="code">XSize = 3</span></li>
+				<li>change <span class="code">YSize = 1000</span> to <span class="code">YSize = 3</span></li>
+				<li>change <span class="code">StartNoOfHouseholds = 250</span> to <span class="code">StartNoOfHouseholds = 8</span></li>
+			</ul>
+			</li>
+		</ul>
+
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 1 for &lsquo;display details of households&rsquo;</li>
+		</ul>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">GetRandomLocation</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+	
+	
+		<a name="q3"><h1><strong>Task 3</strong> (max. 6 marks)</sup></h1></a>
+		
+		<p>This question refers to the subroutine <span class="code">DisplayEventsAtDayEnd</span> within the <span class="code">Simulation</span> class.</p>
+		<p>Currently, there is a 25% chance of an event occurring when an end of day is run (which calls the <span class="code">DisplayEventsAtDayEnd</span> subroutine).  Modify the subroutine so that the following logic applies instead:</p>
+		<p><em><strong>NB</strong> The function <span class="code">RANDOM()</span> returns a  real  number  from 0 to 1.</em></p>
+		<img src="images/task3.png" style="border:none">
+
+		<p>Test that the changes you have made work:</p>
+		
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 6 for 'advance to next day'</li>
+			<li>repeat until each of the events (including no events) have been triggered</li>
+
+		</ul>
+	
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">DisplayEventsAtDayEnd</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+
+		
+		
+		<a name="q4"><h1><strong>Task 4</strong> (max. 6 marks)</sup></h1></a>
+
+		<p>This question refers to the subroutine <span class="code">ProcessAddHouseholdsEvent</span> and the <span class="code">DisplayEventsAtDayEnd</span> subroutine within the <span class="code">Simulation<span class="code"> class.
+		<p>Modify the subroutine <span class="code">ProcessAddHouseholdsEvent</span> in the <span class="code">Simulation</span> class.  Rename the subroutine to  <span class="code">ProcessAddRemoveHouseholdsEvent</span> and all calls to it so that they use the new identifier.  Instead of just adding 1-4 houses to the settlement, there should be a 30% chance that 1-4 houses will leave the settlement instead.   The message displayed by the subroutine should be changed so that when houses are removed, it says removed from instead of added to.
+		<p>Modify the subroutine <span class="code">DisplayEventsAtDayEnd</span> in the <span class="code">Simulation</span> class. The subroutine should always call the newly modified subroutine <span class="code">ProcessAddRemoveHouseholdsEvent</span>.
+	
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 6 for 'advance to next day'</li>
+			<li>enter 1 for 'display details of households'</li>
+			<li>repeat this until households are removed from the settlement (and are added)</li>
+
+		</ul>
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">ProcessAddHouseholdsEvent</span></li>
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">DisplayEventsAtDayEnd</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+
+		
+		
+		<a name="q5"><h1><strong>Task 5</strong> (max. 7 marks)</sup></h1></a>
+
+		<p>This question refers to the subroutine <span class="code">Run</span> within the <span class="code">Simulation</span> class.</p>
+		<p>Currently, when modifying a company, the user needs to enter a company name in full, for which they must either remember it or scroll up the console window to see it previously displayed.</p>
+		<p>Change the subroutine <span class="code">Run</span> so that when the user enters option 3 from the main menu (modify company), they are presented with a numbered list of names of companies.&nbsp; The first company to be displayed in the list should be displayed next to a number 1, even though its index in the <span class="code">Companies</span> data structure will be 0. You should include a range check and a type check for the entry of the company number.</p>
+		<p>When the user enters the number next to the company name, the program should respond in the same way as it would have done had the company's name been entered.</p>
+		<p>Entering the company's name should no longer be effective, and the input message should read 'enter the number next to the company you wish to modify'.</p>
+		<p>Test that the changes you have made work:</p>
+
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 3 for 'modify company'</li>
+			<li>enter 'AQA Burgers'  when asked for a number</li>
+			<li>enter 5 when asked for a number</li>
+			<li>enter 0 when asked for a number</li>
+			<li>enter 3 when asked for a number</li>
+			<li>enter 3 for 'expand outlet'</li>
+			<li>enter 4 for the ID</li>
+			<li>enter 1000 for the amount</li>
+			<li>enter 2 for 'display details of companies'</li>
+		</ul>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">Run</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+	
+	
+	
+		<a name="q6"><h1><strong>Task 6</strong> (max. 8 marks)</sup></h1></a>
+		
+		<p>This question refers to the subroutine <span class="code">ProcessDayEnd</span> in the <span class="code">Simulation</span> class; <span class="code">CalculateDailyProfitLoss</span>, <span class="code">GetDetails</span>, <span class="code">NewDay</span> and a new subroutine, <span class="code">AddDelivery</span> in the <span class="code">Outlet</span> class, and a new subroutine, <span class="code">GetNearestOutlet</span> in the <span class="code">Company</span> class.</p>
+		<p>Currently each household has a random chance of eating out.  Some of the households that do not eat out will order deliveries instead. For each household that does not eat out, then there will be a 50% chance that they will get a delivery.</p>
+		<p>Modify the <span class="code">NewDay</span> subroutine in the <span class="code">Outlet</span> class to initialise the value of the new protected attribute <span class="code">DeliveryCosts</span> to <strong>0.0</strong>.</p>
+		<p>Modify the <span class="code">CalculateDailyProfitLoss</span> subroutine in the <span class="code">Outlet class to also subtract the <span class="code">DeliveryCosts</span> from the daily profit/loss calculation.</p>
+		<p>Modify the <span class="code">GetDetails</span>  subroutine in the <span class="code">Outlet</span> class to also display the <span class="code">DeliveryCosts</span> value.</p>
+		<p>Create a new subroutine called <span class="code">AddDeliver</span> in the <span class="code">Outlet</span> class which takes two parameters, <span class="code">Distance</span> and <span class="code">FuelCost</span>, and then adds a visit to the outlet and adds <span class="code">Distance * FuelCost</span> to the <span class="code">DeliveryCosts</span> attribute.</p>
+		<p>Create a new subroutine called <span class="code">GetNearestOutlet</span> in the Company class which takes two parameters, <span class="code">X</span> and <span class="code">Y</span>, and returns the <span class="code">Outlet</span> object of the nearest outlet and the distance to it.</p>
+		<p>Update to <span class="code">AddVisitToNearestOutlet</span> use the new <span class="code">GetNearestOutlet</span> subroutine instead of duplicating code.</p>
+		<p>Modify the <span class="code">ProcessDayEnd</span> subroutine in the <span class="code">Simulation</span> class so that if the household does not eat out then there is a 50% chance that it will order a delivery from the nearest restaurant.  If there is a delivery then call the new <span class="code">AddDelivery</span> subroutine for the relevant outlet and pass the distance to the <span class="code">Household</span> and <span class="code">FuelCostPerUnit</span> as arguments. </p>
+
+		<p>Test that the changes you have made work:</p>
+
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 6 for 'advance to next day'</li>
+			<li>enter 2 for 'display details of companies'</li>
+		</ul>		
+		
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended class <span class="code">Outlet</span></li>
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">ProcessDayEnd</span>
+						<li>Your PROGRAM SOURCE CODE for the new subroutine <span class="code">GetNearestOutlet</span>
+						<li>SCREEN CAPTURE(S) showing the required test</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+		<a name="q7"><h1><strong>Task 7</strong> (max. 3 marks)</sup></h1></a>
+		
+		<p>This question refers to the subroutines <span class="code">DisplayMenu</span> and <soan class="code">Run</span> within the <span class="code">Simulation</span> class.</p>
+		<p>Currently, the program allows the user to advance the simulation for multiple days only by repeatedly selecting option 6 from the menu.</p>
+		<p>Change <span class="code">DisplayMenu</span> to include an additional option: '5. Advance'.</p>
+		<p>Change <span class="code">Run</span> so that if option 5 is selected, the user is prompted for the number of days they wish the simulation to advance.&nbsp; This number, which does not require validation, will be the number of times that the subroutine <span class="code">ProcessDayEnd</span> is called.</p>
+		<p>Test that the changes you have made work:</p>
+		
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 5 for 'advance'</li>
+			<li>enter 3 when asked for a number</li>
+		</ul>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">Run</span></li>
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">DisplayMenu</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+		<a name="q8"><h1><strong>Task 8</strong> (max. 3 marks)</sup></h1></a>
+		
+		<p>This question refers to the subroutine <span class="code">IncrementVisits</span> of the <span class="code">Outlet</span> class.
+		<p>Currently an outlet could receive more visits than their capacity, this is not the intention of the capacity in the model which is meant to simulate how many visits per day each outlet can deal with.</p>
+		<p>Change <span class="code">IncrementVisits</span> so that the visit is only made if the outlet has capacity, otherwise there will be no visit and a reputation penalty of 0.05. Add suitable output messages stating that the capacity has been reached and what the capacity is.</p>
+		<p>Test that the changes you have made work:
+
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 6 for 'advance to next day'</li>
+			<li>enter 2 for 'display details of companies'</li>
+		</ul>
+		
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">IncrementVisits</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<a name="q9"><h1><strong>Task 9</strong> (max. 4 marks)</sup></h1></a>
+		
+		<p>This question refers to the subroutine <span class="code">ProcessDayEnd</span> in the <span class="code">Company</span> class, as well as a new subroutine, <span class="code">CloseAllOutlets</span>, also in the <span class="code">Company</span> class.</p>
+		<p>Currently, a company can continue operating irrespective of how far below zero their balance falls.</p>
+		<p>Create a new subroutine called <span class="code">CloseAllOutlets</span>, in the <span class="code">Company</span> class, which iterates through all outlets belonging to the company, and closing them with a call to <span class="code"> CloseOutlet</span>.</p>
+		<p>Modify the subroutine <span class="code">ProcessDayEnd</span> in the <span class="code">Company</span> class, so that immediately before the return statement, the value of <span class="code">Balance</span> is checked.&nbsp; If it is below zero, a call to <span class="code">CloseAllOutlets</span> is made, and a message is output to notify the user that all outlets have closed.</p>
+		<p>Test that the changes you have made work:</p>
+		
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>leave the second prompt blank, to indicate user-defined companies</li>
+			<li>enter 1 when asked for a number of companies</li>
+			<li>enter the company name 'Bankrupt Burgers'</li>
+			<li>enter a starting balance of 1000</li>
+			<li>enter 2 to indicate a family restaurant</li>
+			<li>enter 6 in the main menu, 'advance to next day'</li>
+			<li>enter 2 in the main menu, 'display details of companies'</li>
+		</ul>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">ProcessDayEnd</span></li>
+						<li>Your PROGRAM SOURCE CODE for the new subroutine <span class="code">CloseAllOutlets</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+		<a name="q10"><h1><strong>Task 10</strong> (max. 8 marks)</sup></h1></a>
+		
+		<p>This question refers to a new class, <span class="code">FoodTruck</span>, as well as the subroutine <span class="code">OpenOutlet</span> in the <span class="code">Company</span> class.</p>
+
+
+		<p>Create a new class called <span class="code">FoodTruck</span>, which inherits from the class <span class="code">Outlet</span>.  As well as the inherited subroutines and attributes, <span class="code">FoodTruck</span> should include a new subroutine called <span class="code">Move</span>.  Movement should take place in a random direction, moving one 'square' in any of the main compass points (i.e. either <span class="code">XCoord</span> or <span class="code">YCoord</span> should change up or down by exactly 1).  
+		<p>You should validate the food truck’s movement, so that it is not permitted to leave the settlement as a result of its <span class="code">XCoord</span> and <span class="code">YCoord</span> values being beyond the settlement’s bounds. The truck should start in the same location as the outlet.
+		The constructor for <span class="code">FoodTruck</span> should take <span class="code">XCoord</span>, <span class="code">YCoord</span>, <span class="code">XSize</span> and <span class="code">YSize</span> of the outlet location and settlement size respectively as integers as parameters, then pass these to the superclass constructor along with a value of 10 for capacity.  Settlement size should be passed through so that it is available inside <span class="code">FoodTruck</span>.</p>
+		<p>Change the <span class="code">OpenOutlet</span> subroutine within the <span class="code">Company</span> class so that whenever a new outlet is opened for a restaurant, a new food truck is also created.</p>
+
+		<p><em><strong>NB</strong> You will have to override one other subroutine in <span class="code">FoodTruck</span> so that movement will be automatically implemented by the current code due to polymorphism.</em></strong></p>.
+		
+		<p>Test that the changes you have made work:</p>		
+		
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>leave the second prompt blank, to indicate user-defined companies</li>
+			<li>enter 1 when asked for a number of companies</li>
+			<li>enter the company name 'Taco Truck'</li>
+			<li>enter a starting balance of 30000</li>
+			<li>enter 1 to indicate a fast food restaurant</li>
+			<li>enter 2 to display details of companies</li>
+			<li>enter 6 to advance to the next day</li>
+			<li>enter 2 to display details of companies</li>			
+		</ul>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the new class <span class="code">FoodTruck</span></li>
+						<li>Your PROGRAM SOURCE CODE for the amended classes <span class="code">Simulation</span> and <span class="code">Company</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test, ensuring that the location of the food truck is visible after each entry of ‘2’ in the main menu</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+				
+
+		<a name="q11"><h1><strong>Task 11</strong> (max. 5 marks)</sup></h1></a>
+		
+		<p>This question refers to the subroutine <span class="code">GetIndexOfCompany</span> within the <span class="code">Simulation</span> class.</p>
+		<p>Currently, when a company is searched for using this subroutine, the whole company name is required in order to generate a match.</p>
+		<p>Change <span class="code">GetIndexOfCompany</span> so that if the user enters a search term that is contained within the name of one company, the index of that company is returned.&nbsp; If the text is contained within the names of multiple companies, the user should be presented with all matching company names before being asked to type one of them in full in order to select it.</p>
+		<p>The subroutine should continue to be non-case-sensitive, and a search for a company that finds nothing, or an attempt to select a matching company that doesn't actually match one of the search results, should still return a value of -1.</p>
+		<p>Test that the changes you have made work:</p>
+		
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 3 for 'modify company'</li>
+			<li>enter a lower-case 't' for the company name</li>
+			<li>type 'Paltry Poultry' when asked to type the name of a company</li>
+		</ul>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">GetIndexOfCompany</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<a name="q12"><h1><strong>Task 12</strong> (max. 3 marks)</sup></h1></a>
+		
+		<p>This question refers to the subroutine <span class="code"> CloseOutlet</span> in the <span class="code">Company</span> class.</p>
+		<p>Currently, closing an outlet incurs no expense on the part of the company.</p>
+		<p>Change <span class="code"> CloseOutlet</span> so that a company's balance decreases for each outlet that is closed.&nbsp; The cost of closing the outlet depends on both the type of the company and the capacity of the outlet being closed.&nbsp; Taking 'capacity' as being the number of seats in an outlet, the costs of closing an outlet are as follows:</p>
+		<p>Fast-food outlet: 75 per seat</p>
+		<p>Family outlet: 50 per seat</p>
+		<p>Named chef outlet: 150 per seat</p>
+		<p>Test that the changes you have made work:</p>
+		
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 2 for 'display details of companies</li>
+			<li>enter 3 for 'modify company'</li>
+			<li>enter 'Paltry Poultry'</li>
+			<li>enter 2 for 'close outlet'</li>
+			<li>enter 4 when prompted for an ID</li>
+			<li>enter 2 for 'display details of companies'</li>
+		</ul>
+		
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code"> CloseOutlet</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+		<a name="q13"><h1><strong>Task 13</strong> (max. 5 marks)</sup></h1></a>
+
+		<p>This question refers to the subroutines <span class="code">DisplayMenu</span> and <span class="code">Run</span> in the <span class="code">Simulation</span> class.</p>
+		<p>Currently, it is possible to add a company to a simulation, but not to remove one.&nbsp;</p>
+		<p>Change <span class="code">DisplayMenu</span> to include an additional option: '5. Remove company'.</p>
+		<p>Change <span class="code">Run</span> so that if option 5 is selected, the user is prompted for the name of the company they wish to remove.&nbsp; After the user has entered the name of the company, that company's index should be obtained via <span class="code">GetIndexOfCompany</span>.&nbsp; The program should repeatedly ask them for a company name until either a valid name has been entered, or 'cancel' (any combination of upper case and lower case) has been entered.&nbsp;</p>
+		<p>If 'cancel' is entered, the user should be returned to the main menu.&nbsp; Otherwise, the company with a name matching the user entry should be removed from the simulation, and the user should be returned to the main menu.</p>
+		<p>Test that the changes you have made work:</p>
+		
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 5 for 'remove company'</li>
+			<li>type CANCEL (all in upper case) when prompted for the name of a company</li>
+			<li>enter 5 for 'remove company'</li>
+			<li>type 'Paltry Poultry' when prompted again for the name of a company</li>
+			<li>type 2 for 'display details of companies'</li>
+		</ul>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">DisplayMenu</span></li>
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">Run</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+
+		
+		
+		<a name="q14"><h1><strong>Task 14</strong> (max. 7 marks)</sup></h1></a>
+		
+		<p>This question refers to the subroutines <span class="code">DisplayMenu</span> and <span class="code">Run</span> in the <span class="code">Simulation</span> class, as well as two new subroutines: <span class="code">RunToTarget</span> in the <span class="code">Simulation</span> class, and <span class="code">GetBalance</span> in the <span class="code">Company</span> class.</p>
+		<p>Currently, the simulation runs day by day, regardless of the effects of any changes.&nbsp;</p>
+		<p>Create a new subroutine in the <span class="code">Company</span> class called <span class="code">GetBalance</span>, which should accept no parameters and return the value of the balance attribute.</p>
+		<p>Create a new subroutine in the <span class="code">Simulation</span> class called <span class="code">RunToTarget</span>.&nbsp; This subroutine should prompt the user for upper and lower limits, storing them in integer variables called <span class="code">upperLimit</span> and <span class="code">lowerLimit</span>.&nbsp; No validation is required for user input.</p>
+		<p>The simulation should run, via repeated calls to <span class="code">ProcessDayEnd</span> in the <span class="code">Simulation</span> class, until one company has a balance either equal to or above <span class="code">upperLimit</span> or equal to or below <span class="code">lowerLimit</span>, using calls to the new subroutine <span class="code">GetBalance</span>.&nbsp; At this point, there should be no additional calls to <span class="code">ProcessDayEnd</span>, and the program should output the name of the company, its balance and the number of days that have elapsed since the beginning of the simulation.&nbsp;</p>
+		<p>In the event that multiple companies reach <span class="code">upperLimit</span> and/or <span class="code">lowerLimit</span> at the same time, the program should display the details of all the companies meeting the criteria.&nbsp;</p>
+		<p>Change <span class="code">DisplayMenu</span> to include an additional option: '5. Run to target'.</p>
+		<p>Change <span class="code">Run</span> so that if the user enters option 5, a call is made to <span class="code">RunToTarget</span>.</p>
+		<p>Test that the changes you have made work:</p>
+		
+		<ul>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 5 for 'run to target'</li>
+			<li>enter 0 for the lower limit</li>
+			<li>enter 100000 (one hundred thousand) for the upper limit</li>
+		</ul>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">DisplayMenu</span></li>
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <span class="code">Run</span></li>
+						<li>Your PROGRAM SOURCE CODE for the new subroutine <span class="code">RunToTarget</span></li>
+						<li>Your PROGRAM SOURCE CODE for the new subroutine <span class="code">GetBalance</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>
+					</ol>						
+				</td>
+			</tr>
+		</table>
+
+
+		
+		<a name="q15"><h1><strong>Task 15</strong> (max. 8 marks)</sup></h1></a>
+		
+		<p>This question refers to a new subroutine called <span class="code">AlterAvgPricePerMeal</span> of the <span class="code">Company</span> class. It also refers to the <span class="code">Simulation</span> class and to the <span class="code">ProcessDayEnd</span> and <span class="code">__DisplayEventsAtDayEnd</span> subroutines within that class.</p>
+		<p>Currently, there is no way to increase the price of a meal, yet the costs for a meal can be altered.  There is to be new mechanism in the simulation so that every week, there is a 1% chance of prices increasing by 5%. </p>
+		<p>Create new subroutine in the <span class="code">Company</span> class which takes one parameter called <span class="code">PercentChange</span> and increases the <span class="code">AvgPricePerMeal</span> by that percentage.</p>
+		<p>Create two new private class attributes with accessor subroutines (getters) called <span class="code">PriceIncreaseChance</span> and <span class="code">PriceIncreaseAmount</span> in the <span class="code">Simulation</span> class &ndash;  these should be initialised to 0.01 and 0.05 respectively.  
+		Create another new attribute called <span class="code">NoOfDays</span> in the <span class="code">Simulation</span> class &ndash; this should be initialised to 0 and incremented during <span class="code">ProcessDayEnd</span>.  </p>
+		<p>Modify the <span class="code">__DisplayEventsAtDayEnd</span> subroutine so that there is a chance (<span class="code">PriceIncreaseChance</span>) of calling the new <span class="code">AlterAvgPricePerMeal</span> subroutine and passing it the argument <span class="code">PriceIncreaseAmount</span>.  Note that this should only happen on the seventh day of every week which is to be detected using the new <span class="code">NoOfDays</span> attribute.</p>
+
+
+		<p>Test that the changes you have made work:</p>
+		
+		<ul>
+			<li>modify the attribute <span class="code">PriceIncreaseChance</span> to 1.0 in the <span class="code">Simulation</span> class</li>
+			<li>run the <strong>Skeleton Program</strong></li>
+			<li>leave the first prompt blank, to indicate a normal-sized settlement</li>
+			<li>enter D at the next prompt for default companies</li>
+			<li>enter 6 in the main menu, 'advance to next day'</li>
+			<li>repeat the previous step 5 more times, making 6 end of days in total</li>
+			<li>repeat the following 2 times:</li>
+				<ul>
+					<li>enter 2 for 'display details of companies'</li>
+					<li>enter 6 for 'advance to next day'</li>
+				</ul>
+			<li>enter 2 for 'display details of companies'</li>
+		</ul>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a">
+						<li>Your PROGRAM SOURCE CODE for the amended <span class="code">Simulation</span> class</li>
+						<li>Your PROGRAM SOURCE CODE for the new subroutine <span class="code">AlterAvgPricePerMeal</span></li>
+						<li>SCREEN CAPTURE(S) showing the required test</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<h1><strong>Extension Tasks</strong></h1>
+		
+		<br />
+		
+		<div class="textbox" style="margin:0 0 10 0; float:left; display:inline-block; width:auto">			
+			Completed all the tasks above and want to explore the program futher? Have a go at some of these additional challenges!
+		</div>		
+
+		<br style="clear:both;">
+		
+		<ol>
+			<li>Add validation for any user input to ensure that something is entered and a message displayed if nothing is entered. This should include validation according to type, such that inputs required to be numeric are, indeed, numeric
+			<li>Create an additional category of restaurant, with a new company of that type created as part of the default companies
+			<li>Change the program so that all of the hard-coded values such as “fast food” are constants within an appropriate class
+			<li>Create a random instance of a company or an outlet running a promotion, during which time its expenses go up but its reputation score also rises and it may receive additional visits.  Produce a report on the success/failure of the promotion.
+			<li>Close an outlet that runs at a loss for five consecutive days, adding a notification that this has happened to the events
+			<li>Display details of the restaurant which, during a day, was either the most profitable, the most visited or the one with the highest reputation rating
+			<li>Prevent a new outlet being opened within a certain distance of another outlet, or another outlet of the same type
+			<li>Redesign Company to be an abstract class, with categories of company each being a subclass
+			<li>Generate a random budget and store it as an attribute within each Household object; a household that eats out will only eat out with a company whose prices are within their budget
+			<li>Incorporate weather into the simulation; it can rain at random, in which case the probabilities of eating out are all halved, and the presence of rain is indicated within the events
+			<li>Generate random events, such as power cuts, fuel shortages and festivals, each of which can have an impact on the probability of each house eating out, daily costs, etc.
+			<li>Incorporate a text file from which initial companies and outlets are created (where they differ from the default companies), rather than having the user manually enter them each time the simulation is run. Incorporate the default companies into this text file too.  It should be a single file for all companies, ideally using JSON format.
+			<li>Add a feature as an extension to programming Task 8 in which capacity was used to limit visits.  You should automatically expand the capacity and/or max capacity at the day end if too many visits were received.
+			<li>Create a feature that will report on the amount of capacity used for each restaurant and close unnecessary outlets to maximise visits to other outlets
+			<li>Change the basic premise of the simulation so that instead of households choosing a company and then visiting the nearest outlet, there is a more complex formula that reflects reality, e.g. the reputation of the company and the distance of the nearest outlet.  A very challenging extension to this would then be to calculate where the best place for a new outlet would be.
+		</ol>
+		
+	<!--activity end-->
+		
+
+	<div class="footer">
+	<p class="no_print"><a href="#top">Back to Top</a>
+	<span class="no_print" style="float:right;">&copy; <a href="http://zigzageducation.co.uk">ZigZag Education 2019</a></span></p>
+	</div>
+	
+	<!-- .topic_info end -->		
+	
+<!-- .container end -->
+</div>
+
+</body>
+</html>
+
+

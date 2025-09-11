@@ -1,0 +1,201 @@
+<html> 
+<head> 
+	<title>Food Magnate Simulation 2020</title>
+	<script> 
+		/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "nav") {
+				x.className += " responsive";
+			} else {
+				x.className = "nav";
+			}
+		}
+	</script>	
+	<script src="lightbox/js/jquery-1.10.2.min.js"></script>
+	<script src="lightbox/js/lightbox-2.6.min.js"></script>
+	
+	<link href="style.css" rel="stylesheet" />
+	<link href="lightbox/css/lightbox.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<!-- .container start -->
+<div class="container">
+	<!-- .banner start -->
+	<div class="banner">	
+	<div style="float:right; padding:0;font-size:0.8em;">Python Edition</div><br style="clear:both">
+	<img src="images/banner.jpg" style="border:none;">
+		<ul id="nav" class="nav" id="myTopnav">		
+		<li><a href="index.html">Introduction</a></li>
+		<li><a href="visualisation.html">Visualisation</a></li>
+		<li><a href="diagrams.html">Class Diagram Tasks</a></li>
+		<li><a href="questions.html" class="selected">Theory Questions</a></li>
+		<li><a href="tasks.html">Programming Tasks</a></li>
+		<li><a href="answers.html">Solutions</a></li>				
+	</ul>	
+	</div>
+	<!-- .banner end -->		
+
+	
+	<!-- .topic_header start -->
+	<div class="topic_header">
+	<table style="background-color:#ffff80;"><tr><td><h1><strong>Theory Questions</h1></td></tr></table>
+	
+	</div>
+	<!-- .topic_header end -->
+	
+	<!-- topic_info start -->		
+		
+	<div class="topic_info">
+		
+		<div class="textbox" style="margin:0;">
+			The following questions are provided in PDF here: <a href="files/p03a-TheoryQuestionsWriteOn.pdf">with answer lines</a> | <a href="files/p03b-TheoryQuestions.pdf">without answer lines</a><br />			
+			An <a href="files/PAPER1_EAD.dotx">Electronic Answer Document (EAD)</a> is provided for all questions/tasks. <strong>Save this file to an accessible location before you start.</strong>
+			
+		</div>				
+		
+		<table style="width:100%"><tr><th>The following questions refer to the preliminary material and require you to load the skeleton program, but do not require any additional programming.</th></tr></table>	
+		
+		<table>
+			<tr><td>
+				<ol start ="1">
+					<li>State the name of an identifier for:</li>
+					<ol type="a">
+						<li>An attribute in the <span class="code">Settlement</span> class that is only accessible to subclasses of <span class="code">Settlement</span> [1]</li>
+						<li>A subroutine in the <span class="code">Settlement</span> class that returns something other than a primitive value [1]</li>
+						<li>A subclass [1]</li>
+						<li>A local variable that is used to return a Boolean [1]</li>
+						<li>A subroutine from the <span class="code">Company</span> class that cannot be called from outside the <span class="code">Company</span> class [1]</li>
+						<li>A library string function called from the <span class="code">GetIndexOfCompany</span> subroutine in the <span class="code">Simulation</span> class [1]</li>
+						<li>A collection attribute in the <span class="code">Company</span> class [1]</li>
+						<li>An instance of <span class="code">Settlement</span> [1]</li>
+					</ol>
+				</ol>
+			</td></tr>
+
+			<tr><td>
+				<ol start="2">
+					<li>Showing and explaining your working, give the probability of a call to <span class="code">ProcessCostOfFuelChangeEvent </span>being made from the <span class="code">DisplayEventsAtDayEnd</span> subroutine in the <span class="code">Simulation</span> class. [3]
+				</ol>
+			</td></tr>	
+
+			<tr><td>
+				<ol start="3">
+					<li>Explain how validation might be added to the <span class="code">OpenOutlet</span> subroutine of the <span class="code">Company</span> class to prevent a new outlet being created beyond the bounds of the settlement. [3] </li>					
+				</ol>
+			</td></tr>	
+
+			<tr><td>
+				<ol start="4">
+					<li><em>AQA Burgers</em> decide to install a large warehouse at their main headquarters (500,500) and would like to calculate the best order for their delivery truck to visit the other outlets in so that the shortest possible distance is travelled.   </p>
+							<p><strong>Note that there is a graph of all the outlets in the figure for Q6 which may help you to visualise the problem.</strong></li>
+					<ol type="a">					
+						<li>State the Big O of this problem with <em>n</em> being the number of outlets. [1]</li>
+						<li>This is an example of an intractable problem, state what is meant by this. [1]</li>
+						<li>Describe and justify a heuristic method that could be used to reduce the time complexity of this problem so that it is no longer intractable. [2]</li>
+					</ol>
+				</ol>
+			</td></tr>				
+			
+
+			<tr><td>
+				<ol start="5">
+					<li>Describe in full how the <span class="code">GetDistanceBetweenTwoOutlets</span> subroutine of the <span class="code">Company</span> class calculates the distance between two outlets. [4]</li>						
+				</ol>
+			</td></tr>				
+			
+
+			<tr><td>
+				<ol start="6">
+					<li><img src="images//Q6.jpg" style="float:right; border:none">
+					<p>The distribution of outlets for the <em>AQA Burgers</em> restaurant chain can be represented using a graph such as the one shown here (not to scale):
+					<p>An automated delivery network is being set up between <em>AQA Burgers</em> outlets.  As such, each outlet needs to know the shortest route to each other outlet so that deliveries can be optimised. </p>
+					<p>Describe the steps (in any form you like) for an algorithm which determines the shortest route from one outlet to another.  Assume that the automated vehicles are restricted to the routes shown above. </p>
+					<p>Remember, you do not need to write any code. [6]</p>
+				</ol>
+			</td></tr>				
+			
+			
+			<tr><td>
+				<ol start="7">
+					<li>Explain the role of the variable <span class="code">UpOrDown</span> in the <span class="code">ProcessCostOfFuelChangeEvent </span>subroutine of the <span class="code">Simulation</span> class. [3]</li>
+				</ol>
+			</td></tr>	
+
+			<tr><td>
+				<ol start="8">
+					<li>In the <span class="code">Simulation</span> constructor, the integer literals 100,000, 200 and 203 are passed to the <span class="code">Company</span> constructor when creating the ‘AQA Burgers’ company.  State the role of each of these integer literals. [3]</li>  
+				</ol>
+			</td></tr>
+			
+			<tr><td>
+				<ol start="9">
+					<li>Describe in full the operation of the <span class="code">GetIndexOfCompany</span></span> subroutine in the <span class="code">Simulation</span> class. [5]</li>  
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="10">
+					<li>Describe the circumstances under which the <span class="code">ModifyCompany</span> subroutine of the <span class="code">Simulation</span> class would output the text ‘Invalid coordinates’. [3]</li>						
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="11">
+					<li>Currently, a call to the <span class="code">LargeSettlement</span></span> constructor could not result in a settlement that is smaller than 1,000 by 1,000.  This is true even if negative numbers are entered by the user when prompted for additional x and y values.  Explain how a call to the <span class="code">LargeSettlement</span></span> constructor never results in a smaller settlement size. [3]</li>
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="12">
+					<li>Describe exactly how the <span class="code">ProcessDayEnd</span> subroutine works in the <span class="code">Simulation</span> class. [5]</li>						
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="13">
+					<li>Copy and complete the following hierarchy chart for part of the <span class="code">Simulation</span> class of the Skeleton Program.  <br />You should not include calls to any library subroutines. [3]<br />
+					
+					<img src="images/Q13.jpg" style="border:none; margin-top:10px;">
+
+					</li>						
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="14">
+					<li>Describe how the program would respond to a call to the <span class="code">Company</span> constructor using a category that is neither ‘fast food’, ‘family’ nor ‘named chef’. [2]</li>					 
+				</ol>
+			</td></tr>	
+			
+			
+		</table>
+	
+		
+	<!--activity end-->
+		
+
+	<div class="footer">
+	<p class="no_print"><a href="#top">Back to Top</a>
+	<span class="no_print" style="float:right;">&copy; <a href="http://zigzageducation.co.uk">ZigZag Education 2019</a></span></p>
+	</div>
+	
+	<!-- .topic_info end -->		
+	
+<!-- .container end -->
+</div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,225 @@
+<html>
+<head> 
+	<title>Food Magnate Simulation 2020</title>
+	<script> 
+		/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "nav") {
+				x.className += " responsive";
+			} else {
+				x.className = "nav";
+			}
+		}
+	</script>	
+	<script src="lightbox/js/jquery-1.10.2.min.js"></script>
+	<script src="lightbox/js/lightbox-2.6.min.js"></script>
+	
+	<link href="style.css" rel="stylesheet" />
+	<link href="lightbox/css/lightbox.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<!-- .container start -->
+<div class="container">
+	
+	<!-- .banner start -->
+	<div class="banner">
+	<div style="float:right; padding:0;font-size:0.8em;">Python Edition</div><br style="clear:both">	
+	<img src="images/banner.jpg" style="border:none;">
+		<ul id="nav" class="nav" id="myTopnav">		
+		<li><a href="index.html" class="selected">Introduction</a></li>
+		<li><a href="visualisation.html">Visualisation</a></li>
+		<li><a href="diagrams.html">Class Diagram Tasks</a></li>
+		<li><a href="questions.html">Theory Questions</a></li>
+		<li><a href="tasks.html">Programming Tasks</a></li>
+		<li><a href="answers.html">Solutions</a></li>				
+	</ul>	
+	</div>
+	<!-- .banner end -->	
+
+	
+	<!-- .topic_header start -->
+	<div class="topic_header">
+	<table style="background-color:#ccf2ff"><tr><td><h1><strong>Introduction</strong></h1></td></tr></table>
+		
+	</div>
+	<!-- .topic_header end -->
+	
+	<!-- .topic_info start -->		
+		
+	<div class="topic_info">	
+
+	<p>The <em>Food Magnate Simulation</em> models how profitable different types of restaurant chain would be within a simulated settlement.</p>
+	<p>The structure of the simulation, conceptually, is as follows:</p>
+	
+	<div style="text-align:center;"><img src="images/1.jpg" style="border:none"></div>
+
+	<p>The program contains the following objects:</p>
+	<ul>
+		<li>A single object of type <span class="code">Simulation</span>, which is responsible for constructing, either directly or indirectly, the remaining objects</li>
+		<li>A single object of type <span class="code">Settlement</span>, which is stored within the <span class="code">Simulation</span> object. Alternatively, this can be an object of type <span class="code">LargeSettlement</span>, which behaves identically but can cover a larger area and contain more households.</li>
+		<li>An unlimited number of <span class="code">Household</span> objects, each of which is contained within the settlement. Initially, a settlement begins with 250 of these, but a <span class="code">LargeSettlement</span> object might have more.</li>
+		<li>An unlimited number of <span class="code">Company</span> objects, although the default starting number of companies is three. The <span class="code">Company</span> objects are contained directly within the <span class="code">Simulation</span> object.</li>
+		<li>An unlimited number of <span class="code">Outlet</span> objects, with each outlet being stored in a particular <span class="code">Company</span> object. A company cannot exist without at least one outlet.</li>
+	</ul>
+			
+	<p>Let's look at the attributes for each class in detail&hellip;</p>
+
+
+	<h2>Class: <span class="code">Simulation</span></h2>
+	<p>The <span class="code">Main</span> subroutine creates the program's single <span class="code">Simulation</span> object and calls its <span class="code">Run</span> subroutine.&nbsp; From that point onwards, it is the <span class="code">Simulation</span> object that is responsible for creating and managing all other objects.&nbsp; Its attributes are as follows:</p>
+	<ul>
+		<li>A single <span class="code">Settlement</span> object, <span class="code">SimulationSettlement</span>; since the <span class="code">Settlement</span> object contains the <span class="code">Household</span> objects, the simulation cannot interact directly with a household without calling an accessor subroutine in the <span class="code">Settlement</span> class</li>
+		<li>An integer variable to store the number of companies, <span class="code">NoOfCompanies</span></li>
+		<li>A float called <span class="code">FuelCostPerUnit</span>, which is used to calculate delivery costs between outlets belonging to the same company; it is passed to the constructor of the <span class="code">Company</span> class</li>
+		<li>A second float, called <span class="code">BaseCostForDelivery</span>, which is also passed to the <span class="code">Company</span> constructor and subsequently used to calculate delivery costs</li>
+		<li>A list called <span class="code">Companies</span>, to store objects of type <span class="code">Company</span>; a list is a better choice than an array, since any number of companies can be stored</li>
+	</ul>
+
+	<h2>Class: <span class="code">Company</span></h2>
+	<p>A company can be either a fast-food company, a family company or a named chef company.&nbsp; This means that all outlets belonging to a company will also be of that type; a company cannot have, for example, some fast-food outlets and some family outlets.&nbsp; The <span class="code">Company</span> class's attributes are as follows:</p>
+	<ul>
+		<li>A string, <span class="code">Name</span>, to store the name of the company</li>
+		<li>A second string, called <span class="code">Category</span>; this stores the type of company, and can be either 'fast food', 'family' or 'named chef'</li>
+		<li>A series of float attributes:
+			<ul>
+				<li><span class="code">Balance</span>: the amount of money a company owns, which can be positive, negative or zero</li>
+				<li><span class="code">ReputationScore</span>: a measure of how well regarded the company is; a company with a high reputation score is more likely to be visited than one with a low reputation score</li>
+				<li><span class="code">AvgCostPerMeal</span>: how much the company pays for a meal</li>
+				<li><span class="code">AvgPricePerMeal</span>: how much a customer pays for a meal when visiting one of the company's outlets</li>
+				<li><span class="code"><span class="code">DailyCosts</span></span>: single cost per day, per company, initially set to 100, but with a small chance that it will change, up or down, between days</li>
+				<li><span class="code">FamilyOutletCost</span>: the cost of opening an outlet for a 'family' company</li>
+				<li><span class="code">FastFoodOutletCost</span>: the cost of opening an outlet for a 'fast food' company</li>
+				<li><span class="code">NamedChefOutletCost</span>: the cost of opening an outlet for a 'named chef' company</li>
+				<li><span class="code">FuelCostPerUnit</span>: for companies with multiple outlets, this is part of the delivery cost from their 'main' outlet (the first one to be created) and each subsequent outlet</li>
+				<li><span class="code">BaseCostOfDelivery</span>: for companies with any number of outlets, this amount is paid once per day</li>
+			</ul>
+		</li>
+		<li>A list called <span class="code">Outlets</span>, to store objects of type <span class="code">Outlet</span>; again, this offers more flexibility than using an array</li>
+		<li>A series of integer attributes:
+			<ul>
+			<li><span class="code">FamilyFoodOutletCapacity</span>: capacity for a 'family' outlet, initialised to 150</li>
+			<li><span class="code">FastFoodOutletCapacity</span>: capacity for a 'fast food' outlet, initialised to 200</li>
+			<li><span class="code">NamedChefOutletCapacity</span>: capacity for a 'named chef' outlet, initialised to 50</li>
+			</ul>
+		</li>
+	</ul>
+	
+	<h2>Class: <span class="code">Outlet</span></h2>
+	<p>An <span class="code">Outlet</span> object is stored within a data structure in a <span class="code">Company</span> object, modelling the fact that an outlet is owned by a single company.&nbsp; Outlets are also associated with the settlement, since each outlet has a location within that settlement, and households, if they choose to visit a company's outlet, will always visit the closest one.&nbsp;</p>
+	<p>The <span class="code">Outlet</span> class's attributes are as follows:</p>
+	<ul>
+		<li>A series of integer attributes:
+		<ul>
+			<li><span class="code">VisitsToday</span>: the number of times a household has visited this outlet on the current day; it is worth noting that there is nothing preventing this exceeding the outlet's capacity</li>
+			<li><span class="code">XCoord </span> and <span class="code">YCoord</span>: the outlet's location within the settlement</li>
+			<li><span class="code">Capacity</span>: how many seats are in the outlet, used to calculate daily costs</li>
+			<li><span class="code">MaxCapacity</span>: the maximum to which the capacity can be extended, also used to calculate daily costs</li>
+		</ul>
+		</li>
+		<li>A float, <span class="code"><span class="code">DailyCosts</span></span>, which is how much the outlet costs to run each day, irrespective of visitors; this is not fixed, and can be changed as capacity changes. It could also be changed as a result of a call to the <span class="code">Outlet</span> class's <span class="code">AlterDailyCost</span> subroutine; however, this is never called, nor is <span class="code">GetCapacity</span>.</li>
+	</ul>
+	
+	
+	<h2>Class: <span class="code">Settlement</span></h2>
+	<p>The simulation contains a single settlement, and each household and outlet has a location within that settlement.&nbsp; The settlement is easy to visualise in terms of a grid, but it is not stored as a two-dimensional array.&nbsp; The reason for this is twofold.&nbsp; Firstly, most elements within a settlement array would be empty.&nbsp; The default settings create a settlement with one million possible locations, but only 250 households and 12 company outlets.&nbsp; Secondly, a settlement contains objects of different types &ndash; namely households and outlets.&nbsp; Instead, each outlet and each household stores its own X and Y coordinates, which must be within the bounds of the settlement.&nbsp;</p>
+	<p>The <span class="code">Settlement</span> class's attributes are as follows:</p>
+	<ul>
+		<li>An integer variable, <span class="code">StartNoOfHouseholds</span>, which is how many households exist at the start of the simulation. Based on existing code, this can go up but not down as the simulation runs.&nbsp; The default value is 250.</li>
+		<li>Two further integers, <span class="code">XSize</span> and <span class="code">YSize</span>, which store between them the size of the settlement. The default value for each of these is 1,000, meaning there are one million possible locations.</li>
+		<li>A list called <span class="code">Households</span>, to store each <span class="code">Household</span> object</li>
+	</ul>
+
+	<p>The <span class="code">LargeSettlement</span> class inherits from Settlement, and allows the user to add to (but not subtract from) the values of <span class="code">StartNoOfHouseholds</span>, <span class="code">XSize</span> and <span class="code"><span class="code">YSize</span></span>.</p>
+
+	<h2>Class: <span class="code">Household</span></h2>
+	<p>To all intents and purposes, this class models a consumer, since the whole household either eats out or does not.&nbsp; There is scope here for modelling households of different sizes, or households in which some members (but not all) go out to eat, or even households where different individuals eat out at different outlets at the same time.&nbsp; The <span class="code">Household</span> class's attributes are as follows:</p>
+	<ul>
+		<li>A float, <span class="code">ChanceEatOutPerDay</span>, storing a value between 0 and 1, representing the probability of the household going out to eat</li>
+		<li>Integer variables <span class="code">XCoord </span> and <span class="code">YCoord</span>, representing a household&rsquo;s location in the settlement</li>
+		<li>A static integer, <span class="code">NextID</span>, which numbers each new household incrementally, starting from 1</li>
+		<li>An additional integer, <span class="code">ID</span>, which stores the value contained in <span class="code">NextID</span> at point of instantiation</li>		
+	</ul>
+
+
+	<h2>Overview</h2>
+	<h3>When the program begins:</h3>
+
+	<div style="text-align:center;"><img src="images/2.jpg" style="border:none"></div>
+	
+	<ol>
+		<li>A new <span class="code">Simulation</span> object is constructed</li>
+		<li>That <span class="code">Simulation</span> object constructs a new object of type <span class="code">Settlement</span> or <span class="code">LargeSettlement</span> (which inherits from <span class="code">Settlement</span>), depending on user input. The <span class="code">Settlement</span> constructor calls the constructor of <span class="code">Household</span></li>
+		<li>That <span class="code">Simulation</span> object, as part of being constructed, also constructs new <span class="code">Company</span> objects, which are either the three default companies hard-coded into the Skeleton Program or user-defined, depending on user input</li>
+		<li>The <span class="code">AddCompany</span> subroutine is called if user-defined companies are selected, allowing the user to enter specific details of each company</li>
+		<li>The <span class="code">Company</span> constructor will make at least one call to the <span class="code">Outlet</span> constructor, since each company must have at least one outlet</li>
+		<li>The <span class="code">Simulation</span> object's <span class="code">Run</span> subroutine is called (see next hierarchy diagram)</li>
+	</ol>
+
+	<div style="text-align:center;">
+		<img src="images/3.jpg" style="margin:10px 0px 5px 0px;">
+		<p class="caption">Main Menu</p>
+	
+		<img src="images/4.jpg" style="margin:10px 0px 5px 0px;">
+		<p class="caption">'Modify Company' menu, shown when the user selects option 3 from the main menu and enters a valid company name</p>
+	</div>
+		
+	<br />
+	
+	<h3>When the <span class="code">Run</span> subroutine is called:</h3>
+
+	<div style="text-align:center;"><img src="images/5.jpg" style="border:none"></div>
+
+	<ol start="7">
+		<li>The user is presented with a menu as a result of a call to <span class="code">DisplayMenu</span></li>
+		<li>If the user selects option 1, a call is made to <span class="code">DisplayHouseholds</span>, which lists details of all households in the settlement via a call to <span class="code">DisplayHouseholds</span> in the <span class="code">Settlement</span> class, which in turn calls <span class="code">GetDetails</span> in each instance of the <span class="code">Household</span> class</li>
+		<li>If the user selects option 2, details of all companies are displayed via a call to <span class="code">DisplayCompanies</span>, which calls the <span class="code">GetDetails</span> subroutine in each <span class="code">Company</span> The <span class="code">GetDetails</span> subroutine in the <span class="code">Company</span> class calls a <span class="code">GetDetails</span> subroutine for each outlet, meaning that selecting option 2 from the menu results in details of all companies, and their outlets, being displayed.</li>
+		<li>If the user selects option 3, to modify a company, they are prompted for a company name, which is then passed to <span class="code">GetIndexOfCompany</span></span> in order to get the index of that company. The subsequent call to <span class="code">ModifyCompany</span> presents the user with a second menu containing three options.&nbsp; They can open a new outlet (<span class="code">OpenOutlet()</span>), close an outlet <span class="code">(CloseOutlet()</span>) or expand an existing outlet (<span class="code">ExpandOutlet()</span>).</li>
+		<li>If the user selects option 4, a new company can be created via a call to <span class="code">AddCompany</span>. This prompts the user for details of the new company's name, type and starting balance.&nbsp; The new company will have a single outlet in a random location within the settlement.</li>
+		<li>There is no option 5, which makes it quite likely that adding an option 5 will be part of the exam</li>
+		<li>If the user selects option 6, a call is made to <span class="code">ProcessDayEnd</span> in the <span class="code">Simulation</span>. Note that an identically named subroutine exists in the <span class="code">Company</span> class, so be sure not to confuse the two.&nbsp; This is the most involved subroutine in the program and is addressed in the next hierarchy diagram.</li>
+	</ol>
+
+	<h3>When each day ends:</h3>
+
+	<div style="text-align:center;"><img src="images/6.jpg" style="border:none"></div>
+
+	<ol start="14">
+		<li>The call to <span class="code">NewDay</span> (in the <span class="code">Company</span> class) calls <span class="code">NewDay</span> (a subroutine in each <span class="code">Outlet</span> class) to reset the number of visits to zero</li>
+		<li>The reputation score of each company is accessed and added to a list, with each float value therein storing a running total of all reputation scores so far (i.e. the first value stored is for the first company, the second value stored is the sum of the reputation scores for the first two companies, the third value stored is the sum of the reputation scores for the first three companies, and so on)</li>
+		<li>The call to <span class="code">GetNumberOfHouseholds</span> is to facilitate a loop through all households in a settlement</li>
+		<li>The call to <span class="code">FindOutIfHouseholdEatsOut</span>, for each <span class="code">Household</span> object, returns a Boolean, which is more likely to be true for households with a higher probability of eating out. If it is true, a company is selected at random, using the list from step 15, with companies holding a higher reputation score more likely to be chosen.</li>		
+		
+		<li>For the company that is chosen, the nearest outlet to the household eating out is visited. The distances to all outlets belonging to the chosen company are examined, and distances are calculated in the following way:</li>
+	
+		<ul>
+			<li>Distances are calculated using Pythagoras; taking the x distance, squaring it, adding the square of the y distance and then taking the square root of the result.</li>
+			<li>In the event that two outlets are of an equal distance from a house, the outlet examined first (i.e. the outlet appearing earlier in the <span class="code">Outlets</span> list) will be the one visited.</li>
+		</ul>
+	
+		<li>The call to <span class="code">DisplayCompaniesAtDayEnd</span>  calls the <span class="code">ProcessDayEnd</span> subroutine in the <span class="code">Company</span>. This subroutine calculates changes to the company's balance, which is affected by visits to each outlet per day, the price at which meals are bought and sold, and the distance between outlets for the same company, for which the delivery of ingredients incurs a cost based on the price of fuel (distances are calculated as above).&nbsp; The old balance and the new balance are then displayed, along with other details of the company and its outlets.</li>
+		<li>The call to <span class="code">DisplayEventsAtDayEnd</span> generates either a random probability of additional households in the settlement, a change of fuel cost for a company chosen at random, a change of reputation for a company chosen at random or a change of daily costs for a company chosen at random</li>
+	</ol>
+
+	</div>
+	
+
+	<div class="footer">
+	<p class="no_print"><a href="#top">Back to Top</a>
+	<span class="no_print" style="float:right;">&copy; <a href="http://zigzageducation.co.uk">ZigZag Education 2019</a></span></p>
+	</div>
+	
+	<!-- .topic_info end -->		
+	
+<!-- .container end -->
+</div>
+
+</body>
+</html>
+
+
